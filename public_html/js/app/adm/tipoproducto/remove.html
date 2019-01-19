@@ -1,0 +1,43 @@
+<header-component></header-component>
+<div class="container-fluid mb-5">
+    <div class="row">      
+        <main role="main" class="col-md-12 ml-sm-auto col-lg-12 px-4" style="margin-top: 90px">
+            <div class="pt-3 pb-2 mb-3 border-bottom" style="text-align: center;">
+                <h2><i class="fas fa-boxes fa-2x pr-2"></i><i class="fas fa-trash"></i> Eliminar tipo de producto</h2>
+            </div>            
+            <div class="table-responsive">
+                <table class="table table-striped table-sm mx-auto mb-5" style="text-align: center; width: 450px;">
+                    <tr>
+                        <th>ID</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td>{{ajaxData.id}}</td>
+                        <td>{{ajaxData.desc}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="row" ng-show="deleted">
+                <div class="col-12">
+                    <div class="card mx-auto" style="width: 300px;">
+                        <div class="card-body">
+                            <h5 class="card-title">¿Desea eliminar el Registro?</h5>
+                            <div class="d-flex justify-content-center align-items-center pt-3 pb-2 mb-3" role="alert">
+                                <button type="button" class="btn btn-outline-success mr-5" ng-click="eliminar()"><i class="far fa-check-circle"></i></button>
+                                <button type="button" class="btn btn-outline-danger" onclick="window.history.back()"><i class="fas fa-ban"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center" ng-show="!deleted">
+                <div class="col-6">
+                    <div class="alert alert-success d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3" role="alert">
+                        <p>Registro eliminado con éxito<p> <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+

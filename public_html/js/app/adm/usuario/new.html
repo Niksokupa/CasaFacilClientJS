@@ -1,0 +1,116 @@
+<header-component></header-component>
+<div class="container-fluid mb-5">
+    <div class="row" style="margin-top: 80px">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12 mx-auto" style="text-align: center">
+                    <h3><i class="fas fa-user fa-2x pr-2"></i><i class="fas fa-plus"></i> Nuevo usuario</h3>
+                </div>
+            </div>
+            <hr />
+            <div class="row" ng-show="created">
+                <div class="col-6 mx-auto">
+                    <form name="userForm">
+                        <div class="form-group" ng-class="{ 'has-error' : userForm.dni.$invalid && !userForm.dni.$pristine }">
+                            <label>DNI</label>
+                            <input type="text" class="form-control" id="dni" name="dni" ng-model="dni" ng-required="true" ng-pattern="/^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKET]$/"
+                                   />
+                            <div ng-show="userForm.dni.$error.pattern" class="alert alert-danger" role="alert">
+                                Formato dni no valido
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" ng-model="nombre" ng-required="true" />
+                            <div ng-show="!userForm.nombre.$valid && userForm.nombre.$dirty" class="alert alert-danger" role="alert">
+                                Nombre obligatorio
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Primer apellido</label>
+                            <input type="text" class="form-control" id="ape1" name="ape1" ng-model="ape1" ng-required="true" />
+                            <div ng-show="!userForm.ape1.$valid && userForm.ape1.$dirty" class="alert alert-danger" role="alert">
+                                Primer apellido obligatorio
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Segundo apellido</label>
+                            <input type="text" class="form-control" id="ape2" name="ape2" ng-model="ape2" ng-required="true" />
+                            <div ng-show="!userForm.ape2.$valid && userForm.ape2.$dirty" class="alert alert-danger" role="alert">
+                                Segundo apellido obligatorio
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Login</label>
+                            <input type="text" class="form-control" id="login" name="login" ng-model="login" ng-required="true" />
+                            <div ng-show="!userForm.login.$valid && userForm.login.$dirty" class="alert alert-danger" role="alert">
+                                Login obligatorio
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Contraseña</label>
+                            <input type="password" class="form-control" ng-class="{' is-invalid': userForm.pass.$invalid && !userForm.pass.$pristine}"
+                                   id="pass" name="pass" ng-model="pass" ng-required="true"/>
+                            <div ng-show="!userForm.pass.$valid && userForm.pass.$dirty" class="alert alert-danger" role="alert">
+                                La contraseña es obligatoria.
+                            </div>
+                        </div>
+                        <!--TIPOUSUARIO-->
+
+                        <label for="obj_tipoUsuario">Tipo de usuario:</label>
+                        <div class="form-group row" style="padding-left:15px;">
+                            <tipousuario-selection 
+                                class="modal fade" 
+                                id="cadd-location-modal" 
+                                obj="obj_tipoUsuario"
+                                on-tipousuario-set="tipoUsuarioRefresh(this,false)">                          
+                            </tipousuario-selection>
+
+                            <div class="control">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"
+                                              data-toggle="modal"
+                                              data-target="#cadd-location-modal">
+                                            <span class="fas fa-search"></span>
+                                        </span>
+                                    </div>
+                                    <input ng-model="obj_tipoUsuario.id"
+                                           ng-change="tipoUsuarioRefresh(this, true)"
+                                           aria-describedby="basic-addon2"
+                                           class="form-control col-sm-2"
+                                           id="obj_tipoUsuario"
+                                           name="obj_tipoUsuario"
+                                           type="text"
+                                           ng-required
+                                           ng-model-options="{debounce: 1000}"
+                                           maxlength="2" />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <a href="/casafacil-client/public_html/tipousuario/view/{{obj_tipoUsuario.id}}">
+                                                <span class="p-2 bd-highlight"><i class="fas fa-users fa-1x"></i></span>
+                                                Tipo de usuario: {{obj_tipoUsuario.desc}}
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div ng-show="!userForm.obj_tipoUsuario.$valid">Tipo de usuario no válido</div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between flex-wrap">
+                            <button ng-click="create()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Crear</button>
+                            <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row" ng-show="!created">
+                <div class="col-12">
+                    <div class="alert alert-success d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3" role="alert">
+                        <p>Registro creado con éxito con número de ID: {{id}}<p> <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

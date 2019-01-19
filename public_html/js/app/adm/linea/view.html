@@ -1,0 +1,34 @@
+<header-component></header-component>
+<main role="main" class="container mb-5">
+    <div style="margin-top: 80px">
+        <div class="row">
+            <div class="mx-auto" style="text-align: center">
+                <h3>Ver línea</h3>
+            </div>
+        </div>
+        <hr />
+        <div class="table-responsive">
+            <table class="table table-striped table-sm mx-auto" style="width: 450px; text-align: center; ">
+                <tr class="text-center">
+                    <th>ID</th>
+                    <td>{{ajaxData.id}}</td>
+                </tr>
+                <tr>
+                    <th>Descripción</th>
+                    <td >{{ajaxData.cantidad}}</td>
+                </tr>
+                <tr>
+                    <th>ID de Factura</th>
+                    <td >{{ajaxData.obj_factura.id}}</td>
+                </tr>
+                <tr>
+                    <th>Producto</th>
+                    <td >{{ajaxData.obj_producto.desc}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
+        </div>
+    </div>
+</main>

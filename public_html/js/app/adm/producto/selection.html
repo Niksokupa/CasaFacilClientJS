@@ -1,0 +1,207 @@
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Seleccionar un producto</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Listado de productos</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <button type="button" class="btn btn-light" ng-click="c.resetOrder()">
+                        <i class="fa fa-eye"></i>
+                    </button>
+                    <div class="btn-group" style="width:400px;">
+                        <p class="mt-2" style="width:200px;">Selecciona RPP: </p>
+                        <select class="form-control"
+                                ng-change="c.update()"
+                                ng-model="c.rpp">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <nav aria-label="paginacion">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" ng-show="page > 2" href="{{ob}}/plist/{{rpp}}/1/{{order}}/{{align}}">First</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" ng-show="page > 1" href="{{ob}}/plist/{{rpp}}/{{page - 1}}/{{order}}/{{align}}">Previous</a>
+                            </li>
+                            <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
+                                <a class="page-link" href="{{ob}}/plist/{{rpp}}/{{p}}/{{order}}/{{align}}">{{p}}</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" ng-show="page != totalPages" href="{{ob}}/plist/{{rpp}}/{{page--1}}/{{order}}/{{align}}">Next</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="{{ob}}/plist/{{rpp}}/{{totalPages}}/{{order}}/{{align}}">Last</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+                <div class="row mx-auto">
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm mx-auto"  style="text-align: center;">
+                        <tr>
+                            <th>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p>
+                                            ID
+                                        </p>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <button type="button" class="btn btn-light" ng-click="ordena('id', 'asc')">
+                                                <i class="fas fa-long-arrow-alt-up"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-light" ng-click="ordena('id', 'desc')">
+                                                <i class="fas fa-long-arrow-alt-down"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p>
+                                            Código
+                                        </p>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <button type="button" class="btn btn-light" ng-click="ordena('codigo', 'asc')">
+                                                <i class="fas fa-long-arrow-alt-up"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-light" ng-click="ordena('codigo', 'desc')">
+                                                <i class="fas fa-long-arrow-alt-down"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p>
+                                            Descripción
+                                        </p>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <button type="button" class="btn btn-light" ng-click="ordena('producto.desc', 'asc')">
+                                                <i class="fas fa-long-arrow-alt-up"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-light" ng-click="ordena('producto.desc', 'desc')">
+                                                <i class="fas fa-long-arrow-alt-down"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </th> 
+                            <th>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p>
+                                            Existencias
+                                        </p>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <button type="button" class="btn btn-light" ng-click="ordena('existencias', 'asc')">
+                                                <i class="fas fa-long-arrow-alt-up"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-light" ng-click="ordena('existencias', 'desc')">
+                                                <i class="fas fa-long-arrow-alt-down"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </th> 
+                            <th>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p>
+                                            Precio
+                                        </p>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <button type="button" class="btn btn-light" ng-click="ordena('precio', 'asc')">
+                                                <i class="fas fa-long-arrow-alt-up"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-light" ng-click="ordena('precio', 'desc')">
+                                                <i class="fas fa-long-arrow-alt-down"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </th> 
+                            <th>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p>
+                                            Tipo de producto
+                                        </p>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <button type="button" class="btn btn-light" ng-click="ordena('id_tipoProducto', 'asc')">
+                                                <i class="fas fa-long-arrow-alt-up"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-light" ng-click="ordena('id_tipoProducto', 'desc')">
+                                                <i class="fas fa-long-arrow-alt-down"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </th> 
+                            <th>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p>Acciones</p>
+                                    </div>
+                                </div>
+                            </th>
+                        </tr>
+                    <tr ng-repeat="fila in c.data">
+                        <td>{{fila.id}}</td>
+                        <td>{{fila.codigo}}</td>
+                        <td>{{fila.desc}}</td>
+                        <td>{{fila.existencias}}</td>
+                        <td>{{fila.precio}}</td>
+                        <td>{{fila.obj_tipoProducto.desc}}</td>
+                        <td>
+                            <div class="btn-toolbar" role="toolbar">
+                                <div class="btn-group">
+                                    <a class="btn btn-default btn-xs" ng-click="c.save(fila.id,fila.desc)" data-dismiss="modal">
+                                        <i class="fa fa-reply" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" ng-click="c.newVariableAndValue.name = '';c.newVariableAndValue.value = ''">Reset</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" ng-click="c.save()">Save</button>
+        </div>
+    </div>
+</div>

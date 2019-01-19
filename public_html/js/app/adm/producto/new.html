@@ -1,0 +1,121 @@
+<header-component></header-component>
+<div class="container-fluid mb-5">
+    <div class="row" style="margin-top: 90px">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12 mx-auto" style="text-align: center">
+                    <h3><i class="fas fa-box-open fa-2x pr-2"></i><i class="fas fa-plus"></i> Nuevo producto</h3>
+                </div>
+            </div>
+            <hr />
+            <div class="row" ng-show="created">
+                <div class="col-6 mx-auto">
+                    <form name="userForm">
+                        <div class="row">
+                            <div class="mx-auto pb-5">
+                                <img id="output" ng-src="http://localhost:8081/imagenes/Foto" style="width: 128px; height: 128px;">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="mx-auto pb-5">
+                                    <!--ARREGLO EN UNA LINEA DE PREVIEW DE NUEVA FOTO-->
+                                    <input type="file" file-model="myFile" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" ng-model="foto">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : userForm.codigo.$invalid && !userForm.codigo.$pristine }">
+                            <label>Código</label>
+                            <input type="text" class="form-control" id="codigo" name="codigo" ng-model="codigo" ng-required="true"
+                                   />
+                            <div ng-show="!userForm.codigo.$valid && userForm.codigo.$dirty" class="alert alert-danger" role="alert">
+                                Código obligatorio
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <input type="text" class="form-control" id="desc" name="desc" ng-model="desc" ng-required="true" />
+                            <div ng-show="!userForm.desc.$valid && userForm.desc.$dirty" class="alert alert-danger" role="alert">
+                                Descripción obligatoria
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Existencias</label>
+                            <input type="text" class="form-control" id="existencias" name="existencias" 
+                                   ng-model="existencias" 
+                                   ng-required="true" 
+                                   ng-pattern="/^[1-9][0-9]*$/"/>
+                            <div ng-show="!userForm.existencias.$valid && userForm.existencias.$dirty" class="alert alert-danger" role="alert">
+                                Sólo se aceptan números enteros.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Precio</label>
+                            <input type="text" class="form-control" id="precio" name="precio" 
+                                   ng-model="precio" 
+                                   ng-required="true"
+                                   ng-pattern="/^[1-9]+(\.[0-9]{2})?$/"/>
+                            <div ng-show="!userForm.precio.$valid && userForm.precio.$dirty" class="alert alert-danger" role="alert">
+                                Sólo se aceptan números enteros o con 2 decimales (separados con un punto).
+                            </div>
+                        </div>
+
+                        <!--TIPOPRODUCTO-->
+
+                        <label for="obj_tipoProducto">Tipo de producto:</label>
+                        <div class="form-group row" style="padding-left:15px;">
+                            <tipoproducto-selection 
+                                class="modal fade" 
+                                id="cadd-location-modal" 
+                                obj="obj_tipoProducto"
+                                on-tipoproducto-set="tipoProductoRefresh(this,false)">                          
+                            </tipoproducto-selection>
+
+                            <div class="control">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"
+                                              data-toggle="modal"
+                                              data-target="#cadd-location-modal">
+                                            <span class="fas fa-search"></span>
+                                        </span>
+                                    </div>
+                                    <input ng-model="obj_tipoProducto.id"
+                                           ng-change="tipoProductoRefresh(this, true)"
+                                           aria-describedby="basic-addon2"
+                                           class="form-control col-sm-2"
+                                           id="obj_tipoProducto"
+                                           name="obj_tipoProducto"
+                                           type="text"
+                                           ng-required
+                                           ng-model-options="{debounce: 1000}"
+                                           maxlength="2" />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <a href="/casafacil-client/public_html/tipoproducto/view/{{obj_tipoProducto.id}}">
+                                                <span class="p-2 bd-highlight"><i class="fas fa-users fa-1x"></i></span>
+                                                Tipo de producto: {{obj_tipoProducto.desc}}
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div ng-show="!userForm.obj_tipoProducto.$valid">Tipo de producto no válido</div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between flex-wrap">
+                            <button ng-click="create()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Crear</button>
+                            <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row" ng-show="!created">
+                <div class="col-12">
+                    <div class="alert alert-success d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3" role="alert">
+                        <p>Registro creado con éxito con número de ID: {{id}}<p> <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

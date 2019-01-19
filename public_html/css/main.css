@@ -1,0 +1,55 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    height: 100%;
+}
+body {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto;
+}
+.footer {
+    opacity: 1;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 6vh;
+    line-height: 6vh; /* Vertically center the text there */
+    background-color: #b0b0b0;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+
+code {
+    font-size: 80%;
+}
+
+.product {
+    font-family: 'Rokkitt', serif;
+}
+
+.product-price {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+/* Custom Hover.css
+-------------------------------------------------- */
+
+/* Border Fade */
+.hvr-border-fade {
+    -webkit-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+    -webkit-transition-property: box-shadow;
+    transition-property: box-shadow;
+    box-shadow: inset 0 0 0 1px #e1e1e1, 0 0 1px rgba(0, 0, 0, 0);
+}
+.hvr-border-fade:active,.hvr-border-fade:focus,.hvr-border-fade:hover {
+    box-shadow:inset 0 0 0 2px #2098D1,0 0 1px rgba(0,0,0,0)
+}
