@@ -141,9 +141,9 @@ casafacil.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/cli/home', {templateUrl: 'js/app/cli/home.html', controller: 'homeController', resolve: {auth: autenticacionHome}});
 
         //CIUDAD
-        $routeProvider.when('/cli/valencia', {templateUrl: 'js/app/cli/ciudad/valencia/valencia.html', controller: 'ciudadController', resolve: {auth: autenticacionHome}});
-        $routeProvider.when('/cli/alicante', {templateUrl: 'js/app/cli/ciudad/alicante/alicante.html', controller: 'ciudadController', resolve: {auth: autenticacionHome}});
-        $routeProvider.when('/cli/castellon', {templateUrl: 'js/app/cli/ciudad/castellon/castellon.html', controller: 'ciudadController', resolve: {auth: autenticacionHome}});
+        $routeProvider.when('/cli/valencia', {templateUrl: 'js/app/cli/ciudad/valencia/plist.html', controller: 'ciudadController', resolve: {auth: autenticacionHome}});
+        $routeProvider.when('/cli/alicante', {templateUrl: 'js/app/cli/ciudad/alicante/plist.html', controller: 'ciudadController', resolve: {auth: autenticacionHome}});
+        $routeProvider.when('/cli/castellon', {templateUrl: 'js/app/cli/ciudad/castellon/plist.html', controller: 'ciudadController', resolve: {auth: autenticacionHome}});
 
 
         //USUARIO

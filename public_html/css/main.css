@@ -38,6 +38,33 @@ code {
     font-weight: bold;
 }
 
+/*NAVBAR*/
+
+.navbar {
+  height: 80px !important;
+  background-color: transparent !important;
+  border: none !important;
+  color: white !important;
+  z-index: 100 !important;
+  transition: background-color 1s ease 0s !important;
+}
+
+.navbar.solid {
+  background-color: #490D40 !important;
+  transition: background-color 1s ease 0s !important;
+  box-shadow: 0 0 4px grey !important;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 /* Custom Hover.css
 -------------------------------------------------- */

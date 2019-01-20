@@ -13,6 +13,18 @@ function js(toolService, sessionService) {
     var cart = $('.carrito');
     var cartDiv = $('.highlight');
 
+    $(window).scroll(function () {
+        // checks if window is scrolled more than 500px, adds/removes solid class
+        if ($(this).scrollTop() > 250) {
+            $('.navbar').addClass('solid');
+        } else {
+            $('.navbar').removeClass('solid');
+        }
+    });
+
+
+
+
     self.logged = sessionService.isSessionActive();
     self.name = sessionService.getUserName();
     self.idUserLogged = sessionService.getId();
@@ -34,7 +46,7 @@ function js(toolService, sessionService) {
             cart.effect("shake", {
                 times: 2
             }, 400);
-            cartDiv.effect("highlight", {color:"#f4ce42"}, 400);
+            cartDiv.effect("highlight", {color: "#f4ce42"}, 400);
         }
 
     });
