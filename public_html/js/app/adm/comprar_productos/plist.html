@@ -1,0 +1,113 @@
+<header-component animation="addCarrito"></header-component>
+<div class="container-fluid mb-5">
+    <div class="row">
+        <main role="main" class="col-md-12 ml-sm-auto col-lg-12 px-4" style="margin-top: 90px">
+            <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h2><i class="fas fa-box-open fa-2x pr-2"></i> Tienda</h2>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <!--                    <button type="button" class="btn btn-warning mr-2" style="width: 155px;height: 40px;"
+                                            ng-click="resetOrder()">
+                                            <i class="fas fa-redo-alt"></i>
+                                            Reset orden
+                                        </button>-->
+                    <div class="btn-group" style="width:400px;">
+                        <p class="mt-2" style="width:200px;">Selecciona RPP: </p>
+                        <select class="form-control" 
+                                ng-change="update()" 
+                                ng-model="rpp">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!--<advanced-search ng-show="advanced"></advanced-search>-->
+            <div>
+                <!--<pagination-component tabla="'producto'" neighborhood="1" route="'comprar_productos'"></pagination-component>-->
+                <div class="col-md-12 ml-sm-auto col-lg-12" style="z-index: 0">
+                    <div class="row d-flex justify-content-center flex-wrap align-items-center">
+                        <nav aria-label="paginacion">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" ng-show="page > 2" href="{{ob}}/plist/{{rpp}}/1/{{order}}/{{align}}">First</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" ng-show="page > 1" href="{{ob}}/plist/{{rpp}}/{{page - 1}}/{{order}}/{{align}}">Previous</a>
+                                </li>
+                                <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
+                                    <a class="page-link" href="{{ob}}/plist/{{rpp}}/{{p}}/{{order}}/{{align}}">{{p}}</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" ng-show="page != totalPages" href="{{ob}}/plist/{{rpp}}/{{page--1}}/{{order}}/{{align}}">Next</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="{{ob}}/plist/{{rpp}}/{{totalPages}}/{{order}}/{{align}}">Last</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="hvr-border-fade hvr-float-shadow product" style="width: 15rem; height: 31rem; margin: 5px; border-width: 0px; border-radius: 12px;" ng-repeat="producto in productos">
+                    <div class="card-body prod{{$index}}">
+                        <div class="row imagenproducto">
+                            <div class="col-12 mx-auto" style=" text-align: center;">
+                                <!--<i style="font-size: 128px;" class="icon ion-logo-tux"></i>-->
+                                <image ng-src="http://localhost:8081/imagenes/{{producto.producto.foto}}" style="width: 128px; height: 128px;" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 pb-4">
+                                <p class="card-text text-center font-weight-bold" style="text-transform: capitalize; font-size: 25px;">
+                                    {{producto.producto.desc}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8 ">
+                                <p style="font-size: 20px;">
+                                    Existencias:
+                                </p>
+                            </div>
+                            <div class="col-4 text-right">
+                                {{producto.producto.existencias}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 pb-4 text-center product-price">
+                                {{producto.producto.precio}} €
+                            </div>
+                        </div>
+                        <div class="row" ng-show="producto.producto.existencias <= 0">
+                            <div class="col-12">
+                                <div class="alert alert-danger" style="border-radius: 25px" role="alert">
+                                    ¡Nos hemos quedado sin existencias!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="producto.producto.existencias > 0">
+                            <div class="col-12">
+                                <div class="input-group mb-3">
+                                    <input type="number" max="{{producto.producto.existencias}}" min="0" class="form-control" style="width:50px; border-radius: 25px 0 0 25px" placeholder="0" ng-model="producto.cantidad" value="producto.cantidad">
+                                    <div class="invalid-feedback">
+                                        Cantidad inválida.
+                                    </div>
+                                    <div class="input-group-prepend"  id="button-addon3">
+                                        <button class="btn btn-outline-success" type="button" ng-click="add(producto)"><i class="fas fa-plus-square"></i></button>
+                                        <button class="btn btn-outline-danger" style="border-radius: 0 25px 25px 0" type="button" ng-click="reduce(producto)"><i class="fas fa-minus-circle"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="producto.producto.existencias > 0">
+                            <div class="col-12 d-flex justify-content-center align-items-center hvr-icon-wobble-horizontal">
+                                <button type="button" style="border-radius: 25px" class="btn btn-outline-success add-to-cart" ng-click="save(producto, $index)"><i class="fas fa-shopping-cart"></i><i class="fas fa-arrow-left hvr-icon"></i> Añadir al carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>

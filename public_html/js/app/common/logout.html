@@ -1,0 +1,23 @@
+<header-component></header-component>
+<main role="main" style="margin-top: 100px;" class="container mb-5">
+    <div class="row" ng-show="logged">
+        <div class="col-12">
+            <div class="card mx-auto" style="width: 350px;">
+                <div class="card-body">
+                    <h5 class="card-title">¿Realmente desea desloguearse?</h5>
+                    <div class="d-flex justify-content-center pt-3 pb-2 mb-3" role="alert">
+                        <button type="button" class="btn btn-outline-success mr-5" ng-click="logout()"><i class="far fa-check-circle"></i></button>
+                        <button type="button" class="btn btn-outline-danger" onclick="window.history.back()"><i class="fas fa-ban"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="!logged">
+        <div class="col-12">
+            <div class="alert alert-success d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3" role="alert">
+                <p>Se ha finalizado su sesión.<p> <button type="button" class="btn btn-light" onclick="window.history.back()">Volver</button>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,255 @@
+<header-component></header-component>
+<div class="container-fluid mb-5">
+    <div class="row">
+        <main role="main" class="col-md-12 ml-sm-auto col-lg-12 px-4" style="margin-top: 90px">
+            <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h2><i class="fas fa-file-invoice-dollar fa-2x pr-2"></i>Lista de anuncios</h2>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <button type="button" class="btn btn-warning mr-2" style="width: 155px;height: 40px;"
+                            ng-click="resetOrder()">
+                        <i class="fas fa-redo-alt"></i>
+                        Reset orden
+                    </button>
+                    <div class="btn-group" style="width:400px;">
+                        <p class="mt-2" style="width:200px;">Selecciona RPP: </p>
+                        <select class="form-control" 
+                                ng-change="update()" 
+                                ng-model="rpp">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 ml-sm-auto col-lg-12">
+                <div class="row d-flex justify-content-between flex-wrap align-items-center">
+                    <nav aria-label="paginacion">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" ng-show="page > 2" href="{{ob}}/plist/{{rpp}}/1/{{order}}/{{align}}">First</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" ng-show="page > 1" href="{{ob}}/plist/{{rpp}}/{{page - 1}}/{{order}}/{{align}}">Previous</a>
+                            </li>
+                            <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
+                                <a class="page-link" href="{{ob}}/plist/{{rpp}}/{{p}}/{{order}}/{{align}}">{{p}}</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" ng-show="page != totalPages" href="{{ob}}/plist/{{rpp}}/{{page--1}}/{{order}}/{{align}}">Next</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="{{ob}}/plist/{{rpp}}/{{totalPages}}/{{order}}/{{align}}">Last</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="row mx-auto">
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm mx-auto"  style="text-align: center;">
+                        <tr>
+                            <th>
+                                <p>
+                                    ID
+                                </p>
+                                <div class="col-12">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('id', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="ordena('id', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <p>
+                                    Título
+                                </p>
+                                <div class="col-12">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('titulo', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="ordena('titulo', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <p>
+                                    Habitaciones
+                                </p>
+                                <div class="col-12">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('habitaciones', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="ordena('habitaciones', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </th> 
+                            <th>
+                                <p>
+                                    Baños
+                                </p>
+                                <div class="col-12">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('banyos', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="ordena('banyos', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </th> 
+                            <th>
+                                <p>
+                                    Metros
+                                </p>
+                                <div class="col-12">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('metroscasa', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="ordena('metroscasa', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </th> 
+                            <th>
+                                <p>
+                                    Terreno
+                                </p>
+                                <div class="col-12">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('metrosterreno', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="ordena('metrosterreno', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </th> 
+                            <th>
+                                <p>
+                                    Dirección
+                                </p>
+                                <div class="col-12">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('direccion', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="ordena('direccion', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </th> 
+                            <th>
+                                <p>
+                                    Fecha Creación
+                                </p>
+                                <div class="col-12">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('fechacreacion', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="ordena('fechacreacion', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </th> 
+                            <th>
+                                <p>
+                                    Fecha Update
+                                </p>
+                                <div class="col-12">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('fechaupdate', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="ordena('fechaupdate', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </th> 
+                            <th>
+                                <p>
+                                    Precio
+                                </p>
+                                <div class="col-12">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('precio', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="ordena('precio', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </th> 
+                            <th>
+                                <p>
+                                    Descripción
+                                </p>
+                                <div class="col-12">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('descripcion', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="ordena('descripcion', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </th> 
+                            <th>
+                                <p>
+                                    Lineas
+                                </p>
+                            </th> 
+                            <th>
+                                <p>Acciones</p>
+                            </th>
+                        </tr>
+                        <tr ng-repeat="fila in ajaxDataUsuarios">
+                            <td>{{fila.id}}</td>
+                            <td>{{fila.titulo}}</td>
+                            <td>{{fila.habitaciones}}</td>
+                            <td>{{fila.banyos}}</td>
+                            <td>{{fila.metroscasa}}</td>
+                            <td>{{fila.metrosterreno}}</td>
+                            <td>{{fila.direccion}}</td>
+                            <td>{{fila.fechacreacion}}</td>
+                            <td>{{fila.fechaupdate}}</td>
+                            <td>{{fila.precio}}</td>
+                            <td>{{fila.descripcion}}</td>
+                            <td><a href="/casafacil-client/public_html/usuario/view/{{fila.obj_Usuario.id}}">{{fila.obj_Usuario.nombre}} {{fila.obj_Usuario.ape1}} ({{fila.obj_Usuario.nickname}})<i class="fas fa-user"></i> </a></td>
+                            <td>
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="/casafacil-client/public_html/{{ob}}/view/{{fila.id}}" class="btn btn-light fas fa-eye" role="button"></a>
+                                    <a href="/casafacil-client/public_html/{{ob}}/edit/{{fila.id}}" class="btn btn-light fas fa-edit" role="button"></a>
+                                    <a href="/casafacil-client/public_html/{{ob}}/remove/{{fila.id}}" class="btn btn-light fas fa-trash" role="button"></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

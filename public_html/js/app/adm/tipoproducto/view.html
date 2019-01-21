@@ -1,0 +1,26 @@
+<header-component></header-component>
+<main role="main" class="container mb-5">
+    <div style="margin-top: 80px">
+        <div class="row">
+            <div class="mx-auto" style="text-align: center">
+                <h3> <i class="fas fa-boxes fa-2x pr-2"></i><i class="fas fa-eye"></i> Ver tipo de producto</h3>
+            </div>
+        </div>
+        <hr />
+        <div class="table-responsive">
+            <table class="table table-striped table-sm mx-auto" style="width: 450px; text-align: center; ">
+                <tr class="text-center">
+                    <th>ID</th>
+                    <td>{{ajaxData.id}}</td>
+                </tr>
+                <tr>
+                    <th>Descripción</th>
+                    <td >{{ajaxData.desc}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,102 @@
+<header-component></header-component>
+<div class="container-fluid mb-5">
+    <div class="row">
+        <main role="main" class="col-md-12 ml-sm-auto col-lg-12 px-4" style="margin-top: 90px">
+            <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h2>Sus facturas </h2>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <button type="button" class="btn btn-warning mr-2" style="width: 155px;height: 40px;"
+                            ng-click="resetOrder()">
+                        <i class="fas fa-redo-alt"></i>
+                        Reset orden
+                    </button>
+                    <div class="btn-group" style="width:400px;">
+                        <p class="mt-2" style="width:200px;">Selecciona RPP: </p>
+                        <select class="form-control" 
+                                ng-change="update()" 
+                                ng-model="rpp">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 ml-sm-auto col-lg-12" ng-show="!empty">
+                <div class="row d-flex justify-content-between flex-wrap align-items-center">
+                    <nav aria-label="paginacion">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" ng-show="page > 2" href="usuario/ownbills/{{rpp}}/1/{{order}}/{{align}}">First</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" ng-show="page > 1" href="usuario/ownbills/{{rpp}}/{{page - 1}}/{{order}}/{{align}}">Previous</a>
+                            </li>
+                            <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
+                                <a class="page-link" href="usuario/ownbills/{{rpp}}/{{p}}/{{order}}/{{align}}">{{p}}</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" ng-show="page != totalPages" href="usuario/ownbills/{{rpp}}/{{page--1}}/{{order}}/{{align}}">Next</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="usuario/ownbills/{{rpp}}/{{totalPages}}/{{order}}/{{align}}">Last</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="row mx-auto" ng-show="!empty">
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm mx-auto"  style="text-align: center;">
+                        <tr>
+                            <th>
+                                <p>
+                                    ID
+                                </p>
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <button type="button" class="btn btn-light" ng-click="ordena('id', 'asc')">
+                                        <i class="fas fa-long-arrow-alt-up"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-light" ng-click="ordena('id', 'desc')">
+                                        <i class="fas fa-long-arrow-alt-down"></i>
+                                    </button>
+                                </div>
+                            </th>
+                            <th>
+                                <p>
+                                    Fecha
+                                </p>
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <button type="button" class="btn btn-light" ng-click="ordena('fecha', 'asc')">
+                                        <i class="fas fa-long-arrow-alt-up"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-light" ng-click="ordena('fecha', 'desc')">
+                                        <i class="fas fa-long-arrow-alt-down"></i>
+                                    </button>
+                                </div>
+                            </th>
+                            <th>
+                                <p>Descargar</p>
+                            </th>
+                        </tr>
+                        <tr ng-repeat="fila in ajaxDataUsuarios">
+                            <td>{{fila.id}}</td>
+                            <td>{{fila.fecha}}</td>
+                            <td>
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a role="button" class="btn btn-light fa fa-file-pdf" ng-click="descargarPDF(fila.id)"></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+            <div class="alert alert-warning d-flex justify-content-between flex-wrap align-items-center pt-2 pb-2 mb-3" role="alert" ng-show="empty">
+                <p>Usted no dispone de ninguna factura.</p>
+            </div>
+        </main>
+    </div>
+</div>

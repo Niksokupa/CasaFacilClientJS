@@ -1,0 +1,126 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    height: 100%;
+}
+body {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto;
+}
+.footer {
+    opacity: 1;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 6vh;
+    line-height: 6vh; /* Vertically center the text there */
+    background-color: #b0b0b0;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+
+code {
+    font-size: 80%;
+}
+
+.product {
+    font-family: 'Rokkitt', serif;
+}
+
+.product-price {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/*NAVBAR*/
+
+.navbar {
+    height: 80px !important;
+    background-color: transparent !important;
+    border: none !important;
+    color: white !important;
+    z-index: 100 !important;
+    transition: background-color 1s ease 0s !important;
+}
+
+.navbar.solid {
+    background-color: #008040 !important;
+    transition: background-color 1s ease 0s !important;
+    box-shadow: 0 0 4px grey !important;
+}
+
+
+/*IMAGEN CIUDAD*/
+
+.imgciudadvalencia {
+    background-image: url(../images/valencia.jpg);
+    width: 100vw;
+    height: 400px;
+}
+
+
+.imgminianuncio {
+    width: 375px;
+    height: 250px;
+}
+
+.precioanuncio{
+    text-align: right;
+}
+
+.favanuncio {
+    position: absolute;
+    font-size: 25px;
+    margin-left: -55px;
+    margin-top: -100px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    color: grey;
+    background-color: white;
+    border-radius: 50%;
+    outline: none;
+}
+
+.heart {
+    width: 100px;
+    height: 100px;
+    background: url(../images/heart.png) no-repeat;
+    margin-left: -25px;
+    cursor: pointer;
+    transition: background-position 1s steps(28);
+    transition-duration: 0s;
+    outline: none;
+    background-position: 0 0;
+}
+.heart.is-active {
+    transition-duration: 1s;
+    background-position: -2800px 0;
+}
+
+
+
+
+
+/* Custom Hover.css
+-------------------------------------------------- */
+
+/* Border Fade */
+.hvr-border-fade {
+    -webkit-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+    -webkit-transition-property: box-shadow;
+    transition-property: box-shadow;
+    box-shadow: inset 0 0 0 1px #e1e1e1, 0 0 1px rgba(0, 0, 0, 0);
+}
+.hvr-border-fade:active,.hvr-border-fade:focus,.hvr-border-fade:hover {
+    box-shadow:inset 0 0 0 2px #2098D1,0 0 1px rgba(0,0,0,0)
+}

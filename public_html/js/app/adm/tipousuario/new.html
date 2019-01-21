@@ -1,0 +1,37 @@
+<header-component></header-component>
+<div class="container-fluid mb-5">
+    <div class="row" style="margin-top: 90px">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12" style="text-align: center">
+                    <h3><i class="fas fa-users fa-2x pr-2"></i><i class="fas fa-plus"></i> Nuevo tipo de usuario</h3>
+                </div>
+            </div>
+            <hr />
+            <div class="row" ng-show="created">
+                <div class="col-4 mx-auto">
+                    <form name="userForm">
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <input type="text" class="form-control" id="desc" name="desc" ng-model="desc" ng-required="true" />
+                            <div ng-show="!userForm.desc.$valid && !userForm.desc.$pristine" class="alert alert-danger" role="alert">
+                                Descripción obligatoria
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between flex-wrap">
+                            <button ng-click="create()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Crear</button>
+                            <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center" ng-show="!created">
+                <div class="col-6">
+                    <div class="alert alert-success d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3" role="alert">
+                        <p>Registro creado con éxito con número de ID: {{id}}<p> <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
