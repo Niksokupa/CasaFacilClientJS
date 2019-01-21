@@ -10,8 +10,8 @@ moduleComponent.component('headerComponent', {
 
 function js(toolService, sessionService) {
     var self = this;
-    var cart = $('.carrito');
-    var cartDiv = $('.highlight');
+//    var cart = $('.carrito');
+//    var cartDiv = $('.highlight');
 
     $(window).scroll(function () {
         // checks if window is scrolled more than 500px, adds/removes solid class
@@ -30,7 +30,7 @@ function js(toolService, sessionService) {
     self.idUserLogged = sessionService.getId();
     self.isActive = toolService.isActive;
     self.isAdmin = sessionService.isAdmin();
-    self.carrito = sessionService.getCountCarrito();
+//    self.carrito = sessionService.getCountCarrito();
 
     sessionService.registerObserverCallback(function () {
         self.name = sessionService.getUserName();
@@ -39,17 +39,17 @@ function js(toolService, sessionService) {
         self.isAdmin = sessionService.isAdmin();
     });
 
-    sessionService.registerObserverCallback(function () {
-        self.carrito = sessionService.getCountCarrito();
-
-        if (self.animation) {
-            cart.effect("shake", {
-                times: 2
-            }, 400);
-            cartDiv.effect("highlight", {color: "#f4ce42"}, 400);
-        }
-
-    });
+//    sessionService.registerObserverCallback(function () {
+//        self.carrito = sessionService.getCountCarrito();
+//
+//        if (self.animation) {
+//            cart.effect("shake", {
+//                times: 2
+//            }, 400);
+//            cartDiv.effect("highlight", {color: "#f4ce42"}, 400);
+//        }
+//
+//    });
     sessionService.registerObserverCallback(function () {
         self.logged = sessionService.isSessionActive();
     });

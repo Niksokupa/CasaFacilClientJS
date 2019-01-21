@@ -41,25 +41,56 @@ code {
 /*NAVBAR*/
 
 .navbar {
-  height: 80px !important;
-  background-color: transparent !important;
-  border: none !important;
-  color: white !important;
-  z-index: 100 !important;
-  transition: background-color 1s ease 0s !important;
+    height: 80px !important;
+    background-color: transparent !important;
+    border: none !important;
+    color: white !important;
+    z-index: 100 !important;
+    transition: background-color 1s ease 0s !important;
 }
 
 .navbar.solid {
-  background-color: #490D40 !important;
-  transition: background-color 1s ease 0s !important;
-  box-shadow: 0 0 4px grey !important;
+    background-color: #008040 !important;
+    transition: background-color 1s ease 0s !important;
+    box-shadow: 0 0 4px grey !important;
 }
 
 
+/*IMAGEN CIUDAD*/
+
+.imgciudadvalencia {
+    background-image: url(../images/valencia.jpg);
+    width: 100vw;
+    height: 400px;
+}
 
 
+.imgminianuncio {
+    width: 375px;
+    height: 250px;
+}
 
+.precioanuncio{
+    text-align: right;
+}
 
+.favanuncio {
+    position: absolute;
+    font-size: 25px;
+    margin-left: -55px;
+    margin-top: -100px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    background-color: #66059C;
+    border-radius: 50%;
+}
+
+.favanunciocolor {
+    color: grey;
+}
 
 
 
