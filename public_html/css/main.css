@@ -84,12 +84,9 @@ code {
     align-items: center;
     justify-content: center;
     width: 50px;
+    color: grey;
     background-color: #66059C;
     border-radius: 50%;
-}
-
-.favanunciocolor {
-    color: grey;
 }
 
 
