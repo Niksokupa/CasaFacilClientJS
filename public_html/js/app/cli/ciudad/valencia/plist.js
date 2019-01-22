@@ -41,8 +41,12 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
                     extras: element
                 }
                 listaExtras.push(extras);
+
             });
             $scope.listaExtras = listaExtras;
+
+            $scope.extrasInput = [];
+
         }), function (response) {
             console.log(response);
         };
@@ -50,7 +54,7 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
         //GETPAGE DE ANUNCIO
         $http({
             method: 'GET',
-            url: `http://localhost:8081/casafacil/json?ob=${$scope.ob}&op=getpage&ciudad=valencia&rpp=` + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
+            url: `http://localhost:8081/casafacil/json?ob=${$scope.ob}&op=getpage&ciudad=2&rpp=` + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
         }).then(function (response) {
             $scope.status = response.status;
             var productos = [];
@@ -115,11 +119,29 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
 
         $scope.favAnuncio = function (id, anuncio_id) {
 //            $('.fav' + id).css('color', 'red');
-            $('.fav' + id).addClass("is-active");
 //            $('.fav' + id).effect('bounce', 350);
 //            $('.fav' + id).animate({
 //                color: "red",
 //            }, 200);
+
+            if (oSessionService.isSessionActive()) {
+
+                var json = {
+                    id_anuncio: anuncio_id,
+                    id_usuario: oSessionService.getId()
+                };
+                $http({
+                    method: "GET",
+                    url: `http://localhost:8081/casafacil/json?ob=favorito&op=create`,
+                    params: {json: JSON.stringify(json)}
+                }).then(function (response) {
+                    $('.fav' + id).addClass("is-active");
+                }), function (response) {
+                    console.log(response);
+                };
+            } else {
+                $location.url('/usuario/login');
+            }
         };
 
         //AÑADE PUNTOS DE MILES

@@ -6,7 +6,7 @@
     <div class="row">
         <aside class="col-md-2 mt-5">
             <div class="checkbox checkbox-inline" ng-repeat="extras in listaExtras">
-                <md-checkbox ng-model="extrasInput">
+                <md-checkbox class="brown" ng-model="prueba{{index}}" ng-true-value="{{extras.extras.id}}">
                     {{extras.extras.desc}}
                 </md-checkbox>
                 <!--<input type="checkbox" name="extras" id="chk-{{extras.extras.id}}">{{extras.extras.desc}}-->
