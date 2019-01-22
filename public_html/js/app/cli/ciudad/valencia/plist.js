@@ -51,6 +51,24 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
             console.log(response);
         };
 
+        //TODOS LOS BARRIOS
+        $http({
+            method: "GET",
+            url: `http://localhost:8081/casafacil/json?ob=barrio&op=getall&ciudad=2`
+        }).then(function (response) {
+            var listaBarrios = [];
+            response.data.message.forEach(element => {
+                var barrios = {
+                    barrios: element
+                }
+                listaBarrios.push(barrios);
+
+            });
+            $scope.listaBarrios = listaBarrios;
+        }), function (response) {
+            console.log(response);
+        };
+
         //GETPAGE DE ANUNCIO
         $http({
             method: 'GET',

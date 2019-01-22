@@ -5,8 +5,13 @@
     </div>
     <div class="row">
         <aside class="col-md-2 mt-5">
+            <md-select placeholder="Filtro por barrio" ng-model="selectedBarrio">
+                <md-option aria-label="{{barrio.barrios.desc}}" ng-value="barrio" ng-repeat="barrio in listaBarrios">
+                    {{ barrio.barrios.desc}}
+                </md-option>
+            </md-select>
             <div class="checkbox checkbox-inline" ng-repeat="extras in listaExtras">
-                <md-checkbox class="brown" ng-model="prueba{{index}}" ng-true-value="{{extras.extras.id}}">
+                <md-checkbox class="brown" ng-model="prueba" ng-true-value="{{extras.extras.id}}">
                     {{extras.extras.desc}}
                 </md-checkbox>
                 <!--<input type="checkbox" name="extras" id="chk-{{extras.extras.id}}">{{extras.extras.desc}}-->
