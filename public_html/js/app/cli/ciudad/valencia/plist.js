@@ -1,4 +1,6 @@
-'use strict'
+/* global moduleCiudad */
+
+'use strict';
 
 moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$anchorScroll',
     function ($scope, $http, $location, toolService, $routeParams, oSessionService, $anchorScroll) {
@@ -96,6 +98,33 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
         });
 
 
+        //Se ejecuta cuando se elige un barrio
+        $scope.filtroBarrio = function () {
+            $http({
+                method: 'GET',
+                url: `http://localhost:8081/casafacil/json?ob=${$scope.ob}&op=getpage&ciudad=2&barrio=`+$scope.selectedBarrio+`&rpp=` + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
+            }).then(function (response) {
+                $scope.status = response.status;
+                var productos = [];
+                response.data.message.forEach(element => {
+                    if (element.descripcion.length > 200) {
+                        element.descripcion = element.descripcion.substring(0, 200);
+                        element.descripcion += "...";
+                    }
+
+                    element.precio = addCommas(element.precio);
+
+                    var producto = {
+                        producto: element
+                    }
+                    productos.push(producto);
+                });
+                $scope.productos = productos;
+            }, function (response) {
+                $scope.status = response.status;
+                $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
+            });
+        };
 
         //PAGINACION
         function pagination2() {
@@ -143,7 +172,6 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
 //            }, 200);
 
             if (oSessionService.isSessionActive()) {
-
                 var json = {
                     id_anuncio: anuncio_id,
                     id_usuario: oSessionService.getId()

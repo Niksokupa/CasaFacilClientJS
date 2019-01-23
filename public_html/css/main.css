@@ -42,7 +42,7 @@ code {
 
 .navbar {
     height: 80px !important;
-    background-color: transparent !important;
+    background-color: rgba(0,0,0,0.35) !important;
     border: none !important;
     color: white !important;
     z-index: 100 !important;
@@ -109,13 +109,16 @@ code {
 }
 
 md-checkbox.md-checked.brown .md-icon {
-    background-color: rgba(189, 92, 0, 0.87);
+    background-color: rgb(194, 76, 0);
 }
 
 .checkbox-inline{
     border-bottom: 1px solid #888;
 }
 
+.md-ink-ripple{
+    margin-left: 5px;
+}
 
 /* Custom Hover.css
 -------------------------------------------------- */
