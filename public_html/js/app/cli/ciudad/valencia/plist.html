@@ -10,11 +10,13 @@
                     {{ barrio.barrios.desc}}
                 </md-option>
             </md-select>
-            <div class="checkbox checkbox-inline" ng-repeat="extras in listaExtras">
-                <md-checkbox class="brown" ng-model="prueba" ng-true-value="{{extras.extras.id}}">
-                    {{extras.extras.desc}}
-                </md-checkbox>
-                <!--<input type="checkbox" name="extras" id="chk-{{extras.extras.id}}">{{extras.extras.desc}}-->
+            <div style="border: 1px solid #888;">
+                <div class="checkbox checkbox-inline filtroinput" ng-repeat="extras in listaExtras">
+                    <md-checkbox class="brown" ng-model="prueba" ng-true-value="{{extras.extras.id}}">
+                        {{extras.extras.desc}}
+                    </md-checkbox>
+                    <!--<input type="checkbox" name="extras" id="chk-{{extras.extras.id}}">{{extras.extras.desc}}-->
+                </div>
             </div>
         </aside>
         <!--ANUNCIOS-->

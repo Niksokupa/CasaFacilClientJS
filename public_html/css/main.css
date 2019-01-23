@@ -109,11 +109,12 @@ code {
 }
 
 md-checkbox.md-checked.brown .md-icon {
- background-color: rgba(189, 92, 0, 0.87);
+    background-color: rgba(189, 92, 0, 0.87);
 }
 
-
-
+.checkbox-inline{
+    border-bottom: 1px solid #888;
+}
 
 
 /* Custom Hover.css
