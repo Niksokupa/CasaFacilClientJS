@@ -120,6 +120,11 @@ md-checkbox.md-checked.brown .md-icon {
     margin-left: 5px;
 }
 
+.filtroinput {
+    display: table;
+    width: 100%;
+}
+
 /* Custom Hover.css
 -------------------------------------------------- */
 

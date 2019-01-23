@@ -97,6 +97,19 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
             $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
         });
 
+        $scope.paquito;
+        $scope.pacorro = [];
+
+        $scope.filtroExtras = function (id) {
+//            if(){
+//                
+//            } else {
+//                
+//            }
+//            $scope.pacorro.push(id);
+            
+        };
+
 
         //Se ejecuta cuando se elige un barrio
         $scope.filtroBarrio = function () {

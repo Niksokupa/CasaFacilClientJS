@@ -5,6 +5,7 @@
     </div>
     <div class="row">
         <aside class="col-md-2 mt-5">
+            <!--FILTRO DE BARRIO-->
             <md-input-container style="width: 100%;">
                 <label>Barrio</label>
                 <md-select ng-model="selectedBarrio" ng-change="filtroBarrio()">
@@ -13,9 +14,10 @@
                     </md-option>
                 </md-select>
             </md-input-container>
+            <!--FILTRO DE EXTRAS-->
             <div style="border: 1px solid #888;">
-                <div class="checkbox checkbox-inline filtroinput" style="display: table; width: 100%;" ng-repeat="extras in listaExtras">
-                    <md-checkbox class="brown align-middle" style="display: table-cell; padding:5px;" ng-model="prueba" ng-true-value="{{extras.extras.id}}">
+                <div class="checkbox checkbox-inline filtroinput" ng-click="filtroExtras(extras.extras.id)" ng-repeat="extras in listaExtras">
+                    <md-checkbox class="brown align-middle" style="display: table-cell; padding:5px;" ng-model="paquito" ng-true-value="{{extras.extras.id}}">{{pacorro}}
                         {{extras.extras.desc}}
                     </md-checkbox>
                     <!--<input type="checkbox" name="extras" id="chk-{{extras.extras.id}}">{{extras.extras.desc}}-->
