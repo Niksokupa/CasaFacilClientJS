@@ -7,6 +7,7 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
         $anchorScroll();
         $scope.totalPages = 1;
         $scope.ob = "anuncio";
+        $scope.selectedExtras = [];
 
         if (!$routeParams.order) {
             $scope.orderURLServidor = "";
@@ -97,17 +98,42 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
             $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
         });
 
-        $scope.paquito;
-        $scope.pacorro = [];
 
+
+        //Se ejecuta cuando se elige un extra
         $scope.filtroExtras = function (id) {
-//            if(){
-//                
-//            } else {
-//                
-//            }
-//            $scope.pacorro.push(id);
-            
+
+            var index = $scope.selectedExtras.indexOf(id);
+            if (index > -1) {
+                $scope.selectedExtras.splice(index, 1);
+            } else {
+                $scope.selectedExtras.push(id);
+            }
+
+            $http({
+                method: 'GET',
+                url: `http://localhost:8081/casafacil/json?ob=${$scope.ob}&op=getpage&ciudad=2&extras=` + $scope.selectedExtras + `&barrio=` + $scope.selectedBarrio + `&rpp=` + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
+            }).then(function (response) {
+                $scope.status = response.status;
+                var productos = [];
+                response.data.message.forEach(element => {
+                    if (element.descripcion.length > 200) {
+                        element.descripcion = element.descripcion.substring(0, 200);
+                        element.descripcion += "...";
+                    }
+
+                    element.precio = addCommas(element.precio);
+
+                    var producto = {
+                        producto: element
+                    }
+                    productos.push(producto);
+                });
+                $scope.productos = productos;
+            }, function (response) {
+                $scope.status = response.status;
+                $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
+            });
         };
 
 
@@ -115,7 +141,7 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
         $scope.filtroBarrio = function () {
             $http({
                 method: 'GET',
-                url: `http://localhost:8081/casafacil/json?ob=${$scope.ob}&op=getpage&ciudad=2&barrio=`+$scope.selectedBarrio+`&rpp=` + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
+                url: `http://localhost:8081/casafacil/json?ob=${$scope.ob}&op=getpage&ciudad=2&extras=` + $scope.selectedExtras + `&barrio=` + $scope.selectedBarrio + `&rpp=` + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
             }).then(function (response) {
                 $scope.status = response.status;
                 var productos = [];
