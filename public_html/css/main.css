@@ -125,6 +125,25 @@ md-checkbox.md-checked.brown .md-icon {
     width: 100%;
 }
 
+.iconousuario {
+    font-size: 40px;
+    color: #8EC64C;
+    cursor: pointer;
+}
+
+.iconocor, .iconocasa {
+    font-size: 30px;
+    color: #8EC64C;
+    cursor: pointer;
+}
+
+.dropdown-toggle {
+    color: #8EC64C !important;
+}
+.dropdown-toggle::after {
+    vertical-align: 0.6em;
+}
+
 /* Custom Hover.css
 -------------------------------------------------- */
 
