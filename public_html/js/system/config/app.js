@@ -14,7 +14,8 @@ var casafacil = angular.module('MyApp', [
     'ciudadControllers',
     'ngMaterial',
     'components',
-    'comprarproductoControllers'
+    'comprarproductoControllers',
+    'favsControllers'
 ]).config(function ($mdDateLocaleProvider) {
     // Example of a Spanish localization.
     $mdDateLocaleProvider.months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
@@ -42,9 +43,11 @@ var moduleService = angular.module ('services',[]);
 var moduleTipousuario = angular.module ('tipousuarioControllers',[]);
 var moduleUsuario = angular.module ('usuarioControllers',[]);
 var moduleProducto = angular.module ('productoControllers',[]);
-var moduleAnuncio = angular.module ('anuncioControllers',[]);
 var moduleLinea = angular.module ('lineaControllers',[]);
-var moduleCiudad = angular.module ('ciudadControllers',[]);
 var moduleTipoproducto = angular.module('tipoproductoControllers',[]);
 var moduleComponent = angular.module ('components',[]);
 var moduleComprarProducto = angular.module('comprarproductoControllers', []);
+
+var moduleCiudad = angular.module ('ciudadControllers',[]);
+var moduleAnuncio = angular.module ('anuncioControllers',[]);
+var moduleFavs = angular.module ('favsControllers',[]);

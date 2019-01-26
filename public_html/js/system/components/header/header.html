@@ -31,13 +31,15 @@
                 <a class="nav-link" href="comprar_productos/plist"><i class="fas fa-dolly"></i>Producto</a>
             </li>
         </ul>
-        <ul class="navbar-nav justify-content-end" id="navbarCollapse">
-            <li class="nav-item"  ng-show="c.logged">
-                <i class="far fa-heart iconocor px-2"></i>
-                <i class="fas fa-home iconocasa px-2"></i>
+        <ul class="navbar-nav justify-content-end" id="navbarCollapse" ng-show="c.logged">
+            <li class="nav-item">
+                <a class="nav-link" href="cli/misfavs"><i title="Mis Favoritos" class="fas fa-heart iconocor px-2"></i></a>
+            </li>
+            <li>
+                <a class="nav-link" href="cli/misanuncios"><i title="Mis Anuncios" class="fas fa-home iconocasa px-2"></i></a>
             </li>
         </ul>
-        <ul class="navbar-nav justify-content-end" id="navbarCollapse">
+        <ul class="navbar-nav justify-content-end pl-3" id="navbarCollapse">
 
             <li class="nav-item"  ng-show="c.logged">
 

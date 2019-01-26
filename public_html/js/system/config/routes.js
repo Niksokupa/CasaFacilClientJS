@@ -148,6 +148,7 @@ casafacil.config(['$routeProvider', function ($routeProvider) {
 
         //USUARIO
         $routeProvider.when('/usuario/changepass', {templateUrl: 'js/app/usuario/changepass.html', controller: 'usuarioChangePassController', resolve: {auth: autenticacionUsuario}});
+        $routeProvider.when('/cli/misfavs', {templateUrl: 'js/app/cli/profile/misfavs.html', controller: 'favsController', resolve: {auth: autenticacionUsuario}});
 
 
 
