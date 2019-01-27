@@ -1,0 +1,65 @@
+<header-component></header-component>
+
+<div class="container-fluid favcontainer">
+    <div class="row ">
+        <div class="col-md-10 mx-auto">
+            <div class="pb-3 d-flex justify-content-end">
+                <md-button class="md-raised mx-0" href="cli/misanuncios/new">Nuevo Anuncio</md-button>
+            </div>
+            <div class="container py-3">
+                <div class="card mb-5" ng-repeat="producto in productos"  md-whiteframe="{{height}}" ng-init="height = 6" ng-mouseenter="height = 12" ng-mouseleave="height = 6">
+                    <div class="row">
+                        <div class="col-md-4 pr-0">
+                            <img src="https://placeholdit.imgix.net/~text?txtsize=38&txt=375%C3%97250&w=375&h=250" class="img-fluid">
+                        </div>
+                        <div class="col-md-8 px-3 py-3 cuerpoanuncio">
+                            <div class="card-block mx-3">
+                                <div class="row no-gutters">
+                                    <div class="col-md-9 mx-0">
+                                        <h4 class="card-title mb-0">{{producto.producto.titulo}}</h4>
+                                        <div class="mb-2 text-muted">
+                                            <span>{{producto.producto.obj_Tipoinmueble.desc}} en el barrio {{producto.producto.obj_Barrio.desc}}</span><br>
+                                        </div>
+                                        <div class="mb-2">
+                                            <span class="metrosanuncio">{{producto.producto.metroscasa}} m<sup>2</sup></span> - 
+                                            <span class="habanuncio">{{producto.producto.habitaciones}} habitacion/es</span> - 
+                                            <span class="banyosanuncio">{{producto.producto.banyos}} baño/s</span>
+                                        </div>
+                                        <p class="card-text">{{producto.producto.descripcion}}</p>
+                                    </div>
+                                    <div class="col-md-3 precioanuncio">
+                                        <h4>{{producto.producto.precio}} €</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--PAGINACION-->
+            <div class="col-md-8 ml-sm-auto col-lg-8 pt-5">
+                <div class="row d-flex justify-content-center flex-wrap align-items-center">
+                    <nav aria-label="paginacion">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" ng-show="page > 2" href="{{ob}}/plist/{{rpp}}/1/{{order}}/{{align}}">First</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" ng-show="page > 1" href="{{ob}}/plist/{{rpp}}/{{page - 1}}/{{order}}/{{align}}">Previous</a>
+                            </li>
+                            <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
+                                <a class="page-link" href="{{ob}}/plist/{{rpp}}/{{p}}/{{order}}/{{align}}">{{p}}</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" ng-show="page != totalPages" href="{{ob}}/plist/{{rpp}}/{{page--1}}/{{order}}/{{align}}">Next</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="{{ob}}/plist/{{rpp}}/{{totalPages}}/{{order}}/{{align}}">Last</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
