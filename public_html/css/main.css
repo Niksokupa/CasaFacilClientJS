@@ -7,6 +7,8 @@ body {
     min-height: 100%;
     display: grid;
     grid-template-rows: 1fr auto;
+    background-color: #F2F2F2;
+    font-family: 'Rokkitt', serif;
 }
 .footer {
     opacity: 1;
@@ -19,9 +21,6 @@ body {
     grid-row-end: 3;
 }
 
-.ng-scope{
-    background-color: #F2F2F2;
-}
 
 
 /* Custom page CSS
@@ -33,9 +32,6 @@ code {
     font-size: 80%;
 }
 
-.product {
-    font-family: 'Rokkitt', serif;
-}
 
 .product-price {
     font-size: 25px;
@@ -57,6 +53,12 @@ code {
     background-color: #008040 !important;
     transition: background-color 1s ease 0s !important;
     box-shadow: 0 0 4px grey !important;
+}
+
+.loginbutton {
+    border: 1px solid black; 
+    border-radius: 7px;
+    background-color: #3CB345;
 }
 
 .iconousuario {
