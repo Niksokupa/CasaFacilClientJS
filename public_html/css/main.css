@@ -13,8 +13,8 @@ body {
     background-color: #F2F2F2;
     font-family: 'Rokkitt', serif;
     overflow-x: hidden;
-/*    position: initial !important;
-    top: initial !important;*/
+    /*    position: initial !important;
+        top: initial !important;*/
 }
 .footer {
     opacity: 1;
@@ -168,6 +168,35 @@ md-checkbox.md-checked.brown .md-icon {
 .favcontainer {
     margin-top: 150px;
 }
+
+/*FORMULARIO NUEVO ANUNCIO*/
+
+.newForm {
+    border: 0.5px solid grey;
+}
+
+md-input-container label{
+    color:black;
+}
+
+md-select-value span{
+    color: black;
+}
+
+
+
+img.uploadanuncioimg{
+    width: 250px;
+    height: 100px;
+}
+
+md-select:disabled{
+    background-color: red;
+}
+
+/*.inputbanyos {
+    width: 10%;
+}*/
 
 /* Custom Hover.css
 -------------------------------------------------- */
