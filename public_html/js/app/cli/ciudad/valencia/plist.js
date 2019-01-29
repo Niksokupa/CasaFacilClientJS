@@ -146,10 +146,6 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
                 $scope.status = response.status;
                 var productos = [];
                 response.data.message.forEach(element => {
-                    if (element.descripcion.length > 200) {
-                        element.descripcion = element.descripcion.substring(0, 200);
-                        element.descripcion += "...";
-                    }
 
                     element.precio = addCommas(element.precio);
 

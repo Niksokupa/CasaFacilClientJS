@@ -2,13 +2,19 @@
 -------------------------------------------------- */
 html {
     height: 100%;
+    overflow: initial !important;
+    background-color: #F2F2F2;
+
 }
 body {
-    min-height: 100%;
+    height: 100%;
     display: grid;
     grid-template-rows: 1fr auto;
     background-color: #F2F2F2;
     font-family: 'Rokkitt', serif;
+    overflow-x: hidden;
+/*    position: initial !important;
+    top: initial !important;*/
 }
 .footer {
     opacity: 1;
@@ -27,16 +33,6 @@ body {
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
-
-code {
-    font-size: 80%;
-}
-
-
-.product-price {
-    font-size: 25px;
-    font-weight: bold;
-}
 
 /*NAVBAR*/
 
@@ -187,3 +183,4 @@ md-checkbox.md-checked.brown .md-icon {
 .hvr-border-fade:active,.hvr-border-fade:focus,.hvr-border-fade:hover {
     box-shadow:inset 0 0 0 2px #2098D1,0 0 1px rgba(0,0,0,0)
 }
+

@@ -1,0 +1,103 @@
+<header-component></header-component>
+
+
+<div class="container-fluid favcontainer">
+    <div class="row ">
+        <div class="col-md-8 mx-auto">
+            <md-content layout-padding>
+                <div>
+                    <form name="userForm">
+
+                        <div layout-gt-xs="row">
+                            <md-input-container style="line-height:10px" class="md-block" flex-gt-xs>
+                                <label>Título del anuncio*</label>
+                                <input ng-model="user.company">
+                            </md-input-container>
+                        </div>
+
+                        <div layout-gt-sm="row">
+                            <!--FILTRO CIUDAD-->
+                            <md-input-container class="md-block" flex-gt-xs>
+                                <label>Ciudad</label>
+                                <md-select ng-model="selectedCiudad">
+                                    <md-option aria-label="{{barrio.barrios.desc}}" ng-value="{{barrio.barrios.id}}" ng-repeat="barrio in listaBarrios">
+                                        {{ barrio.barrios.desc}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <!--FILTRO BARRIO-->
+                            <md-input-container class="md-block" flex-gt-xs>
+                                <label>Barrio</label>
+                                <md-select ng-model="selectedBarrio">
+                                    <md-option aria-label="{{barrio.barrios.desc}}" ng-value="{{barrio.barrios.id}}" ng-repeat="barrio in listaBarrios">
+                                        {{ barrio.barrios.desc}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <!--FILTRO VIA-->
+                            <md-input-container class="md-block" flex-gt-xs>
+                                <label>Tipo de vía</label>
+                                <md-select ng-model="selectedVia" ng-change="filtroBarrio()">
+                                    <md-option aria-label="{{barrio.barrios.desc}}" ng-value="{{barrio.barrios.id}}" ng-repeat="barrio in listaBarrios">
+                                        {{ barrio.barrios.desc}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-input-container style="line-height:10px" class="md-block" flex-gt-sm>
+                                <label>Nombre de la vía*</label>
+                                <input ng-model="direccion">
+                            </md-input-container>
+                        </div>
+
+                        <md-input-container class="md-block">
+                            <label>Address</label>
+                            <input ng-model="user.address">
+                        </md-input-container>
+
+                        <md-input-container md-no-float class="md-block">
+                            <input ng-model="user.address2" placeholder="Address 2">
+                        </md-input-container>
+
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>City</label>
+                                <input ng-model="user.city">
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>State</label>
+                                <md-select ng-model="user.state">
+                                    <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                                        {{state.abbrev}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Postal Code</label>
+                                <input name="postalCode" ng-model="user.postalCode" placeholder="12345"
+                                       required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+
+                                <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
+                                    <div ng-message="required" class="my-message">You must supply a postal code.</div>
+                                    <div ng-message="pattern" class="my-message">That doesn't look like a valid postal
+                                        code.
+                                    </div>
+                                    <div ng-message="md-maxlength" class="my-message">
+                                        Don't use the long version silly...we don't need to be that specific...
+                                    </div>
+                                </div>
+                            </md-input-container>
+                        </div>
+
+                        <md-input-container class="md-block">
+                            <label>Descripción del inmueble</label>
+                            <textarea ng-model="descripcion" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                        </md-input-container>
+                    </form>
+                </div>
+            </md-content>
+        </div>
+    </div>
+</div>
