@@ -127,11 +127,8 @@
 
                         <h3>Fotos del inmueble (Opcionales)</h3>
                         <md-content layout-padding class="newForm mb-5" md-whiteframe="{{heightz}}" ng-init="heightz = 6">
-                            <input id="prueba" type="file" ng-file-model="files" multiple />
-                            <div ng-repeat="file in files">
-                                <img class="uploadanuncioimg" ng-src="{{file.url}}">
-                                <button type="button" ng-click="remove(file)"></button>
-                            </div>
+                            <input id="gallery-photo-add" type="file" ng-file-model="files" multiple />
+                            <div class="gallery"></div>
                         </md-content>
 
                         <div>

@@ -53,6 +53,20 @@ moduleAnuncio.controller('newanunciosController', ['$scope', '$http', '$location
             };
 
             console.log(anuncio);
+
+            var oFormData = new FormData();
+
+            for (var i = 0; i < $scope.files.length; i++) {
+                oFormData.append('file', $scope.files[i]);
+            }
+
+            oFormData.append('file', $scope.files);
+            $http({
+                headers: {'Content-Type': undefined},
+                method: 'POST',
+                data: oFormData,
+                url: `http://localhost:8081/casafacil/json?ob=anuncio&op=addimage`
+            });
         };
 
 //        $scope.remove = function (data) {
@@ -82,6 +96,33 @@ moduleAnuncio.controller('newanunciosController', ['$scope', '$http', '$location
             };
         }
 
+        
+        //Funcion jQuery previsualizar múltiples imágenes
+        $(function () {
+            // Multiple images preview in browser
+            var imagesPreview = function (input, placeToInsertImagePreview) {
+
+                if (input.files) {
+                    var filesAmount = input.files.length;
+
+                    for (var i = 0; i < filesAmount; i++) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (event) {
+                            $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                        }
+
+                        reader.readAsDataURL(input.files[i]);
+                    }
+                }
+
+            };
+
+            $('#gallery-photo-add').on('change', function () {
+                imagesPreview(this, 'div.gallery');
+            });
+        });
+
 
     }]).directive('ngFileModel', ['$parse', function ($parse) {
         return {
@@ -94,17 +135,17 @@ moduleAnuncio.controller('newanunciosController', ['$scope', '$http', '$location
                     var values = [];
 
                     angular.forEach(element[0].files, function (item) {
-                        var value = {
-                            // File Name 
-                            name: item.name,
-                            //File Size 
-                            size: item.size,
-                            //File URL to view 
-                            url: URL.createObjectURL(item),
-                            // File Input Value 
-                            _file: item
-                        };
-                        values.push(value);
+//                        var value = {
+//                            // File Name 
+//                            name: item.name,
+//                            //File Size 
+//                            size: item.size,
+//                            //File URL to view 
+//                            url: URL.createObjectURL(item),
+//                            // File Input Value 
+//                            _file: item
+//                        };
+                        values.push(item);
 
                     });
                     scope.$apply(function () {

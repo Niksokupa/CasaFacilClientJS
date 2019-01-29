@@ -185,9 +185,10 @@ md-select-value span{
 
 
 
-img.uploadanuncioimg{
+.gallery img{
     width: 250px;
     height: 100px;
+    padding: 5px;
 }
 
 md-select:disabled{
