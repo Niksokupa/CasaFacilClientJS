@@ -35,6 +35,7 @@ moduleAnuncio.controller('newanunciosController', ['$scope', '$http', '$location
         };
 
         $scope.create = function () {
+            var fotos = [];
             var anuncio = {
                 titulo: $scope.titulo,
                 precio: $scope.precio,
@@ -58,6 +59,7 @@ moduleAnuncio.controller('newanunciosController', ['$scope', '$http', '$location
 
             for (var i = 0; i < $scope.files.length; i++) {
                 oFormData.append('file', $scope.files[i]);
+                fotos.push($scope.files[i].name);
             }
 
             oFormData.append('file', $scope.files);
@@ -96,7 +98,7 @@ moduleAnuncio.controller('newanunciosController', ['$scope', '$http', '$location
             };
         }
 
-        
+
         //Funcion jQuery previsualizar múltiples imágenes
         $(function () {
             // Multiple images preview in browser

@@ -37,15 +37,15 @@
                     <option value="50">Menos metros</option>
                 </select>
             </div>
-            <div class="container py-3">
-                <div class="card mb-5" ng-repeat="producto in productos"  md-whiteframe="{{height}}" ng-init="height = 6" ng-mouseenter="height = 12" ng-mouseleave="height = 6">
+            <div class="container mt-5">
+                <div class="card mb-5 ml-3 mr-2" ng-repeat="producto in productos"  md-whiteframe="{{height}}" ng-init="height = 6" ng-mouseenter="height = 12" ng-mouseleave="height = 6">
                     <div class="row">
                         <div class="col-md-4 pr-0">
-                            <img src="https://placeholdit.imgix.net/~text?txtsize=38&txt=375%C3%97250&w=375&h=250" class="img-fluid">
+                            <img src="https://placeholdit.imgix.net/~text?txtsize=38&txt=375%C3%97250&w=375&h=250" class="img-fluid imgminianuncio">
                         </div>
-                        <div class="col-md-8 px-3 py-3 cuerpoanuncio">
-                            <div class="card-block mx-3">
-                                <div class="row no-gutters">
+                        <div class="col-md-8 px-0">
+                            <div class="card-body">
+                                <div class="row no-gutters mx-3">
                                     <div class="col-md-9 mx-0">
                                         <h4 class="card-title mb-0">{{producto.producto.titulo}}</h4>
                                         <div class="mb-2 text-muted">
@@ -70,6 +70,39 @@
                     </div>
                 </div>
             </div>
+<!--            <div class="container py-3">
+                <div class="card mb-5" ng-repeat="producto in productos"  md-whiteframe="{{height}}" ng-init="height = 6" ng-mouseenter="height = 12" ng-mouseleave="height = 6">
+                    <div class="row">
+                        <div class="col-md-4 pr-0">
+                            <img src="https://placeholdit.imgix.net/~text?txtsize=38&txt=375%C3%97250&w=375&h=250" class="img-fluid">
+                        </div>
+                        <div class="col-md-8 px-3 py-3 cuerpoanuncio">
+
+                            <div class="row no-gutters mx-3">
+                                <div class="col-md-9 mx-0">
+                                    <h4 class="card-title mb-0">{{producto.producto.titulo}}</h4>
+                                    <div class="mb-2 text-muted">
+                                        <span>{{producto.producto.obj_Tipoinmueble.desc}} en el barrio {{producto.producto.obj_Barrio.desc}}</span><br>
+                                    </div>
+                                    <div class="mb-2">
+                                        <span class="metrosanuncio">{{producto.producto.metroscasa}} m<sup>2</sup></span> - 
+                                        <span class="habanuncio">{{producto.producto.habitaciones}} habitacion/es</span> - 
+                                        <span class="banyosanuncio">{{producto.producto.banyos}} baño/s</span>
+                                    </div>
+                                    <div class="favanuncio" ng-click="favAnuncio($index, producto.producto.id)">
+                                        <div class="heart fav{{$index}}"></div>
+                                    </div>
+                                    <p class="card-text" md-truncate>{{producto.producto.descripcion}}</p>
+                                </div>
+                                <div class="col-md-3 precioanuncio">
+                                    <h4>{{producto.producto.precio}} €</h4>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>-->
         </section>
 
         <!--PAGINACION-->

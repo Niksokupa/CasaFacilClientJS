@@ -99,9 +99,9 @@ body {
     height: 250px;
 }*/
 
-.cuerpoanuncio {
+/*.cuerpoanuncio {
     background-color: white;
-}
+}*/
 
 .precioanuncio{
     text-align: right;
@@ -110,7 +110,7 @@ body {
 .favanuncio {
     position: absolute;
     font-size: 25px;
-    margin-left: -57px;
+    margin-left: -62px;
     margin-top: -100px;
     height: 50px;
     display: flex;
@@ -183,7 +183,9 @@ md-select-value span{
     color: black;
 }
 
-
+#gallery-photo-add{
+    width: 275px;
+}
 
 .gallery img{
     width: 250px;
@@ -198,6 +200,51 @@ md-select:disabled{
 /*.inputbanyos {
     width: 10%;
 }*/
+
+/*Extra small devices (portrait phones, less than 576px)*/
+@media (max-width: 575.98px) { 
+    .favanuncio {
+        position: absolute;
+        margin-left: 43%;
+        margin-top: -45%;
+    }
+
+    .imgminianuncio {
+        width: 96%;
+        height: 250px;
+    }
+    
+    .precioanuncio{
+        margin-top: 20px;
+    }
+    
+    .card-body{
+        padding-bottom: 0px;
+    }
+}
+
+/*Small devices (landscape phones, less than 768px)*/
+@media (max-width: 767.98px) {  }
+
+/*Medium devices (tablets, less than 992px)*/
+@media (max-width: 991.98px) {  }
+
+/*Large devices (desktops, less than 1200px)*/
+@media (max-width: 1199.98px) {  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Custom Hover.css
 -------------------------------------------------- */
