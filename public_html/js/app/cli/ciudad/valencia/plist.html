@@ -17,7 +17,7 @@
             <!--FILTRO DE EXTRAS-->
             <div style="border: 1px solid #888;">
                 <div class="checkbox checkbox-inline filtroinput" ng-click="filtroExtras(extras.extras.id)" ng-repeat="extras in listaExtras">
-                    <md-checkbox class="brown align-middle" style="display: table-cell; padding:5px;" ng-model="paquito" ng-true-value="{{extras.extras.id}}">
+                    <md-checkbox class="brown align-middle" style="display: table-cell; padding:5px;" ng-true-value="{{extras.extras.id}}">
                         {{extras.extras.desc}}
                     </md-checkbox>
                     <!--<input type="checkbox" name="extras" id="chk-{{extras.extras.id}}">{{extras.extras.desc}}-->

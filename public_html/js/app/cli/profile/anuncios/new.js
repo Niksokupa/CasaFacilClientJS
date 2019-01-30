@@ -5,6 +5,8 @@ moduleAnuncio.controller('newanunciosController', ['$scope', '$http', '$location
 
         $scope.parcela = false;
         $scope.ciudadselected = false;
+        $scope.selectedExtras = [];
+
 
 
         $scope.ciudades = [
@@ -12,6 +14,36 @@ moduleAnuncio.controller('newanunciosController', ['$scope', '$http', '$location
             {value: 2, nombre: "Valencia"},
             {value: 3, nombre: "Castellón"}
         ];
+        $scope.inmuebles = [
+            {value: 1, nombre: "Piso"},
+            {value: 2, nombre: "Casa"},
+            {value: 3, nombre: "Chalet"},
+            {value: 4, nombre: "Ático"}
+        ];
+        $scope.vias = [
+            {value: 1, nombre: "Calle"},
+            {value: 2, nombre: "Avenida"},
+            {value: 3, nombre: "Plaza"},
+            {value: 4, nombre: "Camino"}
+        ];
+
+        $scope.showParcela = function () {
+            if ($scope.selectedInmueble === 3) {
+                $scope.parcela = true;
+            } else {
+                $scope.parcela = false;
+            }
+        };
+
+        $scope.filtroExtras = function (id) {
+
+            var index = $scope.selectedExtras.indexOf(id);
+            if (index > -1) {
+                $scope.selectedExtras.splice(index, 1);
+            } else {
+                $scope.selectedExtras.push(id);
+            }
+        }
 
         //TODOS LOS EXTRAS
         $http({
@@ -33,6 +65,8 @@ moduleAnuncio.controller('newanunciosController', ['$scope', '$http', '$location
         }), function (response) {
             console.log(response);
         };
+        
+        var date = new Date().toISOString().slice(0,10).toString();
 
         $scope.create = function () {
             var fotos = [];
@@ -45,30 +79,45 @@ moduleAnuncio.controller('newanunciosController', ['$scope', '$http', '$location
                 habitaciones: $scope.habitaciones,
                 metrosterreno: $scope.metrosparcela,
                 metroscasa: $scope.metroscasa,
-                fechacreacion: Date(Date.now()).toString(),
-                fechaupdate: Date(Date.now()).toString(),
-                id_barrio: $scope.selectedBarrio,
-                id_tipovia: $scope.selectedVia,
-                id_usuario: oSessionService.getId(),
-                id_tipoinmueble: $scope.selectedInmueble
+                fechacreacion: date,
+                fechaupdate: date,
+                id_Barrio: $scope.selectedBarrio,
+                id_Tipovia: $scope.selectedVia,
+                id_Usuario: oSessionService.getId(),
+                id_Tipoinmueble: $scope.selectedInmueble
             };
 
-            console.log(anuncio);
 
-            var oFormData = new FormData();
+            if ($scope.files !== undefined) {
+                var oFormData = new FormData();
+                for (var i = 0; i < $scope.files.length; i++) {
+                    oFormData.append('file', $scope.files[i]);
+                    fotos.push($scope.files[i].name);
+                }
 
-            for (var i = 0; i < $scope.files.length; i++) {
-                oFormData.append('file', $scope.files[i]);
-                fotos.push($scope.files[i].name);
+                console.log(anuncio);
+                console.log($scope.selectedExtras);
+                console.log(fotos);
+
+                $http({
+                    method: "GET",
+                    url: `http://localhost:8081/casafacil/json?ob=anuncio&op=create`,
+                    params: {anuncio: JSON.stringify(anuncio), fotos: JSON.stringify(fotos), extras: JSON.stringify($scope.selectedExtras)}
+                }).then(function (response) {
+
+                }), function (response) {
+
+                };
+
+                oFormData.append('file', $scope.files);
+                $http({
+                    headers: {'Content-Type': undefined},
+                    method: 'POST',
+                    data: oFormData,
+                    url: `http://localhost:8081/casafacil/json?ob=anuncio&op=addimage`
+                });
             }
 
-            oFormData.append('file', $scope.files);
-            $http({
-                headers: {'Content-Type': undefined},
-                method: 'POST',
-                data: oFormData,
-                url: `http://localhost:8081/casafacil/json?ob=anuncio&op=addimage`
-            });
         };
 
 //        $scope.remove = function (data) {
@@ -78,7 +127,6 @@ moduleAnuncio.controller('newanunciosController', ['$scope', '$http', '$location
 
         $scope.rellenaBarrio = function () {
             $scope.ciudadselected = true;
-            console.log($scope.anuncio);
             //TODOS LOS BARRIOS
             $http({
                 method: "GET",
@@ -126,7 +174,8 @@ moduleAnuncio.controller('newanunciosController', ['$scope', '$http', '$location
         });
 
 
-    }]).directive('ngFileModel', ['$parse', function ($parse) {
+    }
+]).directive('ngFileModel', ['$parse', function ($parse) {
         return {
             restrict: 'A',
             link: function (scope, element, attrs) {

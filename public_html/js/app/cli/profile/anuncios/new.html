@@ -42,9 +42,9 @@
                                 <!--FILTRO VIA-->
                                 <md-input-container class="md-block">
                                     <label>Tipo de vía</label>
-                                    <md-select ng-model="selectedVia" ng-change="filtroBarrio()">
-                                        <md-option aria-label="{{barrio.barrios.desc}}" ng-value="{{barrio.barrios.id}}" ng-repeat="barrio in listaBarrios">
-                                            {{ barrio.barrios.desc}}
+                                    <md-select ng-model="selectedVia">
+                                        <md-option aria-label="{{via.nombre}}" ng-value="via.value" ng-repeat="via in vias">
+                                            {{ via.nombre }}
                                         </md-option>
                                     </md-select>
                                 </md-input-container>
@@ -58,9 +58,9 @@
                             <div layout-gt-sm="row">
                                 <md-input-container class="md-block">
                                     <label>Tipo de inmueble</label>
-                                    <md-select ng-model="selectedInmueble" ng-change="filtroBarrio()">
-                                        <md-option aria-label="{{barrio.barrios.desc}}" ng-value="{{barrio.barrios.id}}" ng-repeat="barrio in listaBarrios">
-                                            {{ barrio.barrios.desc}}
+                                    <md-select ng-model="selectedInmueble" ng-change="showParcela()">
+                                        <md-option aria-label="{{inmueble.nombre}}" ng-value="inmueble.value" ng-repeat="inmueble in inmuebles">
+                                            {{ inmueble.nombre }}
                                         </md-option>
                                     </md-select>
                                 </md-input-container>
@@ -111,13 +111,13 @@
                             </md-input-container>
                         </md-content>
                         </md-content>
-
+                        <!--FILTRO EXTRAS-->
                         <h3>Extras del inmueble (Opcionales)</h3>
 
                         <md-content layout-padding class="newForm mb-5" md-whiteframe="{{heighty}}" ng-init="heighty = 6">
                             <div>
                                 <div class="checkbox filtroinput" ng-click="filtroExtras(extras.extras.id)" ng-repeat="extras in listaExtras">
-                                    <md-checkbox class="brown align-middle" style="display: table-cell; padding:5px;" ng-model="paquito" ng-true-value="{{extras.extras.id}}">
+                                    <md-checkbox class="brown align-middle" style="display: table-cell; padding:5px;" ng-true-value="{{extras.extras.id}}">
                                         {{extras.extras.desc}}
                                     </md-checkbox>
                                     <!--<input type="checkbox" name="extras" id="chk-{{extras.extras.id}}">{{extras.extras.desc}}-->
