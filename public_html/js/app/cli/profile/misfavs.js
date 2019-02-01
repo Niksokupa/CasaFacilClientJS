@@ -1,7 +1,7 @@
 'use strict'
 
-moduleFavs.controller('favsController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$anchorScroll',
-    function ($scope, $http, $location, toolService, $routeParams, oSessionService, $anchorScroll) {
+moduleFavs.controller('favsController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$anchorScroll', 'favsObserverService',
+    function ($scope, $http, $location, toolService, $routeParams, oSessionService, $anchorScroll, favsService) {
 
         $anchorScroll();
         $scope.totalPages = 1;
@@ -59,17 +59,19 @@ moduleFavs.controller('favsController', ['$scope', '$http', '$location', 'toolSe
 
         $scope.favAnuncio = function (id, anuncio_id) {
             if (oSessionService.isSessionActive()) {
-//                var json = {
-//                    id_anuncio: anuncio_id,
-//                    id_usuario: oSessionService.getId()
-//                };
-//                $http({
-//                    method: "GET",
-//                    url: `http://localhost:8081/casafacil/json?ob=favorito&op=remove`,
-//                    params: {json: JSON.stringify(json)}
-//                }).then(function (response) {
-//                }), function (response) {
-//                };
+                var json = {
+                    id_anuncio: anuncio_id,
+                    id_usuario: oSessionService.getId()
+                };
+                $http({
+                    method: "GET",
+                    url: `http://localhost:8081/casafacil/json?ob=favorito&op=remove&id_anuncio=` + anuncio_id,
+                    params: {json: JSON.stringify(json)}
+                }).then(function (response) {
+                    favsService.updateFavs();
+                }), function (response) {
+                    console.log(response);
+                };
                 $scope.productos.splice(id, 1);
             } else {
                 $location.url('/usuario/login');

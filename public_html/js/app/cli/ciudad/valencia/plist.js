@@ -2,12 +2,18 @@
 
 'use strict';
 
-moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$anchorScroll',
-    function ($scope, $http, $location, toolService, $routeParams, oSessionService, $anchorScroll) {
+moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$anchorScroll', 'favsObserverService',
+    function ($scope, $http, $location, toolService, $routeParams, oSessionService, $anchorScroll, favsService) {
         $anchorScroll();
         $scope.totalPages = 1;
         $scope.ob = "anuncio";
         $scope.selectedExtras = [];
+        var arrayFavs = [];
+        var prueba = false;
+        oSessionService.registerObserverCallback(function () {
+            arrayFavs = oSessionService.getFavs();
+        });
+
 
         if (!$routeParams.order) {
             $scope.orderURLServidor = "";
@@ -42,7 +48,7 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
             response.data.message.forEach(element => {
                 var extras = {
                     extras: element
-                }
+                };
                 listaExtras.push(extras);
 
             });
@@ -63,7 +69,7 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
             response.data.message.forEach(element => {
                 var barrios = {
                     barrios: element
-                }
+                };
                 listaBarrios.push(barrios);
 
             });
@@ -77,19 +83,17 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
             method: 'GET',
             url: `http://localhost:8081/casafacil/json?ob=${$scope.ob}&op=getpage&ciudad=2&rpp=` + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
         }).then(function (response) {
-            $scope.status = response.status;
+            $scope.message = response.data.message;
             var productos = [];
-            response.data.message.forEach(element => {
+            $scope.message.forEach(element => {
                 if (element.descripcion.length > 200) {
                     element.descripcion = element.descripcion.substring(0, 200);
                     element.descripcion += "...";
                 }
-
                 element.precio = addCommas(element.precio);
-
                 var producto = {
                     producto: element
-                }
+                };
                 productos.push(producto);
             });
             $scope.productos = productos;
@@ -126,7 +130,7 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
 
                     var producto = {
                         producto: element
-                    }
+                    };
                     productos.push(producto);
                 });
                 $scope.productos = productos;
@@ -151,7 +155,7 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
 
                     var producto = {
                         producto: element
-                    }
+                    };
                     productos.push(producto);
                 });
                 $scope.productos = productos;
@@ -199,7 +203,7 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
         });
 
 
-        $scope.favAnuncio = function (id, anuncio_id) {
+        $scope.favAnuncio = function (anuncio_id) {
 //            $('.fav' + id).css('color', 'red');
 //            $('.fav' + id).effect('bounce', 350);
 //            $('.fav' + id).animate({
@@ -211,15 +215,38 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
                     id_anuncio: anuncio_id,
                     id_usuario: oSessionService.getId()
                 };
-                $http({
-                    method: "GET",
-                    url: `http://localhost:8081/casafacil/json?ob=favorito&op=create`,
-                    params: {json: JSON.stringify(json)}
-                }).then(function (response) {
-                    $('.fav' + id).addClass("is-active");
-                }), function (response) {
-                    console.log(response);
-                };
+
+                var existe = false;
+
+                for (var i = 0; i < arrayFavs.length; i++) {
+                    if (anuncio_id === arrayFavs[i]) {
+                        existe = true;
+                    }
+                }
+
+                if (!existe) {
+                    $http({
+                        method: "GET",
+                        url: `http://localhost:8081/casafacil/json?ob=favorito&op=create`,
+                        params: {json: JSON.stringify(json)}
+                    }).then(function (response) {
+                        $('.fav' + anuncio_id).addClass("is-active");
+                        favsService.updateFavs();
+                    }), function (response) {
+                        console.log(response);
+                    };
+                } else {
+                    $http({
+                        method: "GET",
+                        url: `http://localhost:8081/casafacil/json?ob=favorito&op=remove&id_anuncio=` + anuncio_id,
+                        params: {json: JSON.stringify(json)}
+                    }).then(function (response) {
+                        $('.fav' + anuncio_id).removeClass("is-active");
+                        favsService.updateFavs();
+                    }), function (response) {
+                        console.log(response);
+                    };
+                }
             } else {
                 $location.url('/usuario/login');
             }
@@ -239,4 +266,26 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
             return x1 + x2;
         }
 
-    }]);
+        $scope.$on('ngRepeatFinished', function () {
+            $scope.message.forEach(element => {
+                for (var i = 0; i < arrayFavs.length; i++) {
+                    if (element.id === arrayFavs[i]) {
+                        $('.fav' + element.id).addClass("is-active");
+                    }
+                }
+            });
+        });
+
+
+    }]).directive('onFinishRender', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            if (scope.$last === true) {
+                $timeout(function () {
+                    scope.$emit(attr.onFinishRender);
+                });
+            }
+        }
+    };
+});

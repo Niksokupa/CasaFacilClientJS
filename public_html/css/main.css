@@ -126,7 +126,12 @@ body {
 
 .favanuncio:hover{
     background-color: coral;
+
 }
+
+/*.heart:hover{
+    background-position: 100%;
+}*/
 
 /*CORAZÓN LIKE*/
 

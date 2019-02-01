@@ -5,7 +5,8 @@ moduleUsuario.controller("usuarioLoginController", [
     "$http",
     "toolService",
     "sessionService",
-    function ($scope, $http, toolService, oSessionService) {
+    "favsObserverService",
+    function ($scope, $http, toolService, oSessionService, oFavsService) {
         $scope.logged = false;
         $scope.failedlogin = false;
         $scope.logging = function () {
@@ -27,6 +28,7 @@ moduleUsuario.controller("usuarioLoginController", [
                     $scope.logged = true;
                     $scope.failedlogin = false;
                     oSessionService.setSessionActive();
+                    oFavsService.updateFavs();
                     oSessionService.setUserName(response.data.message.nombre + " " + response.data.message.ape1);
                     $scope.loggeduser = oSessionService.getUserName();
                     if (response.data.message.obj_tipoUsuario.desc == "Administrador") {

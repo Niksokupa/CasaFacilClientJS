@@ -27,7 +27,7 @@ var autenticacionAdministrador = function ($q, $location, $http, sessionService)
     return deferred.promise;
 };
 
-var autenticacionUsuario = function ($q, $location, $http, sessionService, countcarritoService) {
+var autenticacionUsuario = function ($q, $location, $http, sessionService) {
     var deferred = $q.defer();
     $http({
         method: 'GET',
@@ -44,7 +44,6 @@ var autenticacionUsuario = function ($q, $location, $http, sessionService, count
             }
             //comprobar que el usuario en sesión es usuario
             //hay que meter el usuario activo en el sessionService
-            countcarritoService.updateCarrito();
             deferred.resolve();
         } else {
             sessionService.setSessionInactive();
@@ -57,7 +56,7 @@ var autenticacionUsuario = function ($q, $location, $http, sessionService, count
     return deferred.promise;
 };
 
-var autenticacionHome = function ($q, sessionService, $http) {
+var autenticacionHome = function ($q, sessionService, $http, favsObserverService) {
     var deferred = $q.defer();
     $http({
         method: 'GET',
@@ -75,6 +74,7 @@ var autenticacionHome = function ($q, sessionService, $http) {
                 sessionService.setUserName(response.data.message.nombre + " " + response.data.message.ape1);
                 sessionService.setId(response.data.message.id);
                 sessionService.setUser();
+                favsObserverService.updateFavs();
                 deferred.resolve();
             }
         }

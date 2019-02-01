@@ -13,7 +13,6 @@ moduleService.service('countcarritoService', ['$http', 'sessionService', functio
                         aux += response.data.message[i].cantidad;
                     }
                 }
-                sessionService.setCountCarrito(aux);
             }, function (response) {
             });
         }

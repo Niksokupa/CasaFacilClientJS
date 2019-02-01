@@ -7,7 +7,7 @@ moduleService.service('sessionService', ['$location', function ($location) {
         var userName = "";
         var idUserLogged = "";
         var admin;
-        var carrito = 0;
+        var favs = [];
         var observerCallbacks = [];
         return {
             getUserName: function () {
@@ -73,25 +73,20 @@ moduleService.service('sessionService', ['$location', function ($location) {
                     callback();
                 });
             },
-            setCountCarrito: function (cantidad) {
-                carrito = cantidad;
+            setFavs: function (arrayFavs) {
+                favs = arrayFavs;
 
-                //Para que sirve el callback()
-                //https://www.quora.com/What-is-the-call-back-function-in-AngularJS
                 angular.forEach(observerCallbacks, function (callback) {
                     callback();
                 });
             },
-            getCountCarrito: function () {
-                return carrito;
+            getFavs: function () {
+                return favs;
             },
-            //register an observer
-            //Entiendo que puedo guardar todos los observables en el array observerCallbacks y que cada vez que el objeto 
-            // se actualice , angular detectara que observable se ha actualizado y lo actualizara en toda la aplicacion
             registerObserverCallback: function (callback) {
                 observerCallbacks.push(callback);
             }
 
-        }
+        };
 
     }]);
