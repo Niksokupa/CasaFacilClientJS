@@ -29,6 +29,8 @@
                                     </div>
                                     <div class="col-md-3 precioanuncio">
                                         <h4>{{producto.producto.precio}} €</h4>
+                                        <md-button class="md-raised mx-0 edit" href="cli/misanuncios/edit/{{producto.producto.id}}">Editar</md-button>
+                                        <md-button class="md-raised md-warn mx-0" ng-click="showConfirm($event, $index, producto.producto.id)">Eliminar</md-button>
                                     </div>
                                 </div>
                             </div>

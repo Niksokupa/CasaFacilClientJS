@@ -1,7 +1,7 @@
 'use strict';
 
-moduleAnuncio.controller('misanunciosController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$anchorScroll',
-    function ($scope, $http, $location, toolService, $routeParams, oSessionService, $anchorScroll) {
+moduleAnuncio.controller('misanunciosController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$anchorScroll', '$mdDialog',
+    function ($scope, $http, $location, toolService, $routeParams, oSessionService, $anchorScroll, $mdDialog) {
         $anchorScroll();
         $scope.totalPages = 1;
         $scope.ob = "anuncio";
@@ -55,6 +55,32 @@ moduleAnuncio.controller('misanunciosController', ['$scope', '$http', '$location
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
         });
+
+        //CONFIRMACION ELIMINACION DE ANUNCIO
+        $scope.showConfirm = function (ev, id, id_anuncio) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                    .title($scope.productos[id].producto.titulo)
+                    .textContent('¿Realmente quieres eliminar este anuncio?')
+                    .ariaLabel('Lucky day')
+                    .targetEvent(ev)
+                    .ok('Please do it!')
+                    .cancel('Sounds like a scam');
+
+            $mdDialog.show(confirm).then(function () {
+                $http({
+                    method: "GET",
+                    url: `http://localhost:8081/casafacil/json?ob=${$scope.ob}&op=remove&id=` + id_anuncio,
+                }).then(function (response) {
+                    $scope.productos.splice(id, 1);
+                }), function (response) {
+                    console.log(response);
+                };
+                $scope.status = 'You decided to get rid of your debt.';
+            }, function () {
+                $scope.status = 'You decided to keep your debt.';
+            });
+        };
 
 
         //AÑADE PUNTOS DE MILES

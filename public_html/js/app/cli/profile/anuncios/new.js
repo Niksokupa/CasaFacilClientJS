@@ -65,8 +65,8 @@ moduleAnuncio.controller('newanunciosController', ['$scope', '$http', '$location
         }), function (response) {
             console.log(response);
         };
-        
-        var date = new Date().toISOString().slice(0,10).toString();
+
+        var date = new Date().toISOString().slice(0, 10).toString();
 
         $scope.create = function () {
             var fotos = [];
@@ -95,20 +95,6 @@ moduleAnuncio.controller('newanunciosController', ['$scope', '$http', '$location
                     fotos.push($scope.files[i].name);
                 }
 
-                console.log(anuncio);
-                console.log($scope.selectedExtras);
-                console.log(fotos);
-
-                $http({
-                    method: "GET",
-                    url: `http://localhost:8081/casafacil/json?ob=anuncio&op=create`,
-                    params: {anuncio: JSON.stringify(anuncio), fotos: JSON.stringify(fotos), extras: JSON.stringify($scope.selectedExtras)}
-                }).then(function (response) {
-
-                }), function (response) {
-
-                };
-
                 oFormData.append('file', $scope.files);
                 $http({
                     headers: {'Content-Type': undefined},
@@ -117,6 +103,16 @@ moduleAnuncio.controller('newanunciosController', ['$scope', '$http', '$location
                     url: `http://localhost:8081/casafacil/json?ob=anuncio&op=addimage`
                 });
             }
+
+            $http({
+                method: "GET",
+                url: `http://localhost:8081/casafacil/json?ob=anuncio&op=create`,
+                params: {anuncio: JSON.stringify(anuncio), fotos: JSON.stringify(fotos), extras: JSON.stringify($scope.selectedExtras)}
+            }).then(function (response) {
+
+            }), function (response) {
+
+            };
 
         };
 

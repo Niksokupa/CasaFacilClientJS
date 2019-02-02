@@ -5,18 +5,18 @@
             <md-content layout-padding class="newForm mb-5" md-whiteframe="{{height}}" ng-init="height = 6" ng-mouseenter="height = 12" ng-mouseleave="height = 6">
                 <div class="px-4">
                     <h3>Datos del inmueble (Obligatorios)</h3>
-                    <form name="userForm" >
+                    <form name="userForm" ng-submit="create()">
                         <md-content layout-padding class="newForm mb-5" md-whiteframe="{{heightx}}" ng-init="heightx = 6">
 
                             <div layout-gt-xs="row">
                                 <md-input-container style="line-height:15px" class="md-block" flex-gt-xs>
                                     <label>Título del anuncio*</label>
-                                    <input ng-model="titulo">
+                                    <input required md-no-asterisk ng-model="titulo">
                                 </md-input-container>
 
                                 <md-input-container style="line-height:15px" class="md-block">
                                     <label>Precio</label>
-                                    <input ng-model="precio" type="number">
+                                    <input required md-no-asterisk ng-model="precio" type="number">
                                 </md-input-container>
                             </div>
 
@@ -24,7 +24,7 @@
                                 <!--FILTRO CIUDAD-->
                                 <md-input-container class="md-block">
                                     <label>Ciudad</label>
-                                    <md-select ng-model="ciudad" ng-change="rellenaBarrio()">
+                                    <md-select ng-model="ciudad" ng-change="rellenaBarrio()" required md-no-asterisk>
                                         <md-option ng-repeat="ciudad in ciudades" ng-value="ciudad.value">
                                             {{ciudad.nombre}}
                                         </md-option>
@@ -33,7 +33,7 @@
                                 <!--FILTRO BARRIO-->
                                 <md-input-container class="md-block">
                                     <label>Barrio</label>
-                                    <md-select ng-model="selectedBarrio" ng-disabled="!ciudadselected">
+                                    <md-select ng-model="selectedBarrio" ng-disabled="!ciudadselected" required md-no-asterisk>
                                         <md-option aria-label="{{barrio.barrios.desc}}" ng-value="{{barrio.barrios.id}}" ng-repeat="barrio in listaBarrios">
                                             {{ barrio.barrios.desc}}
                                         </md-option>
@@ -42,42 +42,42 @@
                                 <!--FILTRO VIA-->
                                 <md-input-container class="md-block">
                                     <label>Tipo de vía</label>
-                                    <md-select ng-model="selectedVia">
+                                    <md-select ng-model="selectedVia" required md-no-asterisk>
                                         <md-option aria-label="{{via.nombre}}" ng-value="via.value" ng-repeat="via in vias">
-                                            {{ via.nombre }}
+                                            {{ via.nombre}}
                                         </md-option>
                                     </md-select>
                                 </md-input-container>
 
                                 <md-input-container style="line-height:15px" class="md-block" flex-gt-xs>
                                     <label>Nombre de la vía*</label>
-                                    <input ng-model="direccion">
+                                    <input required md-no-asterisk ng-model="direccion">
                                 </md-input-container>
                             </div>
 
                             <div layout-gt-sm="row">
                                 <md-input-container class="md-block">
                                     <label>Tipo de inmueble</label>
-                                    <md-select ng-model="selectedInmueble" ng-change="showParcela()">
+                                    <md-select ng-model="selectedInmueble" ng-change="showParcela()" required md-no-asterisk>
                                         <md-option aria-label="{{inmueble.nombre}}" ng-value="inmueble.value" ng-repeat="inmueble in inmuebles">
-                                            {{ inmueble.nombre }}
+                                            {{ inmueble.nombre}}
                                         </md-option>
                                     </md-select>
                                 </md-input-container>
 
                                 <md-input-container style="line-height:15px" class="md-block">
                                     <label>Habitaciones</label>
-                                    <input ng-model="habitaciones" type="number">
+                                    <input required md-no-asterisk ng-model="habitaciones" type="number">
                                 </md-input-container>
 
                                 <md-input-container style="line-height:15px" class="md-block inputbanyos">
                                     <label>Baños</label>
-                                    <input ng-model="banyos" type="number">
+                                    <input required md-no-asterisk ng-model="banyos" type="number">
                                 </md-input-container>
 
                                 <md-input-container style="line-height:15px" class="md-block">
                                     <label>M<sup>2</sup> inmueble</label>
-                                    <input ng-model="metroscasa" type="number">
+                                    <input required md-no-asterisk ng-model="metroscasa" type="number">
                                 </md-input-container>
 
                                 <md-input-container style="line-height:15px" class="md-block" ng-show="parcela">
@@ -85,29 +85,9 @@
                                     <input ng-model="metrosparcela" type="number">
                                 </md-input-container>
                             </div>
-
-                            <!--                        <div layout-gt-sm="row">
-                            
-                                                        <md-input-container class="md-block" flex-gt-sm>
-                                                            <label>Postal Code</label>
-                                                            <input name="postalCode" ng-model="user.postalCode" placeholder="12345"
-                                                                   required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
-                            
-                                                            <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
-                                                                <div ng-message="required" class="my-message">You must supply a postal code.</div>
-                                                                <div ng-message="pattern" class="my-message">That doesn't look like a valid postal
-                                                                    code.
-                                                                </div>
-                                                                <div ng-message="md-maxlength" class="my-message">
-                                                                    Don't use the long version silly...we don't need to be that specific...
-                                                                </div>
-                                                            </div>
-                                                        </md-input-container>
-                                                    </div>-->
-
                             <md-input-container class="md-block">
                                 <label>Descripción del inmueble</label>
-                                <textarea ng-model="descripcion" md-maxlength="350" rows="6" md-select-on-focus></textarea>
+                                <textarea required md-no-asterisk ng-model="descripcion" md-maxlength="350" rows="6" md-select-on-focus></textarea>
                             </md-input-container>
                         </md-content>
                         </md-content>
@@ -132,7 +112,7 @@
                         </md-content>
 
                         <div>
-                            <md-button ng-click="create()" class="md-raised" type="submit">Crear anuncio</md-button>
+                            <md-button class="md-raised" type="submit">Crear anuncio</md-button>
                         </div>
                     </form>
                 </div>
