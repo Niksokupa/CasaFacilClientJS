@@ -151,6 +151,7 @@ casafacil.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/cli/misfavs', {templateUrl: 'js/app/cli/profile/misfavs.html', controller: 'favsController', resolve: {auth: autenticacionUsuario}});
         $routeProvider.when('/cli/misanuncios', {templateUrl: 'js/app/cli/profile/anuncios/misanuncios.html', controller: 'misanunciosController', resolve: {auth: autenticacionUsuario}});
         $routeProvider.when('/cli/misanuncios/new', {templateUrl: 'js/app/cli/profile/anuncios/new.html', controller: 'newanunciosController', resolve: {auth: autenticacionUsuario}});
+        $routeProvider.when('/cli/misanuncios/edit/:id', {templateUrl: 'js/app/cli/profile/anuncios/new.html', controller: 'editanunciosController', resolve: {auth: autenticacionUsuario}});
 
 
 

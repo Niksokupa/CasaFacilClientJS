@@ -1,0 +1,121 @@
+<header-component></header-component>
+<div class="container-fluid favcontainer">
+    <div class="row ">
+        <div class="col-md-8 mx-auto">
+            <md-content layout-padding class="newForm mb-5" md-whiteframe="{{height}}" ng-init="height = 6" ng-mouseenter="height = 12" ng-mouseleave="height = 6">
+                <div class="px-4">
+                    <h3>Datos del inmueble (Obligatorios)</h3>
+                    <form name="userForm" ng-submit="create()">
+                        <md-content layout-padding class="newForm mb-5" md-whiteframe="{{heightx}}" ng-init="heightx = 6">
+
+                            <div layout-gt-xs="row">
+                                <md-input-container style="line-height:15px" class="md-block" flex-gt-xs>
+                                    <label>Título del anuncio*</label>
+                                    <input required md-no-asterisk ng-model="titulo">
+                                </md-input-container>
+
+                                <md-input-container style="line-height:15px" class="md-block">
+                                    <label>Precio</label>
+                                    <input required md-no-asterisk ng-model="precio" type="number">
+                                </md-input-container>
+                            </div>
+
+                            <div layout-gt-sm="row">
+                                <!--FILTRO CIUDAD-->
+                                <md-input-container class="md-block">
+                                    <label>Ciudad</label>
+                                    <md-select ng-model="ciudad" ng-change="rellenaBarrio()" required md-no-asterisk>
+                                        <md-option ng-repeat="ciudad in ciudades" ng-value="ciudad.value">
+                                            {{ciudad.nombre}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                                <!--FILTRO BARRIO-->
+                                <md-input-container class="md-block">
+                                    <label>Barrio</label>
+                                    <md-select ng-model="selectedBarrio" ng-disabled="!ciudadselected" required md-no-asterisk>
+                                        <md-option aria-label="{{barrio.barrios.desc}}" ng-value="{{barrio.barrios.id}}" ng-repeat="barrio in listaBarrios">
+                                            {{ barrio.barrios.desc}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                                <!--FILTRO VIA-->
+                                <md-input-container class="md-block">
+                                    <label>Tipo de vía</label>
+                                    <md-select ng-model="selectedVia" required md-no-asterisk>
+                                        <md-option aria-label="{{via.nombre}}" ng-value="via.value" ng-repeat="via in vias">
+                                            {{ via.nombre}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+
+                                <md-input-container style="line-height:15px" class="md-block" flex-gt-xs>
+                                    <label>Nombre de la vía*</label>
+                                    <input required md-no-asterisk ng-model="direccion">
+                                </md-input-container>
+                            </div>
+
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block">
+                                    <label>Tipo de inmueble</label>
+                                    <md-select ng-model="selectedInmueble" ng-change="showParcela()" required md-no-asterisk>
+                                        <md-option aria-label="{{inmueble.nombre}}" ng-value="inmueble.value" ng-repeat="inmueble in inmuebles">
+                                            {{ inmueble.nombre}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+
+                                <md-input-container style="line-height:15px" class="md-block">
+                                    <label>Habitaciones</label>
+                                    <input required md-no-asterisk ng-model="habitaciones" type="number">
+                                </md-input-container>
+
+                                <md-input-container style="line-height:15px" class="md-block inputbanyos">
+                                    <label>Baños</label>
+                                    <input required md-no-asterisk ng-model="banyos" type="number">
+                                </md-input-container>
+
+                                <md-input-container style="line-height:15px" class="md-block">
+                                    <label>M<sup>2</sup> inmueble</label>
+                                    <input required md-no-asterisk ng-model="metroscasa" type="number">
+                                </md-input-container>
+
+                                <md-input-container style="line-height:15px" class="md-block" ng-show="parcela">
+                                    <label>M<sup>2</sup> parcela</label>
+                                    <input ng-model="metrosparcela" type="number">
+                                </md-input-container>
+                            </div>
+                            <md-input-container class="md-block">
+                                <label>Descripción del inmueble</label>
+                                <textarea required md-no-asterisk ng-model="descripcion" md-maxlength="350" rows="6" md-select-on-focus></textarea>
+                            </md-input-container>
+                        </md-content>
+                        </md-content>
+                        <!--FILTRO EXTRAS-->
+                        <h3>Extras del inmueble (Opcionales)</h3>
+
+                        <md-content layout-padding class="newForm mb-5" md-whiteframe="{{heighty}}" ng-init="heighty = 6">
+                            <div>
+                                <div class="checkbox filtroinput" ng-click="filtroExtras(extras.extras.id)" ng-repeat="extras in listaExtras">
+                                    <md-checkbox class="brown align-middle" ng-checked="selectedExtras[extras.extras.id]" style="display: table-cell; padding:5px;" ng-true-value="{{extras.extras.id}}">
+                                        {{extras.extras.desc}}
+                                    </md-checkbox>
+                                    <!--<input type="checkbox" name="extras" id="chk-{{extras.extras.id}}">{{extras.extras.desc}}-->
+                                </div>
+                            </div>
+                        </md-content>
+
+                        <h3>Fotos del inmueble (Opcionales)</h3>
+                        <md-content layout-padding class="newForm mb-5" md-whiteframe="{{heightz}}" ng-init="heightz = 6">
+                            <input id="gallery-photo-add" type="file" ng-file-model="files" multiple />
+                            <div class="gallery"></div>
+                        </md-content>
+
+                        <div>
+                            <md-button class="md-raised" type="submit">Crear anuncio</md-button>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>
