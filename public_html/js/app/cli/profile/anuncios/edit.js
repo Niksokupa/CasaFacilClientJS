@@ -43,7 +43,8 @@ moduleAnuncio.controller('editanunciosController', ['$scope', '$http', '$locatio
             } else {
                 $scope.selectedExtras.push(id);
             }
-        }
+        };
+
 
         //DATOS DEL ANUNCIO EN CUESTIÓN
         $http({
@@ -83,13 +84,11 @@ moduleAnuncio.controller('editanunciosController', ['$scope', '$http', '$locatio
                 method: "GET",
                 url: `http://localhost:8081/casafacil/json?ob=extras&op=getspecific&id=${$routeParams.id}`
             }).then(function (response) {
-                var listaBarrios = [];
                 response.data.message.forEach(element => {
                     
                     $scope.selectedExtras.push(element.id_extras);
 
                 });
-                $scope.listaBarrios = listaBarrios;
             });
         });
 
