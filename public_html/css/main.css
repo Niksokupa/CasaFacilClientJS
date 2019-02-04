@@ -92,6 +92,20 @@ body {
     height: 400px;
 }
 
+.imglanding{
+    width: 175px;
+    height: 225px;
+}
+
+.valencia{
+    position: absolute;
+    display: flex;
+    margin-left: -30px;
+    margin-top: -80px;
+    align-items: center;
+    justify-content: center;
+}
+
 /*ANUNCIO*/
 
 /*.imgminianuncio {
