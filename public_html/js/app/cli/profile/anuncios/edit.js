@@ -1,8 +1,9 @@
 'use strict';
 
-moduleAnuncio.controller('editanunciosController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$anchorScroll',
-    function ($scope, $http, $location, toolService, $routeParams, oSessionService, $anchorScroll) {
-
+moduleAnuncio.controller('editanunciosController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$anchorScroll', '$mdDialog',
+    function ($scope, $http, $location, toolService, $routeParams, oSessionService, $anchorScroll, $mdDialog) {
+        $anchorScroll();
+        $scope.userId = oSessionService.getId();
         $scope.parcela = false;
         $scope.ciudadselected = true;
         $scope.selectedExtras = [];
@@ -36,7 +37,7 @@ moduleAnuncio.controller('editanunciosController', ['$scope', '$http', '$locatio
         };
 
         $scope.filtroExtras = function (id) {
-
+            $(".asd" + id).toggleClass("md-checked");
             var index = $scope.selectedExtras.indexOf(id);
             if (index > -1) {
                 $scope.selectedExtras.splice(index, 1);
@@ -51,6 +52,7 @@ moduleAnuncio.controller('editanunciosController', ['$scope', '$http', '$locatio
             method: "GET",
             url: `http://localhost:8081/casafacil/json?ob=anuncio&op=get&id=${$routeParams.id}`
         }).then(function (response) {
+            $scope.id = response.data.message.id;
             $scope.titulo = response.data.message.titulo;
             $scope.banyos = response.data.message.banyos;
             $scope.precio = response.data.message.precio;
@@ -73,21 +75,22 @@ moduleAnuncio.controller('editanunciosController', ['$scope', '$http', '$locatio
                 response.data.message.forEach(element => {
                     var barrios = {
                         barrios: element
-                    }
+                    };
                     listaBarrios.push(barrios);
 
                 });
                 $scope.listaBarrios = listaBarrios;
             });
-            
+
             $http({
                 method: "GET",
                 url: `http://localhost:8081/casafacil/json?ob=extras&op=getspecific&id=${$routeParams.id}`
             }).then(function (response) {
                 response.data.message.forEach(element => {
-                    
+                    //RECOJO LOS EXTRAS Y LAS ALMACENO EN ESTE ARRAY
                     $scope.selectedExtras.push(element.id_extras);
-
+                    //PRE-CHECKEO LOS EXTRAS 
+                    $(".asd" + element.id_extras).addClass("md-checked");
                 });
             });
         });
@@ -113,12 +116,37 @@ moduleAnuncio.controller('editanunciosController', ['$scope', '$http', '$locatio
             console.log(response);
         };
 
+        //TODAS LAS FOTOS
+        $http({
+            method: "GET",
+            url: `http://localhost:8081/casafacil/json?ob=fotos&op=getall&id=${$routeParams.id}`
+        }).then(function (response) {
+            var fotos = [];
+            response.data.message.forEach(element => {
+                var foto = {
+                    foto: element
+                }
+                fotos.push(foto);
+
+            });
+            $scope.listaFotos = fotos;
+            if($scope.listaFotos.length !== 0){
+                $scope.hayFotos = true;
+            } else {
+                $scope.hayFotos = false;
+            }
+
+        }), function (response) {
+            console.log(response);
+        };
+
 
         var date = new Date().toISOString().slice(0, 10).toString();
 
         $scope.create = function () {
             var fotos = [];
             var anuncio = {
+                id: $scope.id,
                 titulo: $scope.titulo,
                 precio: $scope.precio,
                 descripcion: $scope.descripcion,
@@ -127,7 +155,6 @@ moduleAnuncio.controller('editanunciosController', ['$scope', '$http', '$locatio
                 habitaciones: $scope.habitaciones,
                 metrosterreno: $scope.metrosparcela,
                 metroscasa: $scope.metroscasa,
-                fechacreacion: $scope.fechacreacion,
                 fechaupdate: date,
                 id_Barrio: $scope.selectedBarrio,
                 id_Tipovia: $scope.selectedVia,
@@ -154,7 +181,7 @@ moduleAnuncio.controller('editanunciosController', ['$scope', '$http', '$locatio
 
             $http({
                 method: "GET",
-                url: `http://localhost:8081/casafacil/json?ob=anuncio&op=create`,
+                url: `http://localhost:8081/casafacil/json?ob=anuncio&op=update`,
                 params: {anuncio: JSON.stringify(anuncio), fotos: JSON.stringify(fotos), extras: JSON.stringify($scope.selectedExtras)}
             }).then(function (response) {
 
@@ -213,10 +240,38 @@ moduleAnuncio.controller('editanunciosController', ['$scope', '$http', '$locatio
                 imagesPreview(this, 'div.gallery');
             });
         });
+//
+        $scope.showConfirm = function (ev, id, id_foto, ruta) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                    .title($scope.listaFotos[id].foto.ruta)
+                    .textContent('¿Realmente quieres eliminar ésta foto?')
+                    .ariaLabel('Lucky day')
+                    .targetEvent(ev)
+                    .ok('Please do it!')
+                    .cancel('Sounds like a scam');
+
+            $mdDialog.show(confirm).then(function () {
+                $http({
+                    method: "GET",
+                    url: `http://localhost:8081/casafacil/json?ob=fotos&op=remove&id=` + id_foto,
+                }).then(function (response) {
+                    $http({
+                        method: "GET",
+                        url: `http://localhost:8081/casafacil/json?ob=fotos&op=removeimage&ruta=` + ruta,
+                    });
+                    $scope.listaFotos.splice(id, 1);
+                }), function (response) {
+                    console.log(response);
+                };
+                $scope.status = 'You decided to get rid of your debt.';
+            }, function () {
+                $scope.status = 'You decided to keep your debt.';
+            });
+        };
 
 
-    }
-]).directive('ngFileModel', ['$parse', function ($parse) {
+    }]).directive('ngFileModel', ['$parse', function ($parse) {
         return {
             restrict: 'A',
             link: function (scope, element, attrs) {
@@ -250,5 +305,16 @@ moduleAnuncio.controller('editanunciosController', ['$scope', '$http', '$locatio
                 });
             }
         }
-    }]);
+    }]).directive('onFinishRender', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            if (scope.$last === true) {
+                $timeout(function () {
+                    scope.$emit(attr.onFinishRender);
+                });
+            }
+        }
+    };
+});
     

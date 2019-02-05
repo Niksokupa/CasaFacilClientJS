@@ -97,7 +97,7 @@
                         <md-content layout-padding class="newForm mb-5" md-whiteframe="{{heighty}}" ng-init="heighty = 6">
                             <div>
                                 <div class="checkbox filtroinput" ng-click="filtroExtras(extras.extras.id)" ng-repeat="extras in listaExtras">
-                                    <md-checkbox class="brown align-middle" ng-checked="extras.extras.id == selectedExtras[$index]" style="display: table-cell; padding:5px;" ng-true-value="{{extras.extras.id}}">
+                                    <md-checkbox class="brown align-middle asd{{$index + 1}}" style="display: table-cell; padding:5px;" ng-true-value="{{extras.extras.id}}">
                                         {{extras.extras.desc}}
                                     </md-checkbox>
                                     <!--<input type="checkbox" name="extras" id="chk-{{extras.extras.id}}">{{extras.extras.desc}}-->
@@ -107,12 +107,17 @@
 
                         <h3>Fotos del inmueble (Opcionales)</h3>
                         <md-content layout-padding class="newForm mb-5" md-whiteframe="{{heightz}}" ng-init="heightz = 6">
+                            <div ng-if="hayFotos">Imágenes de su anuncio:<br></div>
+                            <div ng-if="hayFotos" class="imagesLoaded" ng-repeat="fotos in listaFotos">
+                                <image ng-src="http://localhost:8081/images/{{userId}}/{{fotos.foto.ruta}}"  />
+                                <md-button class="md-raised md-warn mx-0" ng-click="showConfirm($event, $index, fotos.foto.id, fotos.foto.ruta)">Eliminar</md-button><br>
+                            </div>
                             <input id="gallery-photo-add" type="file" ng-file-model="files" multiple />
-                            <div class="gallery"></div>
+                            <div class="gallery">Nuevas imágenes añadidas:<br></div>
                         </md-content>
 
                         <div>
-                            <md-button class="md-raised" type="submit">Crear anuncio</md-button>
+                            <md-button class="md-raised" type="submit">Finalizar</md-button>
                         </div>
                     </form>
                 </div>

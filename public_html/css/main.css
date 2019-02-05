@@ -97,7 +97,7 @@ body {
     height: 400px;
 }
 
-.imglanding{
+/*.imglanding{
     width: 175px;
     height: 225px;
 }
@@ -109,7 +109,7 @@ body {
     margin-top: -80px;
     align-items: center;
     justify-content: center;
-}
+}*/
 
 /*ANUNCIO*/
 
@@ -218,7 +218,7 @@ md-select-value span{
     width: 275px;
 }
 
-.gallery img{
+.gallery img, .imagesLoaded img{
     width: 250px;
     height: 100px;
     padding: 5px;
