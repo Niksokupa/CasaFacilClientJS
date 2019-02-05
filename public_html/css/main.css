@@ -58,9 +58,13 @@ body {
 }
 
 .iconousuario {
-    font-size: 40px;
+    font-size: 37px;
     color: #8EC64C;
     cursor: pointer;
+}
+
+.iconousuario::before {
+    vertical-align: -0.1em;
 }
 
 .iconocor, .iconocasa {
@@ -80,7 +84,8 @@ body {
     color: #8EC64C !important;
 }
 .dropdown-toggle::after {
-    vertical-align: 0.6em;
+    vertical-align: 0.5em;
+    cursor: pointer;
 }
 
 
