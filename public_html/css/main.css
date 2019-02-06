@@ -130,11 +130,6 @@ body {
     text-align: right;
 }
 
-.precioanuncioview{
-    font-weight: bold;
-    font-size: 4.5vw;
-}
-
 .favanuncio {
     position: absolute;
     font-size: 25px;
@@ -259,6 +254,13 @@ md-select:disabled{
     padding-top: 1rem;
 }
 
+/*ANUNCIO VIEW*/
+
+.precioanuncioview{
+    font-weight: bold;
+    font-size: 4.5vw;
+}
+
 .titanunciospec{
     font-size: 22px;
     text-transform: capitalize;
@@ -266,6 +268,16 @@ md-select:disabled{
 
 .titanunciospec span{
     text-transform: none;
+}
+
+.imagenanuncioview {
+    width: 50vw;
+    height: 50vh;
+}
+
+.extrasanuncioview{
+    margin-left: -7px;
+    margin-top: 100px;
 }
 
 /*// Extra small devices (portrait phones, less than 576px)*/

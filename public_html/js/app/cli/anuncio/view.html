@@ -1,6 +1,6 @@
 <header-component></header-component>
 <div class="row" style="margin-top: 80px;">
-    <div class="col-md-10 mx-auto">
+    <div class="col-md-10 col-sm-10 mx-auto">
         <md-button type="button" class="btn btn-secondary md-raised mb-4" onclick="window.history.back()">Volver al listado</md-button>
         <div class="ml-2 titanunciospec">{{anuncio.obj_Tipoinmueble.desc}} <span>en</span> {{anuncio.obj_Tipovia.desc}} {{anuncio.direccion}} / {{anuncio.obj_Barrio.desc}} ({{anuncio.obj_Barrio.obj_ciudad.desc}}) <span class="ml-5 precioanuncioview">{{anuncio.precio}} €</span></div>
         <div class="ml-2 align-text-bottom">
@@ -15,8 +15,8 @@
         </div>
         <!--        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active" ng-repeat="foto in fotos">
-                            <img class="d-block w-100" ng-src="http://localhost:8081/imagenes/{{userId}}/{{foto.ruta}}" alt="First slide" />
+                        <div class="carousel-item" data-slide-to="$index" ng-class"{active: $index == 0}" ng-repeat="foto in fotos">
+                             <img class="d-block w-100" ng-src="http://localhost:8081/imagenes/{{userId}}/{{foto.ruta}}" alt="First slide" />
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -28,16 +28,23 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>-->
-        <div ng-controller="CarouselDemoCtrl">
-            <div style="height: 305px">
-                <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
-                    <div uib-slide ng-repeat="foto in fotos track by foto.id" index="foto.id">
-                        <img ng-src="http://localhost:8081/imagenes/{{userId}}/{{foto.ruta}}" style="margin:auto;">
-                        <div class="carousel-caption">
-                            <h4>Slide {{slide.id}}</h4>
-                            <p>{{slide.text}}</p>
-                        </div>
-                    </div>
+
+        <div class="imagenanuncioview ml-2 mt-4">
+            <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                <div uib-slide ng-repeat="foto in fotos track by $index" index="$index">
+                    <img class="imagenanuncioview" ng-src="http://localhost:8081/imagenes/{{userId}}/{{foto.ruta}}" style="margin:auto;">
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="row extrasanuncioview">
+                <div class="col-md-2">
+                    <span>Extras</span>
+                </div>
+                <div class="col-md-10">
+                    <span ng-show="listaExtras[$index].extras.id == $index + 1" ng-repeat="extra in extras track by $index">
+                        {{listaExtras[$index].extras.desc}}
+                    </span>
                 </div>
             </div>
         </div>
