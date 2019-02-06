@@ -7,14 +7,14 @@
                 <md-button class="md-raised mx-0" href="cli/misanuncios/new">Nuevo Anuncio</md-button>
             </div>
             <div class="container py-3">
-                <div class="card mb-5" ng-repeat="producto in productos"  md-whiteframe="{{height}}" ng-init="height = 6" ng-mouseenter="height = 12" ng-mouseleave="height = 6">
+                <div class="card mb-5 ml-3 mr-2 " ng-repeat="producto in productos" on-finish-render="ngRepeatFinished" md-whiteframe="{{height}}" ng-init="height = 6" ng-mouseenter="height = 12" ng-mouseleave="height = 6">
                     <div class="row">
                         <div class="col-md-4 pr-0">
-                            <img src="https://placeholdit.imgix.net/~text?txtsize=38&txt=375%C3%97250&w=375&h=250" class="img-fluid">
+                            <img src="https://placeholdit.imgix.net/~text?txtsize=38&txt=375%C3%97250&w=375&h=250" class="img-fluid imgminianuncio">
                         </div>
-                        <div class="col-md-8 px-3 py-3 cuerpoanuncio">
-                            <div class="card-block mx-3">
-                                <div class="row no-gutters">
+                        <div class="col-md-8 px-0">
+                            <div class="card-body">
+                                <div class="row no-gutters mx-3">
                                     <div class="col-md-9 mx-0">
                                         <h4 class="card-title mb-0">{{producto.producto.titulo}}</h4>
                                         <div class="mb-2 text-muted">
@@ -25,7 +25,7 @@
                                             <span class="habanuncio">{{producto.producto.habitaciones}} habitacion/es</span> - 
                                             <span class="banyosanuncio">{{producto.producto.banyos}} baño/s</span>
                                         </div>
-                                        <p class="card-text">{{producto.producto.descripcion}}</p>
+                                        <p class="card-text" md-truncate>{{producto.producto.descripcion}}</p>
                                     </div>
                                     <div class="col-md-3 precioanuncio">
                                         <h4>{{producto.producto.precio}} €</h4>

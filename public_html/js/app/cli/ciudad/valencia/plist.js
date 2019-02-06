@@ -14,6 +14,10 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
             arrayFavs = oSessionService.getFavs();
         });
 
+        $scope.verAnuncio = function (id) {
+            $location.path('cli/anuncio/' + id);
+        };
+
 
         if (!$routeParams.order) {
             $scope.orderURLServidor = "";
@@ -150,7 +154,10 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
                 $scope.status = response.status;
                 var productos = [];
                 response.data.message.forEach(element => {
-
+                    if (element.descripcion.length > 200) {
+                        element.descripcion = element.descripcion.substring(0, 200);
+                        element.descripcion += "...";
+                    }
                     element.precio = addCommas(element.precio);
 
                     var producto = {

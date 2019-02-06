@@ -1,8 +1,8 @@
 <header-component></header-component>
 <div class="container-fluid favcontainer">
     <div class="row ">
-        <div class="col-md-8 mx-auto">
-            <md-content layout-padding class="newForm mb-5" md-whiteframe="{{height}}" ng-init="height = 6" ng-mouseenter="height = 12" ng-mouseleave="height = 6">
+        <div ng-show="!edited" class="col-md-8 mx-auto">
+            <md-content  layout-padding class="newForm mb-5" md-whiteframe="{{height}}" ng-init="height = 6" ng-mouseenter="height = 12" ng-mouseleave="height = 6">
                 <div class="px-4">
                     <h3>Datos del inmueble (Obligatorios)</h3>
                     <form name="userForm" ng-submit="create()">
@@ -109,7 +109,7 @@
                         <md-content layout-padding class="newForm mb-5" md-whiteframe="{{heightz}}" ng-init="heightz = 6">
                             <div ng-if="hayFotos">Imágenes de su anuncio:<br></div>
                             <div ng-if="hayFotos" class="imagesLoaded" ng-repeat="fotos in listaFotos">
-                                <image ng-src="http://localhost:8081/images/{{userId}}/{{fotos.foto.ruta}}"  />
+                                <image ng-src="http://localhost:8081/imagenes/{{userId}}/{{fotos.foto.ruta}}"  />
                                 <md-button class="md-raised md-warn mx-0" ng-click="showConfirm($event, $index, fotos.foto.id, fotos.foto.ruta)">Eliminar</md-button><br>
                             </div>
                             <input id="gallery-photo-add" type="file" ng-file-model="files" multiple />
@@ -121,6 +121,16 @@
                         </div>
                     </form>
                 </div>
+        </div>
+    </div>
+    <div class="row mx-auto" ng-show="edited">
+        <div class="col-md-10 mx-auto d-flex justify-content-center">
+            <div class="alert alert-success">
+                <h1>¡Has editado tu anuncio!</h1>
+                <div class="dropdown-divider"></div>
+                <p class="d-flex justify-content-between align-items-center">Prueba a echarle un vistazo a tu anuncio recién editado <a href="cli/anuncio/{{id}}"><md-button class="md-raised" type="button">Ver mi anuncio</md-button></a></p>
+                <p class="d-flex justify-content-between align-items-center">O bien vuelve a la página principal <a href="cli/home"><md-button class="md-raised" type="button">Principal</md-button></a></p>
+            </div>
         </div>
     </div>
 </div>

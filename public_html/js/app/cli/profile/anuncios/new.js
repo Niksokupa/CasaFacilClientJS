@@ -6,6 +6,7 @@ moduleAnuncio.controller('newanunciosController', ['$scope', '$http', '$location
         $scope.parcela = false;
         $scope.ciudadselected = false;
         $scope.selectedExtras = [];
+        $scope.created = false;
 
 
 
@@ -109,7 +110,8 @@ moduleAnuncio.controller('newanunciosController', ['$scope', '$http', '$location
                 url: `http://localhost:8081/casafacil/json?ob=anuncio&op=create`,
                 params: {anuncio: JSON.stringify(anuncio), fotos: JSON.stringify(fotos), extras: JSON.stringify($scope.selectedExtras)}
             }).then(function (response) {
-
+                $scope.created = true;
+                $scope.id = response.data.message.id;
             }), function (response) {
 
             };

@@ -27,6 +27,10 @@ body {
     grid-row-end: 3;
 }
 
+.ordenacion{
+    width: 25%;
+}
+
 
 
 /* Custom page CSS
@@ -140,7 +144,7 @@ body {
     background-color: white;
     border-radius: 50%;
     outline: none;
-    z-index: 3;
+    z-index: 20;
 }
 
 .favanuncio:hover{
@@ -232,6 +236,18 @@ md-select:disabled{
     width: 10%;
 }*/
 
+.page-link{
+    background-color: rgb(194, 76, 0) !important;
+    border-color: rgb(194, 76, 0) !important;
+}
+
+.alert p{
+    font-size: 22px;
+}
+
+.alert button{
+    width: 135px;
+}
 
 /*// Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {
@@ -253,6 +269,10 @@ md-select:disabled{
     .card-body{
         padding-bottom: 0px;
     } 
+
+    .ordenacion{
+        width: 65%;
+    }
 }
 
 /*// Small devices (landscape phones, 576px and up)*/
@@ -275,6 +295,10 @@ md-select:disabled{
     .card-body{
         padding-bottom: 0px;
     } 
+
+    .ordenacion{
+        width: 65%;
+    }
 }
 
 /*// Medium devices (tablets, 768px and up)*/

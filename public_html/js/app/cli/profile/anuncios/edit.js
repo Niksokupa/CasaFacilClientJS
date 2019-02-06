@@ -7,7 +7,7 @@ moduleAnuncio.controller('editanunciosController', ['$scope', '$http', '$locatio
         $scope.parcela = false;
         $scope.ciudadselected = true;
         $scope.selectedExtras = [];
-
+        $scope.edited = false;
 
 
         $scope.ciudades = [
@@ -37,12 +37,13 @@ moduleAnuncio.controller('editanunciosController', ['$scope', '$http', '$locatio
         };
 
         $scope.filtroExtras = function (id) {
-            $(".asd" + id).toggleClass("md-checked");
             var index = $scope.selectedExtras.indexOf(id);
             if (index > -1) {
                 $scope.selectedExtras.splice(index, 1);
+                $(".asd" + id).removeClass("md-checked");
             } else {
                 $scope.selectedExtras.push(id);
+                $(".asd" + id).addClass("md-checked");
             }
         };
 
@@ -130,7 +131,7 @@ moduleAnuncio.controller('editanunciosController', ['$scope', '$http', '$locatio
 
             });
             $scope.listaFotos = fotos;
-            if($scope.listaFotos.length !== 0){
+            if ($scope.listaFotos.length !== 0) {
                 $scope.hayFotos = true;
             } else {
                 $scope.hayFotos = false;
@@ -184,7 +185,7 @@ moduleAnuncio.controller('editanunciosController', ['$scope', '$http', '$locatio
                 url: `http://localhost:8081/casafacil/json?ob=anuncio&op=update`,
                 params: {anuncio: JSON.stringify(anuncio), fotos: JSON.stringify(fotos), extras: JSON.stringify($scope.selectedExtras)}
             }).then(function (response) {
-
+                $scope.edited = true;
             }), function (response) {
 
             };

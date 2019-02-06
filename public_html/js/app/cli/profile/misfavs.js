@@ -78,6 +78,43 @@ moduleFavs.controller('favsController', ['$scope', '$http', '$location', 'toolSe
             }
         };
 
+        //PAGINACION
+        function pagination2() {
+            $scope.list2 = [];
+            $scope.neighborhood = 3;
+            for (var i = 1; i <= $scope.totalPages; i++) {
+                if (i === $scope.page) {
+                    $scope.list2.push(i);
+                } else if (i <= $scope.page && i >= ($scope.page - $scope.neighborhood)) {
+                    $scope.list2.push(i);
+                } else if (i >= $scope.page && i <= ($scope.page - -$scope.neighborhood)) {
+                    $scope.list2.push(i);
+                } else if (i === ($scope.page - $scope.neighborhood) - 1) {
+                    $scope.list2.push("...");
+                } else if (i === ($scope.page - -$scope.neighborhood) + 1) {
+                    $scope.list2.push("...");
+                }
+            }
+        }
+
+        //GETCOUNT PAGINACION
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8081/casafacil/json?ob=' + $scope.ob + '&op=getcountspecific'
+        }).then(function (response) {
+            $scope.status = response.status;
+            $scope.ajaxDataUsuariosNumber = response.data.message;
+            $scope.totalPages = Math.ceil($scope.ajaxDataUsuariosNumber / $scope.rpp);
+            if ($scope.page > $scope.totalPages) {
+                $scope.page = $scope.totalPages;
+                $scope.update();
+            }
+            pagination2();
+        }, function (response) {
+            $scope.ajaxDataUsuariosNumber = response.data.message || 'Request failed';
+            $scope.status = response.status;
+        });
+
         //AÑADE PUNTOS DE MILES
         function addCommas(nStr)
         {

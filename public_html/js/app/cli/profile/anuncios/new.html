@@ -1,7 +1,7 @@
 <header-component></header-component>
 <div class="container-fluid favcontainer">
     <div class="row ">
-        <div class="col-md-8 mx-auto">
+        <div ng-show="!created" class="col-md-8 mx-auto">
             <md-content layout-padding class="newForm mb-5" md-whiteframe="{{height}}" ng-init="height = 6" ng-mouseenter="height = 12" ng-mouseleave="height = 6">
                 <div class="px-4">
                     <h3>Datos del inmueble (Obligatorios)</h3>
@@ -116,6 +116,16 @@
                         </div>
                     </form>
                 </div>
+        </div>
+    </div>
+    <div class="row mx-auto" ng-show="created">
+        <div class="col-md-10 mx-auto d-flex justify-content-center">
+            <div class="alert alert-success">
+                <h1>¡Has creado tu anuncio!</h1>
+                <div class="dropdown-divider"></div>
+                <p class="d-flex justify-content-between align-items-center">Prueba a echarle un vistazo a tu anuncio recién creado <a href="cli/anuncio/{{id}}"><md-button class="md-raised" type="button">Ver mi anuncio</md-button></a></p>
+                <p class="d-flex justify-content-between align-items-center">O bien vuelve a la página principal <a href="cli/home"><md-button class="md-raised" type="button">Principal</md-button></a></p>
+            </div>
         </div>
     </div>
 </div>
