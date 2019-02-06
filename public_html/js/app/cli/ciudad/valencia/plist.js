@@ -90,8 +90,8 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
             $scope.message = response.data.message;
             var productos = [];
             $scope.message.forEach(element => {
-                if (element.descripcion.length > 200) {
-                    element.descripcion = element.descripcion.substring(0, 200);
+                if (element.descripcion.length > 150) {
+                    element.descripcion = element.descripcion.substring(0, 150);
                     element.descripcion += "...";
                 }
                 element.precio = addCommas(element.precio);
@@ -125,8 +125,8 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
                 $scope.status = response.status;
                 var productos = [];
                 response.data.message.forEach(element => {
-                    if (element.descripcion.length > 200) {
-                        element.descripcion = element.descripcion.substring(0, 200);
+                    if (element.descripcion.length > 150) {
+                        element.descripcion = element.descripcion.substring(0, 150);
                         element.descripcion += "...";
                     }
 
@@ -154,8 +154,8 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
                 $scope.status = response.status;
                 var productos = [];
                 response.data.message.forEach(element => {
-                    if (element.descripcion.length > 200) {
-                        element.descripcion = element.descripcion.substring(0, 200);
+                    if (element.descripcion.length > 150) {
+                        element.descripcion = element.descripcion.substring(0, 150);
                         element.descripcion += "...";
                     }
                     element.precio = addCommas(element.precio);

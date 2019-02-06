@@ -15,7 +15,8 @@ var casafacil = angular.module('MyApp', [
     'ngMaterial',
     'components',
     'comprarproductoControllers',
-    'favsControllers'
+    'favsControllers',
+    'ui.bootstrap'
 ]).config(function ($mdDateLocaleProvider) {
     // Example of a Spanish localization.
     $mdDateLocaleProvider.months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
