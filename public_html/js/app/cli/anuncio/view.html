@@ -1,8 +1,10 @@
 <header-component></header-component>
 <div class="row" style="margin-top: 80px;">
-    <div class="col-md-10 col-sm-10 mx-auto">
+    <div class="col-md-8 col-sm-9 mx-auto">
         <md-button type="button" class="btn btn-secondary md-raised mb-4" onclick="window.history.back()">Volver al listado</md-button>
-        <div class="ml-2 titanunciospec">{{anuncio.obj_Tipoinmueble.desc}} <span>en</span> {{anuncio.obj_Tipovia.desc}} {{anuncio.direccion}} / {{anuncio.obj_Barrio.desc}} ({{anuncio.obj_Barrio.obj_ciudad.desc}}) <span class="ml-5 precioanuncioview">{{anuncio.precio}} €</span></div>
+        <div class="ml-2 titanunciospec">
+            {{anuncio.obj_Tipoinmueble.desc}} <span>en</span> {{anuncio.obj_Tipovia.desc}} {{anuncio.direccion}} / {{anuncio.obj_Barrio.desc}} ({{anuncio.obj_Barrio.obj_ciudad.desc}}) 
+            <span class="precioanuncioview">{{anuncio.precio}} €</span></div>
         <div class="ml-2 align-text-bottom">
             <img src="https://img.icons8.com/ios/25/000000/empty-bed.png"> 
             <span class="pr-2">{{anuncio.habitaciones}} habitacion/es</span>
@@ -39,14 +41,17 @@
         <div>
             <div class="row extrasanuncioview">
                 <div class="col-md-2">
-                    <span>Extras</span>
+                    <span class="titulomasinfo">Extras</span>
                 </div>
                 <div class="col-md-10">
-                    <span ng-show="listaExtras[$index].extras.id == $index + 1" ng-repeat="extra in extras track by $index">
-                        {{listaExtras[$index].extras.desc}}
-                    </span>
+                    <ul>
+                        <li  ng-repeat="extra in listaExtras">
+                            {{extra.extras.desc}}
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
+        <br><br>
     </div>
 </div>

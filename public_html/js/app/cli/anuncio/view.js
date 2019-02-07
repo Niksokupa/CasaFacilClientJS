@@ -23,6 +23,32 @@ moduleAnuncio.controller('viewanunciosController', ['$scope', '$http', 'toolServ
                 url: 'http://localhost:8081/casafacil/json?ob=extras&op=getspecific&id=' + $scope.anuncio.id
             }).then(function (response) {
                 $scope.extras = response.data.message;
+
+                //TODOS LOS EXTRAS
+                $http({
+                    method: "GET",
+                    url: `http://localhost:8081/casafacil/json?ob=extras&op=getall`
+                }).then(function (response) {
+                    var listaExtras = [];
+                    response.data.message.forEach(element => {
+                        var extras = {
+                            extras: element
+                        };
+                        
+                        //SOLO HAGO PUSH DE LOS EXTRAS QUE TIENE EL ANUNCIO
+                        $scope.extras.forEach(element2 => {
+                            if (element2.id_extras === element.id) {
+                                listaExtras.push(extras);
+                            }
+                        });
+
+                    });
+                    $scope.listaExtras = listaExtras;
+
+                }), function (response) {
+                    console.log(response);
+                };
+
             }, function (response) {
                 $scope.error = response.data.message || 'Request failed';
             });
@@ -30,25 +56,6 @@ moduleAnuncio.controller('viewanunciosController', ['$scope', '$http', 'toolServ
         }, function (response) {
             $scope.error = response.data.message || 'Request failed';
         });
-
-        //TODOS LOS EXTRAS
-        $http({
-            method: "GET",
-            url: `http://localhost:8081/casafacil/json?ob=extras&op=getall`
-        }).then(function (response) {
-            var listaExtras = [];
-            response.data.message.forEach(element => {
-                var extras = {
-                    extras: element
-                };
-                listaExtras.push(extras);
-
-            });
-            $scope.listaExtras = listaExtras;
-
-        }), function (response) {
-            console.log(response);
-        };
 
         $http({
             method: 'GET',
