@@ -1,7 +1,7 @@
 <header-component></header-component>
 <div class="row" style="margin-top: 80px;">
-    <div class="col-md-8 col-sm-9 mx-auto">
-        <md-button type="button" class="btn btn-secondary md-raised mb-4" onclick="window.history.back()">Volver al listado</md-button>
+    <div class="col-md-7 col-sm-10 mx-auto">
+<!--        <md-button type="button" class="btn btn-secondary md-raised mb-4" onclick="window.history.back()">Volver al listado</md-button>-->
         <div class="ml-2 titanunciospec">
             {{anuncio.obj_Tipoinmueble.desc}} <span>en</span> {{anuncio.obj_Tipovia.desc}} {{anuncio.direccion}} / {{anuncio.obj_Barrio.desc}} ({{anuncio.obj_Barrio.obj_ciudad.desc}}) 
             <span class="precioanuncioview">{{anuncio.precio}} €</span></div>
@@ -39,19 +39,29 @@
             </div>
         </div>
         <div>
-            <div class="row extrasanuncioview">
-                <div class="col-md-2">
+            <div class="row extrasanuncioview border-bottom">
+                <div class="col-md-3">
                     <span class="titulomasinfo">Extras</span>
                 </div>
-                <div class="col-md-10">
-                    <ul>
-                        <li  ng-repeat="extra in listaExtras">
-                            {{extra.extras.desc}}
-                        </li>
-                    </ul>
+                <div class="col-md-9">
+                    <span class="extrasbadges" ng-repeat="extra in listaExtras">
+                        {{extra.extras.desc}}
+                    </span>
                 </div>
             </div>
         </div>
-        <br><br>
+        <div>
+            <div class="row extrasanuncioview border-bottom">
+                <div class="col-md-3">
+                    <span class="titulomasinfo">Descripción</span>
+                </div>
+                <div class="col-md-9">
+                    <span>
+                        <h2 class="mb-3">{{anuncio.titulo}}</h2>
+                        <h5>{{anuncio.descripcion}}</h5>
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
