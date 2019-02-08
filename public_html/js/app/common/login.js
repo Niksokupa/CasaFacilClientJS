@@ -27,7 +27,7 @@ moduleUsuario.controller("usuarioLoginController", [
                     box2.addClass('bounceInRight');
                     box2.removeClass('bounceOutLeft');
                     $scope.wantslogin = false;
-                }, 800);
+                }, 900);
             } else {
                 box2.removeClass('bounceInRight');
                 box2.addClass('bounceOutLeft');
@@ -35,7 +35,7 @@ moduleUsuario.controller("usuarioLoginController", [
                     box1.removeClass('bounceOutLeft');
                     box1.addClass('bounceInRight');
                     $scope.wantslogin = true;
-                }, 800);
+                }, 900);
             }
         };
 
