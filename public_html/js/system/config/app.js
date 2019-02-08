@@ -13,6 +13,8 @@ var casafacil = angular.module('MyApp', [
     'productoControllers',
     'ciudadControllers',
     'ngMaterial',
+    'ngMessages',
+    'ngAnimate',
     'components',
     'comprarproductoControllers',
     'favsControllers',

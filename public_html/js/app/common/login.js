@@ -6,9 +6,39 @@ moduleUsuario.controller("usuarioLoginController", [
     "toolService",
     "sessionService",
     "favsObserverService",
-    function ($scope, $http, toolService, oSessionService, oFavsService) {
+    "$timeout",
+    function ($scope, $http, toolService, oSessionService, oFavsService, $timeout) {
         $scope.logged = false;
         $scope.failedlogin = false;
+        $scope.wantslogin = true;
+
+
+
+        $scope.animation = function () {
+
+            var box1 = $('.box1');
+            var box2 = $('.box2');
+
+            if ($scope.wantslogin) {
+                box1.addClass('animated');
+                box1.addClass('bounceOutLeft');
+                $timeout(function () {
+                    box2.addClass('animated');
+                    box2.addClass('bounceInRight');
+                    box2.removeClass('bounceOutLeft');
+                    $scope.wantslogin = false;
+                }, 800);
+            } else {
+                box2.removeClass('bounceInRight');
+                box2.addClass('bounceOutLeft');
+                $timeout(function () {
+                    box1.removeClass('bounceOutLeft');
+                    box1.addClass('bounceInRight');
+                    $scope.wantslogin = true;
+                }, 800);
+            }
+        };
+
         $scope.logging = function () {
 
             var login = $scope.login;

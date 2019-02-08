@@ -41,6 +41,21 @@
         <div>
             <div class="row extrasanuncioview border-bottom">
                 <div class="col-md-3">
+                    <span class="titulomasinfo">Contacto</span>
+                </div>
+                <div class="col-md-9 d-flex justify-content-between">
+                    <span ng-if="anuncio.obj_Usuario.telefono">
+                        Teléfono: {{anuncio.obj_Usuario.telefono}}
+                    </span>
+                    <span ng-if="anuncio.obj_Usuario.correo">
+                        E-Mail: {{anuncio.obj_Usuario.correo}}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="row extrasanuncioview border-bottom">
+                <div class="col-md-3">
                     <span class="titulomasinfo">Extras</span>
                 </div>
                 <div class="col-md-9">

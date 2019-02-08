@@ -1,36 +1,112 @@
 <header-component></header-component>
-<div class="container-fluid mb-5">
-    <div class="row" style="margin-top: 80px">
+<div class="container mb-5" style="margin-top: 100px;">
+    <div class="row">
         <div class="col-12">
-            <div class="row">
-                <div class="col-12 mx-auto">
-                    <h3>Login</h3>
-                </div>
-            </div>
-            <hr />
             <div class="row" ng-show="!logged">
-                <div class="col-4 mx-auto">
+                <div class="col-5 mx-auto">
+                    <h2>Y ... ¿Qué ventajas tienes?</h2>
+                    <div class="row mt-5">
+                        <div class="col-md-2">
+                            <img src="https://img.icons8.com/ios/65/000000/password1.png">
+                        </div>
+                        <div class="col-md-10">
+                            <div><h4>Publica GRATIS tu anuncio</h4></div>
+                            <div>Anuncia un inmueble en venta o alquiler completamente gratis.</div>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-md-2">
+                            <img src="https://img.icons8.com/ios/65/000000/pencil.png">
+                        </div>
+                        <div class="col-md-10">
+                            <div><h4>Edita tu anuncio</h4></div>
+                            <div>Edita tu anuncio tantas veces como necesites.</div>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-md-2">
+                            <img src="https://img.icons8.com/ios/65/000000/like.png">
+                        </div>
+                        <div class="col-md-10">
+                            <div><h4>Marca tus anuncios favoritos</h4></div>
+                            <div>Controla los anuncios que más te interesan.</div>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-md-2">
+                            <img src="https://img.icons8.com/ios/63/000000/filled-message.png">
+                        </div>
+                        <div class="col-md-10">
+                            <div><h4>Manda las solicitudes que quieras</h4></div>
+                            <div>Contacta con los anunciantes de los anuncios que más se ajusten a tus necesidades.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5 mx-auto box1" ng-show="wantslogin">
                     <form name="userForm">
-                        <div class="form-group">
-                            <label>Login</label>
-                            <input type="text" class="form-control" id="login" name="login" ng-model="login" ng-required="true" />
-                            <div ng-show="!userForm.login.$valid && userForm.login.$dirty" class="alert alert-danger" role="alert">
-                                Login obligatorio
+                        <md-content layout-padding class="newForm mb-5" md-whiteframe="6">
+
+                                <md-input-container class="md-block px-3">
+                                    <label class="px-3">Usuario</label>
+                                    <input required md-no-asterisk ng-model="login" name="login">
+                                    <div ng-messages="userForm.login.$error">
+                                        <div ng-message="required">Este campo es obligatorio</div>
+                                    </div>
+                                </md-input-container>
+                         
+              
+                                <md-input-container class="md-block px-3">
+                                    <label class="px-3">Contraseña</label>
+                                    <input required md-no-asterisk ng-model="pass" type="password" name="pass">
+                                    <div ng-messages="userForm.pass.$error">
+                                        <div ng-message="required">Este campo es obligatorio</div>
+                                    </div>
+                                </md-input-container>
+                     
+                            <div class="d-flex justify-content-center">
+                                <md-button ng-click="logging()" type="button" class="md-raised botoniniciar">Iniciar Sesión</md-button>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Contraseña</label>
-                            <input type="password" class="form-control" ng-class="{' is-invalid': userForm.pass.$invalid && !userForm.pass.$pristine}"
-                                   id="pass" name="pass" ng-model="pass" ng-required="true"/>
-                            <div ng-show="!userForm.pass.$valid && userForm.pass.$dirty" class="alert alert-danger" role="alert">
-                                La contraseña es obligatoria.
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-between flex-wrap">
-                            <button ng-click="logging()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Login</button>
-                            <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
-                        </div>
+                        </md-content>
                     </form>
+                    <md-content class="newForm px-4 py-4 text-center" layout-padding md-whiteframe="6">
+                        <span class="font-weight-bold fullcrear">
+                            ¿No estás registrado? 
+                            <span class="crear" ng-click="animation()">Crear cuenta</span>
+                        </span>
+                    </md-content>
+                </div>
+                <div class="col-5 mx-auto box2" ng-show="!wantslogin">
+                    <form name="userForm">
+                        <md-content layout-padding class="newForm mb-5" md-whiteframe="6">
+
+                                <md-input-container class="md-block px-3">
+                                    <label class="px-3">Usuario</label>
+                                    <input required md-no-asterisk ng-model="login" name="login">
+                                    <div ng-messages="userForm.login.$error">
+                                        <div ng-message="required">Este campo es obligatorio</div>
+                                    </div>
+                                </md-input-container>
+                         
+              
+                                <md-input-container class="md-block px-3">
+                                    <label class="px-3">Contraseña</label>
+                                    <input required md-no-asterisk ng-model="pass" type="password" name="pass">
+                                    <div ng-messages="userForm.pass.$error">
+                                        <div ng-message="required">Este campo es obligatorio</div>
+                                    </div>
+                                </md-input-container>
+                     
+                            <div class="d-flex justify-content-center">
+                                <md-button ng-click="logging()" type="button" class="md-raised botoniniciar">Iniciar Sesión</md-button>
+                            </div>
+                        </md-content>
+                    </form>
+                    <md-content class="newForm px-4 py-4 text-center" layout-padding md-whiteframe="6">
+                        <span class="font-weight-bold fullcrear">
+                            ¿Ya tienes una cuenta?
+                            <span class="loguear" ng-click="animation()">Iniciar Sesión</span>
+                        </span>
+                    </md-content>
                 </div>
             </div>
             <div class="row" ng-show="failedlogin">

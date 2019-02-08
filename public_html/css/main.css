@@ -280,8 +280,8 @@ md-select:disabled{
 }
 
 .imagenanuncioview {
-    width: 55vw;
-    height: 59vh;
+    width: 56.5vw;
+    height: 60vh;
 }
 
 .extrasanuncioview{
@@ -306,10 +306,54 @@ md-select:disabled{
 
 .carousel-control-next-icon{
     background-image: url('https://img.icons8.com/ios/50/000000/right-squared-filled.png');
+    width: 50px;
+    height: 50px;
 }
 
 .carousel-control-prev-icon{
     background-image: url('https://img.icons8.com/ios/50/000000/left-squared-filled.png');
+    width: 50px;
+    height: 50px;
+}
+
+/*LOGIN-FORM*/
+
+.botoniniciar{
+    width: 75% !important;
+    background-color: #008040 !important;
+    color: white !important;
+}
+
+.botoniniciar:hover{
+    background-color: #8EC64C !important;
+}
+
+.crear,
+.loguear{
+    color: #008040;
+}
+
+.crear:hover,
+.loguear:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.fullcrear {
+    font-size: 22px;
+}
+
+
+
+
+
+
+.fade.ng-leave {
+  opacity: 1;
+}
+
+.fade.ng-leave.ng-leave-active {
+  opacity: 0;
 }
 
 /*// Extra small devices (portrait phones, less than 576px)*/
