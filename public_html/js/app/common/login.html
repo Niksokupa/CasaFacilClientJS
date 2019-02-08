@@ -43,28 +43,28 @@
                     </div>
                 </div>
                 <div class="col-5 mx-auto box1" ng-show="wantslogin">
-                    <form name="userForm">
-                        <md-content layout-padding class="newForm mb-5" md-whiteframe="6">
+                    <form name="userForm" ng-submit="logging()">
+                        <md-content layout-padding class="newForm mb-5 p-4" md-whiteframe="6">
 
-                                <md-input-container class="md-block px-3">
-                                    <label class="px-3">Usuario</label>
-                                    <input required md-no-asterisk ng-model="login" name="login">
-                                    <div ng-messages="userForm.login.$error">
-                                        <div ng-message="required">Este campo es obligatorio</div>
-                                    </div>
-                                </md-input-container>
-                         
-              
-                                <md-input-container class="md-block px-3">
-                                    <label class="px-3">Contraseña</label>
-                                    <input required md-no-asterisk ng-model="pass" type="password" name="pass">
-                                    <div ng-messages="userForm.pass.$error">
-                                        <div ng-message="required">Este campo es obligatorio</div>
-                                    </div>
-                                </md-input-container>
-                     
+                            <md-input-container class="md-block px-3">
+                                <label class="px-3">Usuario</label>
+                                <input required md-no-asterisk ng-model="login" name="login">
+                                <div ng-messages="userForm.login.$error">
+                                    <div ng-message="required">Este campo es obligatorio</div>
+                                </div>
+                            </md-input-container>
+
+
+                            <md-input-container class="md-block px-3">
+                                <label class="px-3">Contraseña</label>
+                                <input required md-no-asterisk ng-model="pass" type="password" name="pass">
+                                <div ng-messages="userForm.pass.$error">
+                                    <div ng-message="required">Este campo es obligatorio</div>
+                                </div>
+                            </md-input-container>
+
                             <div class="d-flex justify-content-center">
-                                <md-button ng-click="logging()" type="button" class="md-raised botoniniciar">Iniciar Sesión</md-button>
+                                <md-button type="submit" class="md-raised botoniniciar">Iniciar Sesión</md-button>
                             </div>
                         </md-content>
                     </form>
@@ -75,29 +75,77 @@
                         </span>
                     </md-content>
                 </div>
-                <div class="col-5 mx-auto box2" ng-show="!wantslogin">
+                <div class="col-5 mx-auto box2" ng-submit="create()" ng-show="!wantslogin">
                     <form name="userForm">
-                        <md-content layout-padding class="newForm mb-5" md-whiteframe="6">
+                        <md-content layout-padding class="newForm mb-5 p-4" md-whiteframe="6">
 
-                                <md-input-container class="md-block px-3">
-                                    <label class="px-3">Usuario</label>
-                                    <input required md-no-asterisk ng-model="login" name="login">
-                                    <div ng-messages="userForm.login.$error">
-                                        <div ng-message="required">Este campo es obligatorio</div>
+                            <md-input-container class="md-block px-3">
+                                <label class="px-3">Nombre de usuario</label>
+                                <input required ng-model="usuario" name="usuario">
+                                <div ng-messages="userForm.usuario.$error">
+                                    <div ng-message="required">Este campo es obligatorio</div>
+                                </div>
+                            </md-input-container>
+
+
+                            <md-input-container class="md-block px-3">
+                                <label class="px-3">Contraseña</label>
+                                <input required ng-model="newpass" type="password" name="newpass">
+                                <div ng-messages="userForm.newpass.$error">
+                                    <div ng-message="required">Este campo es obligatorio</div>
+                                </div>
+                            </md-input-container>
+                            
+                            <md-input-container class="md-block px-3">
+                                <label class="px-3">Repita la contraseña</label>
+                                <input required ng-model="newpass2" type="password" name="newpass2">
+                                <div ng-messages="userForm.newpass2.$error">
+                                    <div ng-message="required">Este campo es obligatorio</div>
+                                    <div ng-show="newpass!=newpass2">Las contraseñas no coinciden</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-block px-3">
+                                <label class="px-3">Correo electrónico</label>
+                                <input required type="email" name="email" ng-model="email"
+                                       minlength="10" ng-pattern="/^.+@.+\..+$/" />
+                                <div ng-messages="userForm.email.$error" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'pattern']">
+                                        Tu email debe tener al menos 10 carácteres, una @ y una terminación (.com, .es ...)
                                     </div>
-                                </md-input-container>
-                         
-              
-                                <md-input-container class="md-block px-3">
-                                    <label class="px-3">Contraseña</label>
-                                    <input required md-no-asterisk ng-model="pass" type="password" name="pass">
-                                    <div ng-messages="userForm.pass.$error">
-                                        <div ng-message="required">Este campo es obligatorio</div>
-                                    </div>
-                                </md-input-container>
-                     
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-block px-3">
+                                <label class="px-3">Teléfono</label>
+                                <input ng-model="telefono" type="number" name="telefono">
+                            </md-input-container>
+                            
+                            <md-input-container class="md-block px-3">
+                                <label class="px-3">Nombre</label>
+                                <input required ng-model="nombre" type="password" name="nombre">
+                                <div ng-messages="userForm.nombre.$error">
+                                    <div ng-message="required">Este campo es obligatorio</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-block px-3">
+                                <label class="px-3">Primer apellido</label>
+                                <input ng-model="ape1" type="password" name="ape1">
+                                <div ng-messages="userForm.ape1.$error">
+                                    <div ng-message="required">Este campo es obligatorio</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-block px-3">
+                                <label class="px-3">Segundo apellido</label>
+                                <input ng-model="ape2" type="password" name="ape2">
+                            </md-input-container>
+
+
+
                             <div class="d-flex justify-content-center">
-                                <md-button ng-click="logging()" type="button" class="md-raised botoniniciar">Iniciar Sesión</md-button>
+                                <md-button  type="submit" class="md-raised botoniniciar">Registrarme</md-button>
                             </div>
                         </md-content>
                     </form>

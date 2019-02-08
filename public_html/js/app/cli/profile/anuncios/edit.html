@@ -108,7 +108,7 @@
                         <h3>Fotos del inmueble (Opcionales)</h3>
                         <md-content layout-padding class="newForm mb-5" md-whiteframe="{{heightz}}" ng-init="heightz = 6">
                             <div ng-if="hayFotos">Imágenes de su anuncio:<br></div>
-                            <div ng-if="hayFotos" class="imagesLoaded fade" ng-repeat="fotos in listaFotos">
+                            <div ng-if="hayFotos" class="imagesLoaded" ng-repeat="fotos in listaFotos">
                                 <image ng-src="http://localhost:8081/imagenes/{{userId}}/{{fotos.foto.ruta}}"  />
                                 <md-button class="md-raised md-warn mx-0" ng-click="showConfirm($event, $index, fotos.foto.id, fotos.foto.ruta)">Eliminar</md-button><br>
                             </div>

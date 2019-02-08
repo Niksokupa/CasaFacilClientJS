@@ -55,10 +55,6 @@
                             <i class="fas fa-user-circle"></i>
                             Perfil
                         </a>
-                        <a class="dropdown-item" ng-show="c.logged" href="usuario/changepass">
-                            <i class="fas fa-key"></i>
-                            Cambiar password
-                        </a>
                         <div ng-show="c.logged"class="dropdown-divider"></div>
                         <a class="dropdown-item" ng-show="c.logged" href="usuario/logout">
                             <i class="fas fa-sign-out-alt"></i>
@@ -66,11 +62,7 @@
                         </a>
                         <a class="dropdown-item" ng-show="!c.logged" href="usuario/login">
                             <i class="fas fa-key"></i>
-                            Login
-                        </a>
-                        <a class="dropdown-item" ng-show="!c.logged" href="usuario/register">
-                            <i class="fas fa-key"></i>
-                            Cuenta nueva
+                            Login / Registro
                         </a>
                     </div>
                 </div>

@@ -7,7 +7,9 @@ moduleUsuario.controller("usuarioLoginController", [
     "sessionService",
     "favsObserverService",
     "$timeout",
-    function ($scope, $http, toolService, oSessionService, oFavsService, $timeout) {
+    '$anchorScroll',
+    function ($scope, $http, toolService, oSessionService, oFavsService, $timeout, $anchorScroll) {
+        $anchorScroll();
         $scope.logged = false;
         $scope.failedlogin = false;
         $scope.wantslogin = true;
@@ -27,6 +29,7 @@ moduleUsuario.controller("usuarioLoginController", [
                     box2.addClass('bounceInRight');
                     box2.removeClass('bounceOutLeft');
                     $scope.wantslogin = false;
+                    $anchorScroll();
                 }, 900);
             } else {
                 box2.removeClass('bounceInRight');
@@ -35,7 +38,39 @@ moduleUsuario.controller("usuarioLoginController", [
                     box1.removeClass('bounceOutLeft');
                     box1.addClass('bounceInRight');
                     $scope.wantslogin = true;
+                    $anchorScroll();
                 }, 900);
+            }
+        };
+
+        $scope.create = function () {
+
+            if ($scope.newpass === $scope.newpass2) {
+                var json = {
+                    nickname: $scope.usuario,
+                    nombre: $scope.nombre,
+                    ape1: $scope.ape1,
+                    ape2: $scope.ape2,
+                    correo: $scope.email,
+                    telefono: $scope.telefono,
+                    pass: forge_sha256($scope.newpass),
+                    id_tipoUsuario: 2
+                }
+
+                $http({
+                    method: 'GET',
+                    header: {
+                        'Content-Type': 'application/json;charset=utf-8'
+                    },
+                    url: 'http://localhost:8081/casafacil/json?ob=usuario&op=create',
+                    params: {json: JSON.stringify(json)}
+                }).then(function (response, data) {
+                    $scope.created = false;
+                    $scope.id = response.data.message.id;
+                }, function (response) {
+                    $scope.status = response.status;
+                    $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
+                });
             }
         };
 

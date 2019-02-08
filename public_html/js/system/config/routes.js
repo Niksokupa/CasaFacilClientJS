@@ -147,7 +147,6 @@ casafacil.config(['$routeProvider', function ($routeProvider) {
 
 
         //USUARIO Y SUS FUNCIONES
-        $routeProvider.when('/usuario/changepass', {templateUrl: 'js/app/usuario/changepass.html', controller: 'usuarioChangePassController', resolve: {auth: autenticacionUsuario}});
         $routeProvider.when('/cli/misfavs', {templateUrl: 'js/app/cli/profile/misfavs.html', controller: 'favsController', resolve: {auth: autenticacionUsuario}});
         $routeProvider.when('/cli/misanuncios', {templateUrl: 'js/app/cli/profile/anuncios/misanuncios.html', controller: 'misanunciosController', resolve: {auth: autenticacionUsuario}});
         $routeProvider.when('/cli/misanuncios/new', {templateUrl: 'js/app/cli/profile/anuncios/new.html', controller: 'newanunciosController', resolve: {auth: autenticacionUsuario}});
