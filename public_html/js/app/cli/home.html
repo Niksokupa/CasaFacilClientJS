@@ -12,5 +12,27 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-8 mt-5 mx-auto">
+            <md-autocomplete
+                md-selected-item="selectedItem"
+                md-search-text-change="searchTextChange(searchText)"
+                md-search-text="searchText"
+                md-selected-item-change="selectedItemChange(ciudad)"
+                md-items="ciudad in querySearch(searchText)"
+                md-item-text="ciudad.ciudad.desc"
+                md-min-length="0"
+                placeholder="Ej: Valencia"
+                input-aria-labelledby="labelSelectorCiudades"
+                input-aria-describedby="autocompleteDetailedDescription">
+                <md-item-template>
+                    <span md-highlight-text="searchText" md-highlight-flags="^i">{{ciudad.ciudad.desc}}</span>
+                </md-item-template>
+                <md-not-found>
+                    No se ha encontrado ningún resultado para "{{searchText}}".
+                </md-not-found>
+            </md-autocomplete>
+        </div>
+    </div>
 </div>
 

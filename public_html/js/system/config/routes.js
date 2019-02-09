@@ -140,10 +140,10 @@ casafacil.config(['$routeProvider', function ($routeProvider) {
         //HOME
         $routeProvider.when('/cli/home', {templateUrl: 'js/app/cli/home.html', controller: 'homeController', resolve: {auth: autenticacionHome}});
 
-        //CIUDAD
-        $routeProvider.when('/cli/valencia', {templateUrl: 'js/app/cli/ciudad/valencia/plist.html', controller: 'ciudadController', resolve: {auth: autenticacionHome}});
-        $routeProvider.when('/cli/alicante', {templateUrl: 'js/app/cli/ciudad/alicante/plist.html', controller: 'ciudadController', resolve: {auth: autenticacionHome}});
-        $routeProvider.when('/cli/castellon', {templateUrl: 'js/app/cli/ciudad/castellon/plist.html', controller: 'ciudadController', resolve: {auth: autenticacionHome}});
+        //ANUNCIO
+        $routeProvider.when('/cli/ciudad/:id', {templateUrl: 'js/app/cli/anuncio/plist.html', controller: 'ciudadController', resolve: {auth: autenticacionHome}});
+        $routeProvider.when('/cli/anuncio/:id', {templateUrl: 'js/app/cli/anuncio/view.html', controller: 'viewanunciosController', resolve: {auth: autenticacionHome}});
+
 
 
         //USUARIO Y SUS FUNCIONES
@@ -154,7 +154,6 @@ casafacil.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/cli/profile', {templateUrl: 'js/app/cli/profile/profile.html', controller: 'usuarioProfileController', resolve: {auth: autenticacionUsuario}});
 
 
-        $routeProvider.when('/cli/anuncio/:id', {templateUrl: 'js/app/cli/anuncio/view.html', controller: 'viewanunciosController', resolve: {auth: autenticacionHome}});
 
 
 
