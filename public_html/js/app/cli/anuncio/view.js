@@ -1,10 +1,14 @@
 'use strict'
 
-moduleAnuncio.controller('viewanunciosController', ['$scope', '$http', 'toolService', '$routeParams', 'sessionService', '$anchorScroll',
-    function ($scope, $http, toolService, $routeParams, oSessionService, $anchorScroll) {
+moduleAnuncio.controller('viewanunciosController', ['$scope', '$http', 'toolService', '$routeParams', 'sessionService', '$anchorScroll', '$location',
+    function ($scope, $http, toolService, $routeParams, oSessionService, $anchorScroll, $location) {
         $anchorScroll();
         $scope.terreno = false;
         $scope.id = $routeParams.id;
+        
+        $scope.volver = function () {
+            $location.path('cli/ciudad/' + $scope.anuncio.obj_Barrio.obj_ciudad.id);
+        }
 
 
         $http({

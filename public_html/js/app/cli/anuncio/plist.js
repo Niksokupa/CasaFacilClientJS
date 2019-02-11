@@ -36,29 +36,6 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
             $scope.orderURLServidor = "&order=" + ordename;
             $scope.orderURLCliente = $scope.ordenacion;
 
-//            $http({
-//                method: 'GET',
-//                url: `http://localhost:8081/casafacil/json?ob=${$scope.ob}&op=getpage&ciudad=` + $scope.ciudadId + `&extras=` + $scope.selectedExtras + `&barrio=` + $scope.selectedBarrio + `&rpp=` + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
-//            }).then(function (response) {
-//                $scope.message = response.data.message;
-//                var productos = [];
-//                $scope.message.forEach(element => {
-//                    if (element.descripcion.length > 150) {
-//                        element.descripcion = element.descripcion.substring(0, 150);
-//                        element.descripcion += "...";
-//                    }
-//                    element.precio = addCommas(element.precio);
-//                    var producto = {
-//                        producto: element
-//                    };
-//                    productos.push(producto);
-//                });
-//                $scope.productos = productos;
-//            }, function (response) {
-//                $scope.status = response.status;
-//                $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
-//            });
-
             $location.url(`cli/ciudad/` + $scope.ciudadId + '/' + $scope.selectedBarrio + '/' + $scope.rpp + `/` + $scope.page + `/` + $scope.orderURLCliente);
         };
 

@@ -360,8 +360,8 @@ md-select:disabled{
 @media (max-width: 575.98px) {
     .favanuncio {
         position: absolute;
-        margin-left: 43%;
-        margin-top: -45%;
+        margin-left: 78%;
+        margin-top: -5%;
     }
 
     .imgminianuncio {
@@ -380,6 +380,14 @@ md-select:disabled{
     .ordenacion{
         width: 65%;
     }
+
+    .card-text{
+        display: none;
+    }
+    
+    .card-title{
+      font-size: 5vw;
+    }
 }
 
 /*// Small devices (landscape phones, 576px and up)*/
@@ -387,7 +395,7 @@ md-select:disabled{
     .favanuncio {
         position: absolute;
         margin-left: 45%;
-        margin-top: -32%;
+        margin-top: -5%;
     }
 
     .imgminianuncio {
@@ -405,6 +413,10 @@ md-select:disabled{
 
     .ordenacion{
         width: 65%;
+    }
+
+    .card-text{
+        font-size: 2.5vw;
     }
 }
 
