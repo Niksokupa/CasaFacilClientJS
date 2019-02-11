@@ -27,15 +27,14 @@
         </aside>
         <!--ANUNCIOS-->
         <section class="col-md-10 px-0 mt-5">
-
             <div class="container">
                 <md-input-container class="mb-5 ml-2 ordenacion">
                     <label>Ordenar por:</label>
                     <md-select ng-model="ordenacion" ng-change="ordena()">
-                        <md-option value="5">Precio más bajo</md-option>
-                        <md-option value="51">Precio más alto</md-option>
-                        <md-option value="15">Más metros cuadrados</md-option>
-                        <md-option value="52">Menos metros cuadrados</md-option>
+                        <md-option value="1">Precio más bajo</md-option>
+                        <md-option value="2">Precio más alto</md-option>
+                        <md-option value="3">Más metros cuadrados</md-option>
+                        <md-option value="4">Menos metros cuadrados</md-option>
                     </md-select>
                 </md-input-container>
                 <div class="card mb-5 ml-3 mr-2"  ng-repeat="producto in productos" on-finish-render="ngRepeatFinished" md-whiteframe="{{height}}" ng-init="height = 6" ng-mouseenter="height = 12" ng-mouseleave="height = 6">
@@ -107,24 +106,24 @@
         </section>
 
         <!--PAGINACION-->
-        <div class="col-md-12 ml-sm-auto col-lg-12 pt-5" style="z-index: 222">
+        <div class="col-md-12 ml-sm-auto col-lg-12 pt-5" style="z-index: 2">
             <div class="row d-flex justify-content-center flex-wrap align-items-center">
                 <nav aria-label="paginacion">
                     <ul class="pagination">
                         <li class="page-item">
-                            <a class="page-link" ng-show="page > 2" href="{{ob}}/plist/{{rpp}}/1/{{order}}/{{align}}">First</a>
+                            <a class="page-link" ng-show="page > 2" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/1/{{order}}/{{align}}"><<</a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" ng-show="page > 1" href="{{ob}}/plist/{{rpp}}/{{page - 1}}/{{order}}/{{align}}">Previous</a>
+                            <a class="page-link" ng-show="page > 1" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/{{page - 1}}/{{order}}/{{align}}"><</a>
                         </li>
                         <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
-                            <a class="page-link" href="{{ob}}/plist/{{rpp}}/{{p}}/{{order}}/{{align}}">{{p}}</a>
+                            <a class="page-link" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/{{p}}/{{order}}/{{align}}">{{p}}</a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" ng-show="page != totalPages" href="{{ob}}/plist/{{rpp}}/{{page--1}}/{{order}}/{{align}}">Next</a>
+                            <a class="page-link" ng-show="page != totalPages" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/{{page--1}}/{{order}}/{{align}}">></a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="{{ob}}/plist/{{rpp}}/{{totalPages}}/{{order}}/{{align}}">Last</a>
+                            <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/{{totalPages}}/{{order}}/{{align}}">>></a>
                         </li>
                     </ul>
                 </nav>

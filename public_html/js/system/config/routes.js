@@ -141,7 +141,7 @@ casafacil.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/cli/home', {templateUrl: 'js/app/cli/home.html', controller: 'homeController', resolve: {auth: autenticacionHome}});
 
         //ANUNCIO
-        $routeProvider.when('/cli/ciudad/:id', {templateUrl: 'js/app/cli/anuncio/plist.html', controller: 'ciudadController', resolve: {auth: autenticacionHome}});
+        $routeProvider.when('/cli/ciudad/:id/:barrio?/:rpp?/:page?/:order?', {templateUrl: 'js/app/cli/anuncio/plist.html', controller: 'ciudadController', resolve: {auth: autenticacionHome}});
         $routeProvider.when('/cli/anuncio/:id', {templateUrl: 'js/app/cli/anuncio/view.html', controller: 'viewanunciosController', resolve: {auth: autenticacionHome}});
 
 
