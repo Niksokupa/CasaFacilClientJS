@@ -4,7 +4,8 @@
         <md-button type="button" class="md-raised mb-4" ng-click="volver()">Volver al listado</md-button>
         <div class="ml-2 titanunciospec">
             {{anuncio.obj_Tipoinmueble.desc}} <span>en</span> {{anuncio.obj_Tipovia.desc}} {{anuncio.direccion}} / {{anuncio.obj_Barrio.desc}} ({{anuncio.obj_Barrio.obj_ciudad.desc}}) 
-            <span class="precioanuncioview">{{anuncio.precio}} €</span></div>
+            <span class="precioanuncioview">{{anuncio.precio}} €</span>
+        </div>
         <div class="ml-2 align-text-bottom">
             <img src="https://img.icons8.com/ios/25/000000/empty-bed.png"> 
             <span class="pr-2">{{anuncio.habitaciones}} habitacion/es</span>
@@ -15,6 +16,24 @@
             <img ng-show="terreno" src="https://img.icons8.com/windows/30/000000/grass.png">
             <span ng-show="terreno" class="pr-2">{{anuncio.metrosterreno}} m<sup>2</sup></span>
         </div>
+        <div class="contactoanuncio ml-2 mt-3">
+            <span><img src="https://img.icons8.com/ios/25/000000/gender-neutral-user.png"></span>
+            <span>
+                {{anuncio.obj_Usuario.nombre}}
+            </span>
+            <span ng-if="anuncio.obj_Usuario.ape1">
+                {{anuncio.obj_Usuario.ape1}}
+            </span>
+            <span ng-if="anuncio.obj_Usuario.ape2">
+                {{anuncio.obj_Usuario.ape2}}
+            </span>
+            <span ng-if="anuncio.obj_Usuario.telefono" class="ml-3">
+                <img src="https://img.icons8.com/ios/20/000000/phone.png"> {{anuncio.obj_Usuario.telefono}}  
+            </span>  
+            <span ng-if="anuncio.obj_Usuario.correo" class="ml-3">
+                  <img src="https://img.icons8.com/ios/20/000000/email.png"> {{anuncio.obj_Usuario.correo}}
+            </span>
+        </div>
         <div class="imagenanuncioview ml-2 mt-4">
             <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
                 <div uib-slide ng-repeat="foto in fotos track by $index" index="$index">
@@ -23,19 +42,6 @@
             </div>
         </div>
         <div>
-            <div class="row extrasanuncioview border-bottom">
-                <div class="col-md-3">
-                    <span class="titulomasinfo">Contacto</span>
-                </div>
-                <div class="col-md-9 d-flex justify-content-between">
-                    <span ng-if="anuncio.obj_Usuario.telefono">
-                        Teléfono: {{anuncio.obj_Usuario.telefono}}
-                    </span>
-                    <span ng-if="anuncio.obj_Usuario.correo">
-                        E-Mail: {{anuncio.obj_Usuario.correo}}
-                    </span>
-                </div>
-            </div>
         </div>
         <div>
             <div class="row extrasanuncioview border-bottom">
@@ -43,9 +49,7 @@
                     <span class="titulomasinfo">Extras</span>
                 </div>
                 <div class="col-md-9">
-                    <span class="extrasbadges" ng-repeat="extra in listaExtras">
-                        {{extra.extras.desc}}
-                    </span>
+                    <span class="extrasbadges" ng-repeat="extra in listaExtras">{{extra.extras.desc}}</span>
                 </div>
             </div>
         </div>

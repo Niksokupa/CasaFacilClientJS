@@ -4,11 +4,11 @@
         <div class="imgciudadvalencia"></div>
     </div>
     <div class="row">
-        <aside class="col-md-2 pt-5">
+        <aside class="col-md-2 col-xs-3 pt-5 asidefiltros">
             <!--FILTRO DE BARRIO-->
             <md-input-container style="width: 100%;">
                 <label>Barrio</label>
-                <md-select ng-model="selectedBarrio" ng-change="filtroBarrio()">
+                <md-select class="filtrobox" ng-model="selectedBarrio" ng-change="filtroBarrio()">
                     <md-option aria-label="{{barrio.barrios.desc}}" ng-value="{{barrio.barrios.id}}" ng-repeat="barrio in listaBarrios">
                         {{ barrio.barrios.desc}}
                     </md-option>
@@ -17,18 +17,18 @@
             <!--FILTRO DE EXTRAS-->
             <div style="border: 1px solid #888;">
                 <div class="checkbox checkbox-inline filtroinput" ng-click="filtroExtras(extras.extras.id)" ng-repeat="extras in listaExtras">
-                    <md-checkbox class="brown align-middle" style="display: table-cell; padding:5px;" ng-true-value="{{extras.extras.id}}">
+                    <md-checkbox class="brown align-middle filtrobox" style="display: table-cell; padding:5px;" ng-true-value="{{extras.extras.id}}">
                         {{extras.extras.desc}}
                     </md-checkbox>
                 </div>
             </div>
         </aside>
-        <section class="col-md-10 px-0 mt-5">
-            <div class="container">
+        <section class="col-md-10 col-xs-9 px-0 mt-5">
+            <div class="container ml-2 principal">
                 <!--ORDENACION-->
-                <md-input-container class="mb-5 ml-2 ordenacion">
-                    <label>Ordenar por:</label>
-                    <md-select ng-model="ordenacion" ng-change="ordena()">
+                <md-input-container class="mb-5 ml-3 ordenacion">
+                    <label>Ordenar</label>
+                    <md-select class="filtrobox" ng-model="ordenacion" ng-change="ordena()">
                         <md-option value="1">Precio más bajo</md-option>
                         <md-option value="2">Precio más alto</md-option>
                         <md-option value="3">Más metros cuadrados</md-option>
@@ -49,7 +49,7 @@
                             <div class="card-body" ng-click="verAnuncio(producto.producto.id)">
                                 <div class="row no-gutters mx-3">
                                     <div class="col-md-9 mx-0">
-                                        <h4 class="card-title mb-0">{{producto.producto.titulo}}</h4>
+                                        <h4 class="card-title mb-0" md-truncate>{{producto.producto.titulo}}</h4>
                                         <div class="mb-2 text-muted">
                                             <span>{{producto.producto.obj_Tipoinmueble.desc}} en el barrio {{producto.producto.obj_Barrio.desc}}</span><br>
                                         </div>
@@ -58,7 +58,7 @@
                                             <span class="habanuncio">{{producto.producto.habitaciones}} habitacion/es</span> - 
                                             <span class="banyosanuncio">{{producto.producto.banyos}} baño/s</span>
                                         </div>
-                                        <p class="card-text" md-truncate>{{producto.producto.descripcion}}</p>
+                                        <p class="card-text">{{producto.producto.descripcion}}</p>
                                     </div>
                                     <div class="col-md-3 precioanuncio">
                                         <h4>{{producto.producto.precio}} €</h4>

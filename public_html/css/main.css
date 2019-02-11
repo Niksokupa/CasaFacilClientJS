@@ -31,26 +31,35 @@ body {
     width: 25%;
 }
 
+/*HOME*/
 
+.home{
+    text-align: center; 
+    font-family: 'Satisfy', cursive;
+    margin-top: 100px;
+    font-size: 5em;
+    color: #53AA5B;
+    text-shadow: 6px 3px 3px #000000;
+}
 
-/* Custom page CSS
--------------------------------------------------- */
-/* Not required for template or sticky footer method. */
+.autocompletar{
+    width: 35vw;
+}
 
 
 /*NAVBAR*/
 
-.navbar {
+/*.navbar {
     height: 80px !important;
     background-color: rgba(0,0,0,0.45) !important;
     border: none !important;
     color: white !important;
     z-index: 100 !important;
     transition: background-color 1s ease 0s !important;
-}
+}*/
 
 .navbar.solid {
-    background-color: #008040 !important;
+    background-color: #062C00 !important;
     transition: background-color 1s ease 0s !important;
     box-shadow: 0 0 4px grey !important;
 }
@@ -175,6 +184,10 @@ body {
 }
 
 /*CHECKBOX FILTRO EXTRAS*/
+
+.filtrobox{
+    background-color: white !important;
+}
 
 md-checkbox.md-checked.brown .md-icon {
     background-color: rgb(194, 76, 0);
@@ -361,7 +374,7 @@ md-select:disabled{
     .favanuncio {
         position: absolute;
         margin-left: 78%;
-        margin-top: -5%;
+        margin-top: -6%;
     }
 
     .imgminianuncio {
@@ -382,11 +395,15 @@ md-select:disabled{
     }
 
     .card-text{
-        display: none;
+        font-size: 3.5vw;
     }
-    
+
     .card-title{
-      font-size: 5vw;
+        font-size: 5vw;
+    }
+
+    .principal{
+        margin-left: 0px !important;
     }
 }
 
@@ -418,10 +435,20 @@ md-select:disabled{
     .card-text{
         font-size: 2.5vw;
     }
+
+    .principal{
+        margin: 0 auto !important;
+    }
+
+
 }
 
 /*// Medium devices (tablets, 768px and up)*/
-@media (min-width: 768px) and (max-width: 991.98px) {  }
+@media (min-width: 768px) and (max-width: 991.98px) { 
+    .asidefiltros{
+        padding-right: 0px !important;
+    }
+}
 
 /*// Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) and (max-width: 1199.98px) {  }
