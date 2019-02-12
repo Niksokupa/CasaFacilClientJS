@@ -9,6 +9,7 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
         $scope.ob = "anuncio";
         $scope.selectedExtras = [];
         $scope.ciudadId = $routeParams.id;
+        $scope.cssCiudad = "imgciudad" + $scope.ciudadId;
 
         var arrayFavs = [];
         oSessionService.registerObserverCallback(function () {

@@ -1,5 +1,5 @@
 <header-component></header-component>
-<div class="container-fluid" style="background-image: url(images/fondocli.jpg); height: 100vh;">
+<div class="container-fluid imagenfondo">
     <div class="row">
         <div class="col-md-10 mx-auto">
             <div class="justify-content-center home">
@@ -8,10 +8,12 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-8 mt-5 mx-auto">
-            <div class="text-center">¿Comenzamos?</div>
+        <div class="col-md-5 col-xs-10 col-sm-10 mt-5 mx-auto autocompletarow">
+            <div class="text-center comenzamos mb-2 pt-2">
+                <b>¿Comenzamos?</b>
+            </div>
             <md-autocomplete
-                class="autocompletar mx-auto"
+                class="autocompletar mx-auto mb-4"
                 md-selected-item="selectedItem"
                 md-search-text-change="searchTextChange(searchText)"
                 md-search-text="searchText"
