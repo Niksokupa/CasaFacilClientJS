@@ -169,9 +169,10 @@ body {
 
 }
 
-/*.heart:hover{
-    background-position: 100%;
-}*/
+.thumbnails{
+    width: 100%;
+    height: 180px;
+}
 
 /*CORAZÓN LIKE*/
 
@@ -329,12 +330,14 @@ md-select:disabled{
     background-image: url('https://img.icons8.com/ios/50/000000/right-squared-filled.png');
     width: 50px;
     height: 50px;
+    z-index: 25;
 }
 
 .carousel-control-prev-icon{
     background-image: url('https://img.icons8.com/ios/50/000000/left-squared-filled.png');
     width: 50px;
     height: 50px;
+    z-index: 25;
 }
 
 /*LOGIN-FORM*/
@@ -418,7 +421,7 @@ md-select:disabled{
         font-size: 1.5em;
         color: #AA0060;
     }
-    
+
     .autocompletarow{
         width: 90%;
     }

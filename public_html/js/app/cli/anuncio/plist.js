@@ -116,25 +116,49 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
             console.log(response);
         };
 
+
         //GETPAGE DE ANUNCIO
         $http({
             method: 'GET',
             url: `http://localhost:8081/casafacil/json?ob=${$scope.ob}&op=getpage&ciudad=` + $scope.ciudadId + `&extras=` + $scope.selectedExtras + `&barrio=` + $scope.selectedBarrio + `&rpp=` + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
         }).then(function (response) {
-            $scope.message = response.data.message;
-            var productos = [];
-            $scope.message.forEach(element => {
-                if (element.descripcion.length > 150) {
-                    element.descripcion = element.descripcion.substring(0, 150);
-                    element.descripcion += "...";
-                }
-                element.precio = addCommas(element.precio);
-                var producto = {
-                    producto: element
-                };
-                productos.push(producto);
-            });
-            $scope.productos = productos;
+            //TODAS LAS FOTOS
+            $http({
+                method: "GET",
+                url: `http://localhost:8081/casafacil/json?ob=fotos&op=geteverything`
+            }).then(function (response2) {
+                $scope.fotos = response2.data.message;
+
+                $scope.message = response.data.message;
+                var productos = [];
+
+
+                response.data.message.forEach(element => {
+                    var fotos = [];
+                    if (element.descripcion.length > 150) {
+                        element.descripcion = element.descripcion.substring(0, 150);
+                        element.descripcion += "...";
+                    }
+                    element.precio = addCommas(element.precio);
+
+                    $scope.fotos.forEach(elementFoto => {
+                        if (elementFoto.obj_Anuncio.id === element.id) {
+                            fotos.push(elementFoto.ruta);
+                        }
+                    });
+
+                    var producto = {
+                        producto: element,
+                        fotos: fotos
+                    };
+                    productos.push(producto);
+
+                });
+                $scope.productos = productos;
+            }), function (response) {
+                console.log(response);
+            };
+
         }, function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
