@@ -3,20 +3,25 @@
 <div class="container-fluid favcontainer">
     <div class="row ">
         <div class="col-md-10 mx-auto">
-            <div class="pb-3 d-flex justify-content-end">
+            <div class="pb-3 pr-4 d-flex justify-content-end">
                 <md-button class="md-raised mx-0" href="cli/misanuncios/new">Nuevo Anuncio</md-button>
             </div>
             <div class="container py-3">
-                <div class="card mb-5 ml-3 mr-2 " ng-repeat="producto in productos" on-finish-render="ngRepeatFinished" md-whiteframe="{{height}}" ng-init="height = 6" ng-mouseenter="height = 12" ng-mouseleave="height = 6">
-                    <div class="row">
-                        <div class="col-md-4 pr-0">
-                            <img src="https://placeholdit.imgix.net/~text?txtsize=38&txt=375%C3%97250&w=375&h=250" class="img-fluid imgminianuncio">
+                <div class="card mb-5 ml-3 mr-2"  ng-repeat="producto in productos" on-finish-render="ngRepeatFinished" md-whiteframe="{{height}}" ng-init="height = 6" ng-mouseenter="height = 12" ng-mouseleave="height = 6">
+                    <div class="row anuncio{{$index}}">
+                        <div class="col-md-4" style="position: relative;">
+                            <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                                <div uib-slide ng-repeat="foto in producto.fotos track by $index" index="$index">
+                                    <img class="thumbnails" ng-src="http://localhost:8081/imagenes/{{producto.producto.obj_Usuario.id}}/{{foto}}" style="margin:auto;">
+                                </div>
+                            </div>
+                            <div style="position: absolute; bottom: 1px; left: 20px;">{{producto.producto.numFotos}} fotos</div>
                         </div>
                         <div class="col-md-8 px-0">
-                            <div class="card-body">
+                            <div class="card-body" ng-click="verAnuncio(producto.producto.id)">
                                 <div class="row no-gutters mx-3">
                                     <div class="col-md-9 mx-0">
-                                        <h4 class="card-title mb-0">{{producto.producto.titulo}}</h4>
+                                        <h4 class="card-title mb-0" md-truncate>{{producto.producto.titulo}}</h4>
                                         <div class="mb-2 text-muted">
                                             <span>{{producto.producto.obj_Tipoinmueble.desc}} en el barrio {{producto.producto.obj_Barrio.desc}}</span><br>
                                         </div>
@@ -25,7 +30,7 @@
                                             <span class="habanuncio">{{producto.producto.habitaciones}} habitacion/es</span> - 
                                             <span class="banyosanuncio">{{producto.producto.banyos}} baño/s</span>
                                         </div>
-                                        <p class="card-text" md-truncate>{{producto.producto.descripcion}}</p>
+                                        <p class="card-text">{{producto.producto.descripcion}}</p>
                                     </div>
                                     <div class="col-md-3 precioanuncio">
                                         <h4>{{producto.producto.precio}} €</h4>
@@ -35,6 +40,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="borrado pasar{{$index}}">
+                        Se ha borrado el anuncio "{{producto.producto.titulo}}".
                     </div>
                 </div>
             </div>

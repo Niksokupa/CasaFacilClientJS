@@ -30,32 +30,54 @@ moduleFavs.controller('favsController', ['$scope', '$http', '$location', 'toolSe
                 $scope.page = 1;
             }
         }
-
+        
         //GETPAGE DE ANUNCIO
         $http({
             method: 'GET',
             url: `http://localhost:8081/casafacil/json?ob=${$scope.ob}&op=getpagespecific&rpp=` + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
         }).then(function (response) {
-            $scope.status = response.status;
-            var productos = [];
-            response.data.message.forEach(element => {
-                if (element.descripcion.length > 200) {
-                    element.descripcion = element.descripcion.substring(0, 200);
-                    element.descripcion += "...";
-                }
+            //TODAS LAS FOTOS
+            $http({
+                method: "GET",
+                url: `http://localhost:8081/casafacil/json?ob=fotos&op=geteverything`
+            }).then(function (response2) {
+                $scope.fotos = response2.data.message;
 
-                element.precio = addCommas(element.precio);
+                $scope.message = response.data.message;
+                var productos = [];
 
-                var producto = {
-                    producto: element
-                }
-                productos.push(producto);
-            });
-            $scope.productos = productos;
+
+                response.data.message.forEach(element => {
+                    var fotos = [];
+                    if (element.descripcion.length > 250) {
+                        element.descripcion = element.descripcion.substring(0, 250);
+                        element.descripcion += "...";
+                    }
+                    element.precio = addCommas(element.precio);
+
+                    $scope.fotos.forEach(elementFoto => {
+                        if (elementFoto.obj_Anuncio.id === element.id) {
+                            fotos.push(elementFoto.ruta);
+                        }
+                    });
+
+                    var producto = {
+                        producto: element,
+                        fotos: fotos
+                    };
+                    productos.push(producto);
+
+                });
+                $scope.productos = productos;
+            }), function (response) {
+                console.log(response);
+            };
+
         }, function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
         });
+
 
         $scope.favAnuncio = function (id, anuncio_id) {
             if (oSessionService.isSessionActive()) {

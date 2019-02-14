@@ -31,6 +31,13 @@ body {
     width: 25%;
 }
 
+
+.borrado{
+    background-color: red;
+    color: white;
+    display: none;
+}
+
 /*HOME*/
 
 .home{
@@ -61,6 +68,7 @@ body {
     background-attachment: fixed;
     min-height: 100vh;
 }
+
 
 
 /*NAVBAR*/
@@ -150,7 +158,7 @@ body {
 .favanuncio {
     position: absolute;
     font-size: 25px;
-    margin-left: -25px;
+    margin-left: -40px;
     margin-top: 10px;
     height: 50px;
     display: flex;
@@ -274,6 +282,7 @@ md-select:disabled{
 .card-body{
     padding-bottom: 0px;
     padding-top: 1rem;
+    padding-left: 0px !important;
     cursor: pointer;
 }
 

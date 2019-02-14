@@ -135,8 +135,8 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
 
                 response.data.message.forEach(element => {
                     var fotos = [];
-                    if (element.descripcion.length > 150) {
-                        element.descripcion = element.descripcion.substring(0, 150);
+                    if (element.descripcion.length > 250) {
+                        element.descripcion = element.descripcion.substring(0, 250);
                         element.descripcion += "...";
                     }
                     element.precio = addCommas(element.precio);

@@ -30,27 +30,49 @@ moduleAnuncio.controller('misanunciosController', ['$scope', '$http', '$location
             }
         }
 
+
         //GETPAGE DE ANUNCIO
         $http({
             method: 'GET',
             url: `http://localhost:8081/casafacil/json?ob=${$scope.ob}&op=getpagespecific&rpp=` + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
         }).then(function (response) {
-            $scope.status = response.status;
-            var productos = [];
-            response.data.message.forEach(element => {
-                if (element.descripcion.length > 200) {
-                    element.descripcion = element.descripcion.substring(0, 200);
-                    element.descripcion += "...";
-                }
+            //TODAS LAS FOTOS
+            $http({
+                method: "GET",
+                url: `http://localhost:8081/casafacil/json?ob=fotos&op=geteverything`
+            }).then(function (response2) {
+                $scope.fotos = response2.data.message;
 
-                element.precio = addCommas(element.precio);
+                $scope.message = response.data.message;
+                var productos = [];
 
-                var producto = {
-                    producto: element
-                }
-                productos.push(producto);
-            });
-            $scope.productos = productos;
+
+                response.data.message.forEach(element => {
+                    var fotos = [];
+                    if (element.descripcion.length > 250) {
+                        element.descripcion = element.descripcion.substring(0, 250);
+                        element.descripcion += "...";
+                    }
+                    element.precio = addCommas(element.precio);
+
+                    $scope.fotos.forEach(elementFoto => {
+                        if (elementFoto.obj_Anuncio.id === element.id) {
+                            fotos.push(elementFoto.ruta);
+                        }
+                    });
+
+                    var producto = {
+                        producto: element,
+                        fotos: fotos
+                    };
+                    productos.push(producto);
+
+                });
+                $scope.productos = productos;
+            }), function (response) {
+                console.log(response);
+            };
+
         }, function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
@@ -60,22 +82,23 @@ moduleAnuncio.controller('misanunciosController', ['$scope', '$http', '$location
         $scope.showConfirm = function (ev, id, id_anuncio) {
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
-                    .title($scope.productos[id].producto.titulo)
-                    .textContent('¿Realmente quieres eliminar este anuncio?')
-                    .ariaLabel('Lucky day')
+                    .title('¿Realmente quieres eliminar este anuncio?')
+                    .textContent($scope.productos[id].producto.titulo)
+                    .ariaLabel('eliminarAnuncio')
                     .targetEvent(ev)
-                    .ok('Please do it!')
-                    .cancel('Sounds like a scam');
+                    .ok('Eliminar')
+                    .cancel('Cancelar');
 
             $mdDialog.show(confirm).then(function () {
+                var pasar = $(".pasar" + id);
+                var anuncio = $(".anuncio" + id);
+                anuncio.hide(500);
+                setTimeout(function(){ pasar.show(500); }, 500);
+
                 $http({
                     method: "GET",
-                    url: `http://localhost:8081/casafacil/json?ob=${$scope.ob}&op=remove&id=` + id_anuncio,
-                }).then(function (response) {
-                    $scope.productos.splice(id, 1);
-                }), function (response) {
-                    console.log(response);
-                };
+                    url: `http://localhost:8081/casafacil/json?ob=${$scope.ob}&op=remove&id=` + id_anuncio
+                });
                 $scope.status = 'You decided to get rid of your debt.';
             }, function () {
                 $scope.status = 'You decided to keep your debt.';

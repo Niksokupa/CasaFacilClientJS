@@ -15,6 +15,7 @@
                 </md-select>
             </md-input-container>
             <!--FILTRO DE EXTRAS-->
+            <h3>Extras</h3>
             <div style="border: 1px solid #888;">
                 <div class="checkbox checkbox-inline filtroinput" ng-click="filtroExtras(extras.extras.id)" ng-repeat="extras in listaExtras">
                     <md-checkbox class="brown align-middle filtrobox" style="display: table-cell; padding:5px;" ng-true-value="{{extras.extras.id}}">
@@ -38,7 +39,7 @@
                 <!--ANUNCIOS-->
                 <div class="card mb-5 ml-3 mr-2"  ng-repeat="producto in productos" on-finish-render="ngRepeatFinished" md-whiteframe="{{height}}" ng-init="height = 6" ng-mouseenter="height = 12" ng-mouseleave="height = 6">
                     <div class="row">
-                        <div class="col-md-4 pr-0" style="position: relative;">
+                        <div class="col-md-4" style="position: relative;">
                             <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
                                 <div uib-slide ng-repeat="foto in producto.fotos track by $index" index="$index">
                                     <img class="thumbnails" ng-src="http://localhost:8081/imagenes/{{producto.producto.obj_Usuario.id}}/{{foto}}" style="margin:auto;">
