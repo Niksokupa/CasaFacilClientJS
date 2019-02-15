@@ -41,7 +41,7 @@
 
                     <md-input-container class="md-block px-3">
                         <label class="px-3">Nombre de usuario</label>
-                        <input required ng-model="usuario" name="usuario">
+                        <input required ng-model="usuario" name="usuario" disabled>
                         <div ng-messages="userForm.usuario.$error">
                             <div ng-message="required">Este campo es obligatorio</div>
                         </div>
@@ -50,7 +50,7 @@
                     <md-input-container class="md-block px-3">
                         <label class="px-3">Correo electrónico</label>
                         <input required type="email" name="email" ng-model="email"
-                               minlength="10" ng-pattern="/^.+@.+\..+$/" />
+                               minlength="10" ng-pattern="/^.+@.+\..+$/" disabled/>
                         <div ng-messages="userForm.email.$error" role="alert">
                             <div ng-message-exp="['required', 'minlength', 'pattern']">
                                 Tu email debe tener al menos 10 carácteres, una @ y una terminación (.com, .es ...)

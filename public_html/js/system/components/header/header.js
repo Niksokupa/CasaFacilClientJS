@@ -8,7 +8,7 @@ moduleComponent.component('headerComponent', {
     controller: js
 });
 
-function js(toolService, sessionService) {
+function js(toolService, sessionService, $scope, $http, $location) {
     var self = this;
 
 //    $(window).scroll(function () {
@@ -37,4 +37,15 @@ function js(toolService, sessionService) {
     sessionService.registerObserverCallback(function () {
         self.logged = sessionService.isSessionActive();
     });
+
+    $scope.logout = function () {
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8081/casafacil/json?ob=usuario&op=logout'
+        }).then(function () {
+            $scope.logged = false;
+            sessionService.logOut();
+            $location.path('cli/home');
+        });
+    }
 }

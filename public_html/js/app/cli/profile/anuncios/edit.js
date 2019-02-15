@@ -213,7 +213,7 @@ moduleAnuncio.controller('editanunciosController', ['$scope', '$http', '$locatio
             }), function (response) {
                 console.log(response);
             };
-        }
+        };
 
 
         //Funcion jQuery previsualizar múltiples imágenes
@@ -229,7 +229,7 @@ moduleAnuncio.controller('editanunciosController', ['$scope', '$http', '$locatio
 
                         reader.onload = function (event) {
                             $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
-                        }
+                        };
 
                         reader.readAsDataURL(input.files[i]);
                     }
@@ -245,21 +245,21 @@ moduleAnuncio.controller('editanunciosController', ['$scope', '$http', '$locatio
         $scope.showConfirm = function (ev, id, id_foto, ruta) {
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
-                    .title($scope.listaFotos[id].foto.ruta)
-                    .textContent('¿Realmente quieres eliminar ésta foto?')
-                    .ariaLabel('Lucky day')
+                    .title('¿Realmente quieres eliminar ésta foto?')
+                    .textContent()
+                    .ariaLabel('eliminarFoto')
                     .targetEvent(ev)
-                    .ok('Please do it!')
-                    .cancel('Sounds like a scam');
+                    .ok('Eliminar')
+                    .cancel('Cancelar');
 
             $mdDialog.show(confirm).then(function () {
                 $http({
                     method: "GET",
-                    url: `http://localhost:8081/casafacil/json?ob=fotos&op=remove&id=` + id_foto,
+                    url: `http://localhost:8081/casafacil/json?ob=fotos&op=remove&id=` + id_foto
                 }).then(function (response) {
                     $http({
                         method: "GET",
-                        url: `http://localhost:8081/casafacil/json?ob=fotos&op=removeimage&ruta=` + ruta,
+                        url: `http://localhost:8081/casafacil/json?ob=fotos&op=removeimage&ruta=` + ruta
                     });
                     $scope.listaFotos.splice(id, 1);
                 }), function (response) {

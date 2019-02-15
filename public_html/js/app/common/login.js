@@ -8,7 +8,8 @@ moduleUsuario.controller("usuarioLoginController", [
     "favsObserverService",
     "$timeout",
     '$anchorScroll',
-    function ($scope, $http, toolService, oSessionService, oFavsService, $timeout, $anchorScroll) {
+    "$location",
+    function ($scope, $http, toolService, oSessionService, oFavsService, $timeout, $anchorScroll, $location) {
         $anchorScroll();
         $scope.logged = false;
         $scope.failedlogin = false;
@@ -98,8 +99,10 @@ moduleUsuario.controller("usuarioLoginController", [
                     $scope.loggeduser = oSessionService.getUserName();
                     if (response.data.message.obj_tipoUsuario.desc == "Administrador") {
                         oSessionService.setAdmin();
+                        $location.path('/adm/home');
                     } else {
                         oSessionService.setUser();
+                        $location.path('/cli/home');
                     }
                 }
 
