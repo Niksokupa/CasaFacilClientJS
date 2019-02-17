@@ -4,7 +4,7 @@
         <div ng-class="cssCiudad"></div>
     </div>
     <div class="row">
-        <aside class="col-md-2 col-xs-3 pt-5 asidefiltros">
+        <aside class="col-md-2 col-xs-2 pt-5 asidefiltros">
             <!--FILTRO DE BARRIO-->
             <md-input-container style="width: 100%;">
                 <label>Barrio</label>
@@ -23,6 +23,7 @@
                     </md-checkbox>
                 </div>
             </div>
+            <md-button class="md-raised md-warn d-block mx-auto mt-4" ng-click="reiniciaFiltros()">Quitar filtros</md-button>
         </aside>
         <section class="col-md-10 col-xs-9 px-0 mt-5">
             <div class="container ml-2 principal">
@@ -36,8 +37,18 @@
                         <md-option value="4">Menos metros cuadrados</md-option>
                     </md-select>
                 </md-input-container>
+                <!--RPP-->
+                <md-input-container class="mb-5 ml-3 ordenacion">
+                    <label>Anuncios por página</label>
+                    <md-select class="filtrobox" ng-model="rpp" ng-change="rppchange()">
+                        <md-option value="5">5</md-option>
+                        <md-option value="10">10</md-option>
+                        <md-option value="20">20</md-option>
+                        <md-option value="30">30</md-option>
+                    </md-select>
+                </md-input-container>
                 <!--ANUNCIOS-->
-                <div class="card mb-5 ml-3 mr-2"  ng-repeat="producto in productos" on-finish-render="ngRepeatFinished" md-whiteframe="{{height}}" ng-init="height = 6" ng-mouseenter="height = 12" ng-mouseleave="height = 6">
+                <div class="card mb-5 ml-3 mr-2" ng-show="!sinanuncios" ng-repeat="producto in productos" on-finish-render="ngRepeatFinished" md-whiteframe="{{height}}" ng-init="height = 6" ng-mouseenter="height = 12" ng-mouseleave="height = 6">
                     <div class="row">
                         <div class="col-md-4" style="position: relative;">
                             <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
@@ -66,12 +77,18 @@
                                         <p class="card-text">{{producto.producto.descripcion}}</p>
                                     </div>
                                     <div class="col-md-3 precioanuncio">
-                                        <h4>{{producto.producto.precio}} €</h4>
+                                        {{producto.producto.precio}} €
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div ng-show="sinanuncios" class="alert alert-success">
+                    <h2>Ésta ciudad aún no tiene anuncios. ¡El tuyo podría ser el primero!</h2>
+                </div>
+                <div ng-show="!sinanunciosfiltros" class="alert alert-success">
+                    <h2>No hay ningún anuncio que concuerde con tu búsqueda.</h2>
                 </div>
             </div>
         </section>

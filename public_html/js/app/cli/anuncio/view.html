@@ -21,10 +21,10 @@
             <span>
                 {{anuncio.obj_Usuario.nombre}}
             </span>
-            <span ng-if="anuncio.obj_Usuario.ape1">
+            <span ng-if="anuncio.obj_Usuario.ape1 && anuncio.obj_Usuario.ape1 !== 'null'">
                 {{anuncio.obj_Usuario.ape1}}
             </span>
-            <span ng-if="anuncio.obj_Usuario.ape2">
+            <span ng-if="anuncio.obj_Usuario.ape2 && anuncio.obj_Usuario.ape2 !== 'null'">
                 {{anuncio.obj_Usuario.ape2}}
             </span>
             <span ng-if="anuncio.obj_Usuario.telefono" class="ml-3">

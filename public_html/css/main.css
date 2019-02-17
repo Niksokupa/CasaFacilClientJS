@@ -206,7 +206,7 @@ footer {
         width: 100%;
         padding-left: 0px;
     }
-    
+
     .footer-social-small{
         display:none;
     }
@@ -375,31 +375,33 @@ footer {
 
 /*IMAGEN CIUDAD*/
 
+.imgciudad1 {
+    background-image: url(../images/alicante.jpg);
+    margin-top: 60px;
+    width: 100vw;
+    height: 400px;
+}
+
 .imgciudad2 {
     background-image: url(../images/valencia.jpg);
+    margin-top: 60px;
     width: 100vw;
     height: 400px;
 }
 
 .imgciudad3 {
     background-image: url(../images/castellon.jpg);
+    margin-top: 60px;
     width: 100vw;
     height: 400px;
 }
 
 /*ANUNCIO*/
 
-/*.imgminianuncio {
-    width: 350px;
-    height: 250px;
-}*/
-
-/*.cuerpoanuncio {
-    background-color: white;
-}*/
-
 .precioanuncio{
     text-align: right;
+    font-size: 2vw;
+    font-weight: bold;
 }
 
 .favanuncio {
@@ -492,6 +494,9 @@ md-checkbox.md-checked.brown .md-icon {
 md-input-container:not(.md-input-invalid).md-input-focused .md-input{
     border-color: #AA0060;
 }
+md-input-container:not(.md-input-invalid).md-input-focused .md-select{
+    border-color: #AA0060;
+}
 
 /*FORMULARIO NUEVO ANUNCIO*/
 
@@ -513,7 +518,7 @@ md-select-value span{
 
 .gallery img, .imagesLoaded img{
     width: 250px;
-    height: 100px;
+    height: 150px;
     padding: 5px;
 }
 
@@ -524,6 +529,7 @@ md-select:disabled{
 .page-link{
     background-color: #AA0060 !important;
     border-color: #AA0060 !important;
+    color: white !important;
 }
 
 .alert p{
@@ -554,6 +560,7 @@ md-select:disabled{
 .precioanuncioview{
     font-size: 4.5vw;
     margin-left: 7vw;
+    float: right;
 }
 
 .titanunciospec{
@@ -651,6 +658,7 @@ md-select:disabled{
 
     .card-body{
         padding-bottom: 0px;
+        padding-left: 10px !important;
     } 
 
     .ordenacion{
@@ -658,7 +666,7 @@ md-select:disabled{
     }
 
     .card-text{
-        font-size: 3.5vw;
+        font-size: 3vw;
     }
 
     .card-title{
@@ -677,6 +685,25 @@ md-select:disabled{
     .autocompletarow{
         width: 90%;
     }
+
+    .precioanuncio{
+        font-size: 7vw;
+        font-weight: bold;
+    }
+
+    .float-left{
+        margin-left: 5px;
+    }
+
+    .precioanuncioview{
+        float: initial;
+        margin-left: 0px;
+    }
+
+    .imagenanuncioview {
+        width: 100vw;
+        height: 40vh;
+    }
 }
 
 /*// Small devices (landscape phones, 576px and up)*/
@@ -694,10 +721,13 @@ md-select:disabled{
 
     .precioanuncio{
         margin-top: 20px;
+        font-weight: bold;
+        font-size: 5vw;
     }
 
     .card-body{
         padding-bottom: 0px;
+        padding-left: 10px !important;
     } 
 
     .ordenacion{
@@ -712,6 +742,15 @@ md-select:disabled{
         margin: 0 auto !important;
     }
 
+    .card-title{
+        font-size: 4.2vw;
+    }
+
+    .precioanuncioview{
+        float: initial;
+        margin-left: 0px;
+    }
+
 
 }
 
@@ -720,10 +759,35 @@ md-select:disabled{
     .asidefiltros{
         padding-right: 0px !important;
     }
+
+    .precioanuncioview{
+        float: initial;
+        margin-left: 0px;
+    }
 }
 
 /*// Large devices (desktops, 992px and up)*/
-@media (min-width: 992px) and (max-width: 1199.98px) {  }
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+    .card-text{
+        font-size: 1.2vw;
+    }
+
+    .precioanuncioview{
+        float: initial;
+        margin-left: 0px;
+    }
+}
 
 /*// Extra large devices (large desktops, 1200px and up)*/
-@media (min-width: 1200px) {  }
+@media (min-width: 1500px) { 
+
+    .card-text{
+        font-size: 0.9vw;
+    }
+
+    .precioanuncio{
+        font-size: 1.8vw;
+        font-weight: bold;
+    }
+
+}

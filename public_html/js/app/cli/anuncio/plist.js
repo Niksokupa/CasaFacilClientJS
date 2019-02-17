@@ -6,6 +6,8 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
     function ($scope, $http, $location, toolService, $routeParams, oSessionService, $anchorScroll, favsService) {
         $anchorScroll();
         $scope.totalPages = 1;
+        $scope.sinanuncios = true;
+        $scope.sinanunciosfiltros = true;
         $scope.ob = "anuncio";
         $scope.selectedExtras = [];
         $scope.ciudadId = $routeParams.id;
@@ -18,6 +20,14 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
 
         $scope.verAnuncio = function (id) {
             $location.path('cli/anuncio/' + id);
+        };
+
+        $scope.reiniciaFiltros = function () {
+            $location.url(`cli/ciudad/` + $scope.ciudadId);
+        };
+
+        $scope.rppchange = function () {
+            $location.url(`cli/ciudad/` + $scope.ciudadId + '/' + $scope.selectedBarrio + '/' + $scope.rpp + `/` + $scope.page + `/` + $scope.orderURLCliente);
         };
 
         $scope.ordena = function () {
@@ -122,6 +132,11 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
             method: 'GET',
             url: `http://localhost:8081/casafacil/json?ob=${$scope.ob}&op=getpage&ciudad=` + $scope.ciudadId + `&extras=` + $scope.selectedExtras + `&barrio=` + $scope.selectedBarrio + `&rpp=` + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
         }).then(function (response) {
+            if (response.data.message.length > 0) {
+                $scope.sinanuncios = false;
+            } else {
+                $scope.sinanuncios = true;
+            }
             //TODAS LAS FOTOS
             $http({
                 method: "GET",
@@ -180,22 +195,46 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
                 method: 'GET',
                 url: `http://localhost:8081/casafacil/json?ob=${$scope.ob}&op=getpage&ciudad=` + $scope.ciudadId + `&extras=` + $scope.selectedExtras + `&barrio=` + $scope.selectedBarrio + `&rpp=` + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
             }).then(function (response) {
-                $scope.status = response.status;
-                var productos = [];
-                response.data.message.forEach(element => {
-                    if (element.descripcion.length > 150) {
-                        element.descripcion = element.descripcion.substring(0, 150);
-                        element.descripcion += "...";
-                    }
+                if (response.data.message.length === 0) {
+                    $scope.sinanunciosfiltros = false;
+                } else {
+                    $scope.sinanunciosfiltros = true;
+                }
+                $http({
+                    method: "GET",
+                    url: `http://localhost:8081/casafacil/json?ob=fotos&op=geteverything`
+                }).then(function (response2) {
+                    $scope.fotos = response2.data.message;
 
-                    element.precio = addCommas(element.precio);
+                    $scope.message = response.data.message;
+                    var productos = [];
 
-                    var producto = {
-                        producto: element
-                    };
-                    productos.push(producto);
-                });
-                $scope.productos = productos;
+
+                    response.data.message.forEach(element => {
+                        var fotos = [];
+                        if (element.descripcion.length > 250) {
+                            element.descripcion = element.descripcion.substring(0, 250);
+                            element.descripcion += "...";
+                        }
+                        element.precio = addCommas(element.precio);
+
+                        $scope.fotos.forEach(elementFoto => {
+                            if (elementFoto.obj_Anuncio.id === element.id) {
+                                fotos.push(elementFoto.ruta);
+                            }
+                        });
+
+                        var producto = {
+                            producto: element,
+                            fotos: fotos
+                        };
+                        productos.push(producto);
+
+                    });
+                    $scope.productos = productos;
+                }), function (response) {
+                    console.log(response);
+                };
             }, function (response) {
                 $scope.status = response.status;
                 $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
@@ -231,14 +270,14 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
         //GETCOUNT PAGINACION
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/casafacil/json?ob=' + $scope.ob + '&op=getcount'
+            url: 'http://localhost:8081/casafacil/json?ob=' + $scope.ob + '&op=getcountfiltered&ciudad=' + $scope.ciudadId + `&extras=` + $scope.selectedExtras + `&barrio=` + $scope.selectedBarrio + `&rpp=` + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuariosNumber = response.data.message;
             $scope.totalPages = Math.ceil($scope.ajaxDataUsuariosNumber / $scope.rpp);
             if ($scope.page > $scope.totalPages) {
                 $scope.page = $scope.totalPages;
-                $scope.update();
+//                $scope.rppchange();
             }
             pagination2();
         }, function (response) {
