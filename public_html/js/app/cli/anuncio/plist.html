@@ -56,7 +56,7 @@
                                     <img class="thumbnails" ng-src="http://localhost:8081/imagenes/{{producto.producto.obj_Usuario.id}}/{{foto}}" style="margin:auto;">
                                 </div>
                             </div>
-                            <div style="position: absolute; bottom: 1px; left: 20px;">{{producto.producto.numFotos}} fotos</div>
+                            <div class="numFotos">{{producto.producto.numFotos}} foto/s</div>
                         </div>
                         <div class="col-md-8 px-0">
                             <div class="favanuncio" ng-click="favAnuncio(producto.producto.id)">
@@ -84,33 +84,33 @@
                         </div>
                     </div>
                 </div>
-                <div ng-show="sinanuncios" class="alert alert-success">
+                <div ng-show="sinanuncios" class="alert alert-success text-center">
                     <h2>Ésta ciudad aún no tiene anuncios. ¡El tuyo podría ser el primero!</h2>
                 </div>
-                <div ng-show="!sinanunciosfiltros" class="alert alert-success">
+                <div ng-show="!sinanunciosfiltros" class="alert alert-success text-center">
                     <h2>No hay ningún anuncio que concuerde con tu búsqueda.</h2>
                 </div>
             </div>
         </section>
         <!--PAGINACION-->
-        <div class="col-md-12 ml-sm-auto col-lg-12 pt-5" style="z-index: 2">
+        <div class="col-md-12 ml-sm-auto col-lg-12 pt-5 mb-5" style="z-index: 2">
             <div class="row d-flex justify-content-center flex-wrap align-items-center">
                 <nav aria-label="paginacion">
                     <ul class="pagination">
                         <li class="page-item">
-                            <a class="page-link" ng-show="page > 2" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/1/{{order}}/{{align}}"><<</a>
+                            <a class="page-link" ng-show="page > 2" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/1/{{orderURLCliente}}"><<</a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" ng-show="page > 1" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/{{page - 1}}/{{order}}/{{align}}"><</a>
+                            <a class="page-link" ng-show="page > 1" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/{{page - 1}}/{{orderURLCliente}}"><</a>
                         </li>
                         <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
                             <a class="page-link" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/{{p}}/{{order}}/{{align}}">{{p}}</a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" ng-show="page != totalPages" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/{{page--1}}/{{order}}/{{align}}">></a>
+                            <a class="page-link" ng-show="page != totalPages" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/{{page--1}}/{{orderURLCliente}}">></a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/{{totalPages}}/{{order}}/{{align}}">>></a>
+                            <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/{{totalPages}}/{{orderURLCliente}}">>></a>
                         </li>
                     </ul>
                 </nav>

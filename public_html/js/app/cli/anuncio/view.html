@@ -44,17 +44,18 @@
         <div>
         </div>
         <div>
-            <div class="row extrasanuncioview border-bottom">
+            <div class="row extrasanuncioview">
                 <div class="col-md-3">
                     <span class="titulomasinfo">Extras</span>
                 </div>
                 <div class="col-md-9">
-                    <span class="extrasbadges" ng-repeat="extra in listaExtras">{{extra.extras.desc}}</span>
+                    <span class="extrasbadges" ng-show="extra" ng-repeat="extra in listaExtras">{{extra.extras.desc}}</span>
+                    <span ng-show="!extra"><h5>Éste anuncio no dispone de ningún extra.</h5></span>
                 </div>
             </div>
         </div>
         <div>
-            <div class="row extrasanuncioview border-bottom">
+            <div class="row descanuncioview">
                 <div class="col-md-3">
                     <span class="titulomasinfo">Descripción</span>
                 </div>

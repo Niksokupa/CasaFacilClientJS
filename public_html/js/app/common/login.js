@@ -14,6 +14,7 @@ moduleUsuario.controller("usuarioLoginController", [
         $scope.logged = false;
         $scope.failedlogin = false;
         $scope.wantslogin = true;
+        $scope.created = true;
 
 
 
@@ -66,6 +67,7 @@ moduleUsuario.controller("usuarioLoginController", [
                     url: 'http://localhost:8081/casafacil/json?ob=usuario&op=create',
                     params: {json: JSON.stringify(json)}
                 }).then(function (response, data) {
+                    $scope.animation();
                     $scope.created = false;
                     $scope.id = response.data.message.id;
                 }, function (response) {

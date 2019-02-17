@@ -22,7 +22,7 @@ moduleUsuario.controller('usuarioProfileController', ['$scope', '$http', '$ancho
             } else {
                 $scope.ape2 = response.data.message.ape2;
             }
-            if (response.data.message.telefono === "null") {
+            if (response.data.message.telefono === "null" || response.data.message.telefono === 0) {
                 $scope.telefono = "";
             } else {
                 $scope.telefono = response.data.message.telefono;

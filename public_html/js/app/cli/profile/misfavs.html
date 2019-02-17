@@ -4,18 +4,18 @@
     <div class="row ">
         <div class="col-md-10 mx-auto">
             <div class="container py-3">
-                <div class="card mb-5 ml-3 mr-2"  ng-repeat="producto in productos" on-finish-render="ngRepeatFinished" md-whiteframe="{{height}}" ng-init="height = 6" ng-mouseenter="height = 12" ng-mouseleave="height = 6">
-                    <div class="row">
+                <div class="card mb-5 ml-3 mr-2" ng-show="!sinanuncios" ng-repeat="producto in productos" on-finish-render="ngRepeatFinished" md-whiteframe="{{height}}" ng-init="height = 6" ng-mouseenter="height = 12" ng-mouseleave="height = 6">
+                    <div class="row anuncio{{$index}}">
                         <div class="col-md-4" style="position: relative;">
                             <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
                                 <div uib-slide ng-repeat="foto in producto.fotos track by $index" index="$index">
                                     <img class="thumbnails" ng-src="http://localhost:8081/imagenes/{{producto.producto.obj_Usuario.id}}/{{foto}}" style="margin:auto;">
                                 </div>
                             </div>
-                            <div style="position: absolute; bottom: 1px; left: 20px;">{{producto.producto.numFotos}} fotos</div>
+                            <div class="numFotos">{{producto.producto.numFotos}} foto/s</div>
                         </div>
                         <div class="col-md-8 px-0">
-                            <div class="favanuncio" ng-click="favAnuncio(producto.producto.id)">
+                            <div class="favanuncio" ng-click="favAnuncio($index, producto.producto.id)">
                                 <div class="heart fav{{producto.producto.id}} is-active"></div>
                             </div>
                             <div class="card-body" ng-click="verAnuncio(producto.producto.id)">
@@ -33,34 +33,40 @@
                                         <p class="card-text">{{producto.producto.descripcion}}</p>
                                     </div>
                                     <div class="col-md-3 precioanuncio">
-                                        <h4>{{producto.producto.precio}} €</h4>
+                                        {{producto.producto.precio}} €
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="borrado pasar{{$index}}">
+                        Se ha eliminado el anuncio "{{producto.producto.titulo}}" de tus favoritos.
+                    </div>
+                </div>
+                <div ng-show="sinanuncios" class="alert alert-success text-center">
+                    <h2>¡Aún no has incluido ningún anuncio en tus favoritos!</h2>
                 </div>
             </div>
         </div>
         <!--PAGINACION-->
-        <div class="col-md-10 mx-auto col-lg-10 pt-5">
+        <div class="col-md-12 ml-sm-auto col-lg-12 pt-5 mb-5" style="z-index: 2">
             <div class="row d-flex justify-content-center flex-wrap align-items-center">
                 <nav aria-label="paginacion">
                     <ul class="pagination">
                         <li class="page-item">
-                            <a class="page-link" ng-show="page > 2" href="cli/misfavs/{{rpp}}/1/{{order}}/{{align}}">First</a>
+                            <a class="page-link" ng-show="page > 2" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/1/{{orderURLCliente}}"><<</a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" ng-show="page > 1" href="cli/misfavs/{{rpp}}/{{page - 1}}/{{order}}/{{align}}">Previous</a>
+                            <a class="page-link" ng-show="page > 1" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/{{page - 1}}/{{orderURLCliente}}"><</a>
                         </li>
                         <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
-                            <a class="page-link" href="cli/misfavs/{{rpp}}/{{p}}/{{order}}/{{align}}">{{p}}</a>
+                            <a class="page-link" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/{{p}}/{{order}}/{{align}}">{{p}}</a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" ng-show="page != totalPages" href="cli/misfavs/{{rpp}}/{{page--1}}/{{order}}/{{align}}">Next</a>
+                            <a class="page-link" ng-show="page != totalPages" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/{{page--1}}/{{orderURLCliente}}">></a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="cli/misfavs/{{rpp}}/{{totalPages}}/{{order}}/{{align}}">Last</a>
+                            <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/{{totalPages}}/{{orderURLCliente}}">>></a>
                         </li>
                     </ul>
                 </nav>

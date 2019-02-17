@@ -5,6 +5,7 @@ moduleAnuncio.controller('viewanunciosController', ['$scope', '$http', 'toolServ
         $anchorScroll();
         $scope.terreno = false;
         $scope.id = $routeParams.id;
+        $scope.extra = false;
         
         $scope.volver = function () {
             $location.path('cli/ciudad/' + $scope.anuncio.obj_Barrio.obj_ciudad.id);
@@ -27,6 +28,9 @@ moduleAnuncio.controller('viewanunciosController', ['$scope', '$http', 'toolServ
                 url: 'http://localhost:8081/casafacil/json?ob=extras&op=getspecific&id=' + $scope.anuncio.id
             }).then(function (response) {
                 $scope.extras = response.data.message;
+                if($scope.extras.length > 0){
+                    $scope.extra = true;
+                }
 
                 //TODOS LOS EXTRAS
                 $http({

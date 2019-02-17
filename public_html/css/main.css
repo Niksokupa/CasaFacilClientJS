@@ -29,6 +29,10 @@ body {
 
 /*FOOTER*/
 
+.iconofooter{
+    margin-right: 15px;
+}
+
 ul {
     list-style: none;
 }
@@ -176,99 +180,7 @@ footer {
     color: rgb(251, 57, 88);
 }
 
-@media only screen and (max-width: 768px) {
-    .footer-list-header {
-        font-size: 1.5em;
-    }
 
-    .footer-list-anchor {
-        font-size: 0.7em;
-    }
-
-    .footer-social-connect {
-        font-size: 1.8em;
-    }
-
-    .footer-social-overlap > a {
-        font-size: 1.4em;
-    }
-
-    .footer-bottom-wrapper {
-        font-size: 0.8em;
-    }
-}
-@media only screen and (max-width: 568px) {
-    main {
-        font-size: 3em;
-    }
-
-    .footer-list-top {
-        width: 100%;
-        padding-left: 0px;
-    }
-
-    .footer-social-small{
-        display:none;
-    }
-
-    .footer-list-header {
-        font-size: 1.5em;
-    }
-
-    .footer-list-anchor {
-        font-size: 0.7em;
-    }
-
-    .footer-social-section {
-        justify-content: center;
-    }
-
-    .footer-social-section::after {
-        top: 25%;
-    }
-
-    .footer-social-connect {
-        margin-bottom: 10px;
-        padding: 0 10px;
-    }
-
-    .footer-social-overlap {
-        display: flex;
-        justify-content: center;
-    }
-
-    .footer-social-icons-wrapper {
-        width: 100%;
-        padding: 0;
-    }
-
-    .footer-social-overlap > a:not(:first-child) {
-        margin-left: 20px;
-    }
-
-    .footer-bottom-section {
-        padding: 0 5px 10px 5px;
-    }
-
-    .footer-bottom-wrapper {
-        text-align: center;
-        width: 100%;
-        margin-top: 10px;
-    }
-}
-@media only screen and (max-width: 480px) {
-    .footer-social-overlap > a {
-        margin: auto;
-    }
-
-    .footer-social-overlap > a:not(:first-child) {
-        margin-left: 0;
-    }
-
-    .footer-bottom-rights {
-        display: block;
-    }
-}
 
 
 /*FOOTER END-------------------------------------------------*/
@@ -378,25 +290,35 @@ footer {
 .imgciudad1 {
     background-image: url(../images/alicante.jpg);
     margin-top: 60px;
-    width: 100vw;
+    width: 100%;
     height: 400px;
 }
 
 .imgciudad2 {
     background-image: url(../images/valencia.jpg);
     margin-top: 60px;
-    width: 100vw;
+    width: 100%;
     height: 400px;
 }
 
 .imgciudad3 {
     background-image: url(../images/castellon.jpg);
     margin-top: 60px;
-    width: 100vw;
+    width: 100%;
     height: 400px;
 }
 
 /*ANUNCIO*/
+
+.numFotos{
+    position: absolute; 
+    bottom: 1px; 
+    left: 20px;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
 
 .precioanuncio{
     text-align: right;
@@ -559,6 +481,7 @@ md-select:disabled{
 
 .precioanuncioview{
     font-size: 4.5vw;
+    font-weight: bold;
     margin-left: 7vw;
     float: right;
 }
@@ -578,6 +501,13 @@ md-select:disabled{
 }
 
 .extrasanuncioview{
+    border-bottom: 2px solid #BE82A7;
+    margin-left: -7px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.descanuncioview{
     margin-left: -7px;
     padding-top: 50px;
     padding-bottom: 50px;
@@ -588,7 +518,7 @@ md-select:disabled{
 }
 
 .extrasbadges{
-    border: 1px solid grey;
+    border: 3px solid #58a84a;
     border-radius: 100px;
     padding: 6px;
     margin-left: 2.5px;
@@ -598,14 +528,14 @@ md-select:disabled{
 /*CAROUSEL*/
 
 .carousel-control-next-icon{
-    background-image: url('https://img.icons8.com/ios/50/000000/right-squared-filled.png');
+    background-image: url('https://img.icons8.com/ios/50/AA0060/right-squared-filled.png');
     width: 50px;
     height: 50px;
     z-index: 25;
 }
 
 .carousel-control-prev-icon{
-    background-image: url('https://img.icons8.com/ios/50/000000/left-squared-filled.png');
+    background-image: url('https://img.icons8.com/ios/50/AA0060/left-squared-filled.png');
     width: 50px;
     height: 50px;
     z-index: 25;
@@ -637,7 +567,19 @@ md-select:disabled{
 .fullcrear {
     font-size: 22px;
 }
+@media only screen and (max-width: 480px) {
+    .footer-social-overlap > a {
+        margin: auto;
+    }
 
+    .footer-social-overlap > a:not(:first-child) {
+        margin-left: 0;
+    }
+
+    .footer-bottom-rights {
+        display: block;
+    }
+}
 
 /*// Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {
@@ -704,6 +646,66 @@ md-select:disabled{
         width: 100vw;
         height: 40vh;
     }
+
+    /*FOOTER*/
+
+    main {
+        font-size: 3em;
+    }
+
+    .footer-list-top {
+        width: 100%;
+        padding-left: 0px;
+    }
+
+    .footer-social-small{
+        display:none;
+    }
+
+    .footer-list-header {
+        font-size: 1.5em;
+    }
+
+    .footer-list-anchor {
+        font-size: 0.7em;
+    }
+
+    .footer-social-section {
+        justify-content: center;
+    }
+
+    .footer-social-section::after {
+        top: 25%;
+    }
+
+    .footer-social-connect {
+        margin-bottom: 10px;
+        padding: 0 10px;
+    }
+
+    .footer-social-overlap {
+        display: flex;
+        justify-content: center;
+    }
+
+    .footer-social-icons-wrapper {
+        width: 100%;
+        padding: 0;
+    }
+
+    .footer-social-overlap > a:not(:first-child) {
+        margin-left: 20px;
+    }
+
+    .footer-bottom-section {
+        padding: 0 5px 10px 5px;
+    }
+
+    .footer-bottom-wrapper {
+        text-align: center;
+        width: 100%;
+        margin-top: 10px;
+    }
 }
 
 /*// Small devices (landscape phones, 576px and up)*/
@@ -751,6 +753,28 @@ md-select:disabled{
         margin-left: 0px;
     }
 
+    /*FOOTER*/
+
+    .footer-list-header {
+        font-size: 1.5em;
+    }
+
+    .footer-list-anchor {
+        font-size: 0.7em;
+    }
+
+    .footer-social-connect {
+        font-size: 1.8em;
+    }
+
+    .footer-social-overlap > a {
+        font-size: 1.4em;
+    }
+
+    .footer-bottom-wrapper {
+        font-size: 0.8em;
+    }
+
 
 }
 
@@ -778,7 +802,7 @@ md-select:disabled{
     }
 }
 
-/*// Extra large devices (large desktops, 1200px and up)*/
+/*// Extra large devices (large desktops, 1500px and up)*/
 @media (min-width: 1500px) { 
 
     .card-text{

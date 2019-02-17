@@ -5,6 +5,7 @@ moduleAnuncio.controller('misanunciosController', ['$scope', '$http', '$location
         $anchorScroll();
         $scope.totalPages = 1;
         $scope.ob = "anuncio";
+        $scope.sinanuncios = true;
 
         if (!$routeParams.order) {
             $scope.orderURLServidor = "";
@@ -36,6 +37,11 @@ moduleAnuncio.controller('misanunciosController', ['$scope', '$http', '$location
             method: 'GET',
             url: `http://localhost:8081/casafacil/json?ob=${$scope.ob}&op=getpagespecific&rpp=` + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
         }).then(function (response) {
+            if (response.data.message.length > 0) {
+                $scope.sinanuncios = false;
+            } else {
+                $scope.sinanuncios = true;
+            }
             //TODAS LAS FOTOS
             $http({
                 method: "GET",
@@ -93,7 +99,9 @@ moduleAnuncio.controller('misanunciosController', ['$scope', '$http', '$location
                 var pasar = $(".pasar" + id);
                 var anuncio = $(".anuncio" + id);
                 anuncio.hide(500);
-                setTimeout(function(){ pasar.show(500); }, 500);
+                setTimeout(function () {
+                    pasar.show(500);
+                }, 500);
 
                 $http({
                     method: "GET",

@@ -6,6 +6,7 @@ moduleFavs.controller('favsController', ['$scope', '$http', '$location', 'toolSe
         $anchorScroll();
         $scope.totalPages = 1;
         $scope.ob = "favorito";
+        $scope.sinanuncios = true;
 
         if (!$routeParams.order) {
             $scope.orderURLServidor = "";
@@ -30,12 +31,17 @@ moduleFavs.controller('favsController', ['$scope', '$http', '$location', 'toolSe
                 $scope.page = 1;
             }
         }
-        
+
         //GETPAGE DE ANUNCIO
         $http({
             method: 'GET',
             url: `http://localhost:8081/casafacil/json?ob=${$scope.ob}&op=getpagespecific&rpp=` + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
         }).then(function (response) {
+            if (response.data.message.length > 0) {
+                $scope.sinanuncios = false;
+            } else {
+                $scope.sinanuncios = true;
+            }
             //TODAS LAS FOTOS
             $http({
                 method: "GET",
@@ -80,24 +86,25 @@ moduleFavs.controller('favsController', ['$scope', '$http', '$location', 'toolSe
 
 
         $scope.favAnuncio = function (id, anuncio_id) {
-            if (oSessionService.isSessionActive()) {
-                var json = {
-                    id_anuncio: anuncio_id,
-                    id_usuario: oSessionService.getId()
-                };
-                $http({
-                    method: "GET",
-                    url: `http://localhost:8081/casafacil/json?ob=favorito&op=remove&id_anuncio=` + anuncio_id,
-                    params: {json: JSON.stringify(json)}
-                }).then(function (response) {
-                    favsService.updateFavs();
-                }), function (response) {
-                    console.log(response);
-                };
-                $scope.productos.splice(id, 1);
-            } else {
-                $location.url('/usuario/login');
-            }
+            var json = {
+                id_anuncio: anuncio_id,
+                id_usuario: oSessionService.getId()
+            };
+            $http({
+                method: "GET",
+                url: `http://localhost:8081/casafacil/json?ob=favorito&op=remove&id_anuncio=` + anuncio_id,
+                params: {json: JSON.stringify(json)}
+            }).then(function (response) {
+                favsService.updateFavs();
+            }), function (response) {
+                console.log(response);
+            };
+            var pasar = $(".pasar" + id);
+            var anuncio = $(".anuncio" + id);
+            anuncio.hide(500);
+            setTimeout(function () {
+                pasar.show(500);
+            }, 500);
         };
 
         //PAGINACION
@@ -129,7 +136,6 @@ moduleFavs.controller('favsController', ['$scope', '$http', '$location', 'toolSe
             $scope.totalPages = Math.ceil($scope.ajaxDataUsuariosNumber / $scope.rpp);
             if ($scope.page > $scope.totalPages) {
                 $scope.page = $scope.totalPages;
-                $scope.update();
             }
             pagination2();
         }, function (response) {

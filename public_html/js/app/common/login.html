@@ -46,6 +46,9 @@
                 </div>
                 <div class="col-md-5 mx-auto box1" ng-show="wantslogin">
                     <div class="container">
+                        <div ng-show="!created" class="alert alert-success">
+                            Tu cuenta ha sido creada con éxito. Ya puedes loguearte.
+                        </div>
                         <form name="userForm" ng-submit="logging()">
                             <md-content layout-padding class="newForm mb-5 p-4" md-whiteframe="6">
 
