@@ -31,6 +31,10 @@ moduleAnuncio.controller('misanunciosController', ['$scope', '$http', '$location
             }
         }
 
+        $scope.verAnuncio = function (id) {
+            $location.path('cli/anuncio/' + id);
+        };
+
 
         //GETPAGE DE ANUNCIO
         $http({
@@ -66,6 +70,10 @@ moduleAnuncio.controller('misanunciosController', ['$scope', '$http', '$location
                             fotos.push(elementFoto.ruta);
                         }
                     });
+
+                    if (fotos.length === 0) {
+                        fotos.push("sinfotodefault.jpg");
+                    }
 
                     var producto = {
                         producto: element,

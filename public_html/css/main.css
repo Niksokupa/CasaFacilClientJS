@@ -593,6 +593,11 @@ md-select:disabled{
     font-size: 22px;
 }
 @media only screen and (max-width: 480px) {
+
+    body{
+        display: block;
+    }
+
     .footer-social-overlap > a {
         margin: auto;
     }
@@ -608,10 +613,15 @@ md-select:disabled{
 
 /*// Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {
+
+    body{
+        display: block;
+    }
+
     .favanuncio {
         position: absolute;
-        margin-left: 78%;
-        margin-top: -6%;
+        margin-left: 83%;
+        margin-top: -4.5%;
     }
 
     .imgminianuncio {
@@ -734,7 +744,12 @@ md-select:disabled{
 }
 
 /*// Small devices (landscape phones, 576px and up)*/
-@media (min-width: 576px) and (max-width: 767.98px) {     
+@media (min-width: 576px) and (max-width: 767.98px) {    
+
+    body{
+        display: block;
+    }
+
     .favanuncio {
         position: absolute;
         margin-left: 45%;
@@ -805,6 +820,11 @@ md-select:disabled{
 
 /*// Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) and (max-width: 991.98px) { 
+    
+    body{
+        display: block;
+    }
+    
     .asidefiltros{
         padding-right: 0px !important;
     }
@@ -816,7 +836,8 @@ md-select:disabled{
 }
 
 /*// Large devices (desktops, 992px and up)*/
-@media (min-width: 992px) and (max-width: 1199.98px) { 
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    
     .card-text{
         font-size: 1.2vw;
     }

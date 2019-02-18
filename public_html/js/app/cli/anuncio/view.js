@@ -6,7 +6,7 @@ moduleAnuncio.controller('viewanunciosController', ['$scope', '$http', 'toolServ
         $scope.terreno = false;
         $scope.id = $routeParams.id;
         $scope.extra = false;
-        
+
         $scope.volver = function () {
             $location.path('cli/ciudad/' + $scope.anuncio.obj_Barrio.obj_ciudad.id);
         }
@@ -28,7 +28,7 @@ moduleAnuncio.controller('viewanunciosController', ['$scope', '$http', 'toolServ
                 url: 'http://localhost:8081/casafacil/json?ob=extras&op=getspecific&id=' + $scope.anuncio.id
             }).then(function (response) {
                 $scope.extras = response.data.message;
-                if($scope.extras.length > 0){
+                if ($scope.extras.length > 0) {
                     $scope.extra = true;
                 }
 
@@ -42,7 +42,7 @@ moduleAnuncio.controller('viewanunciosController', ['$scope', '$http', 'toolServ
                         var extras = {
                             extras: element
                         };
-                        
+
                         //SOLO HAGO PUSH DE LOS EXTRAS QUE TIENE EL ANUNCIO
                         $scope.extras.forEach(element2 => {
                             if (element2.id_extras === element.id) {
@@ -69,8 +69,14 @@ moduleAnuncio.controller('viewanunciosController', ['$scope', '$http', 'toolServ
             method: 'GET',
             url: 'http://localhost:8081/casafacil/json?ob=fotos&op=getall&id=' + $scope.id
         }).then(function (response) {
-            $scope.userId = response.data.message[0].obj_Anuncio.obj_Usuario.id;
-            $scope.fotos = response.data.message;
+            if (response.data.message.length > 0) {
+                $scope.userId = response.data.message[0].obj_Anuncio.obj_Usuario.id;
+                $scope.fotos = response.data.message;
+            } else {
+                $scope.fotos = [];
+                $scope.fotos.push('sinfotodefault.jpg');
+            }
+
         }, function (response) {
             $scope.error = response.data.message || 'Request failed';
         });

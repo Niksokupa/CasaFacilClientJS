@@ -31,13 +31,16 @@
                 <img src="https://img.icons8.com/ios/20/000000/phone.png"> {{anuncio.obj_Usuario.telefono}}  
             </span>  
             <span ng-if="anuncio.obj_Usuario.correo" class="ml-3">
-                  <img src="https://img.icons8.com/ios/20/000000/email.png"> {{anuncio.obj_Usuario.correo}}
+                <img src="https://img.icons8.com/ios/20/000000/email.png"> {{anuncio.obj_Usuario.correo}}
             </span>
         </div>
         <div class="imagenanuncioview ml-2 mt-4">
             <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
-                <div uib-slide ng-repeat="foto in fotos track by $index" index="$index">
+                <div uib-slide ng-if="foto != 'sinfotodefault.jpg'" ng-repeat="foto in fotos track by $index" index="$index">
                     <img class="imagenanuncioview" ng-src="http://localhost:8081/imagenes/{{userId}}/{{foto.ruta}}" style="margin:auto;">
+                </div>
+                <div uib-slide ng-if="foto == 'sinfotodefault.jpg'" ng-repeat="foto in fotos track by $index" index="$index">
+                    <img class="imagenanuncioview" ng-src="http://localhost:8081/imagenes/sinfotodefault.jpg" style="margin:auto;">
                 </div>
             </div>
         </div>

@@ -32,6 +32,10 @@ moduleFavs.controller('favsController', ['$scope', '$http', '$location', 'toolSe
             }
         }
 
+        $scope.verAnuncio = function (id) {
+            $location.path('cli/anuncio/' + id);
+        };
+
         //GETPAGE DE ANUNCIO
         $http({
             method: 'GET',
@@ -66,6 +70,10 @@ moduleFavs.controller('favsController', ['$scope', '$http', '$location', 'toolSe
                             fotos.push(elementFoto.ruta);
                         }
                     });
+
+                    if (fotos.length === 0) {
+                        fotos.push("sinfotodefault.jpg");
+                    }
 
                     var producto = {
                         producto: element,

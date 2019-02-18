@@ -162,6 +162,10 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
                         }
                     });
 
+                    if (fotos.length === 0) {
+                        fotos.push("sinfotodefault.jpg");
+                    }
+
                     var producto = {
                         producto: element,
                         fotos: fotos
@@ -223,6 +227,10 @@ moduleCiudad.controller('ciudadController', ['$scope', '$http', '$location', 'to
                                 fotos.push(elementFoto.ruta);
                             }
                         });
+
+                        if (fotos.length === 0) {
+                            fotos.push("sinfotodefault.jpg");
+                        }
 
                         var producto = {
                             producto: element,
