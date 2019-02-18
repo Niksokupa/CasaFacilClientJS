@@ -107,7 +107,7 @@
                             <a class="page-link" ng-show="page > 1" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/{{page - 1}}/{{orderURLCliente}}"><</a>
                         </li>
                         <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
-                            <a class="page-link" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/{{p}}/{{order}}/{{align}}">{{p}}</a>
+                            <a class="page-link" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/{{p}}/{{orderURLCliente}}">{{p}}</a>
                         </li>
                         <li class="page-item">
                             <a class="page-link" ng-show="page != totalPages" href="cli/ciudad/{{ciudadId}}/{{selectedBarrio}}/{{rpp}}/{{page--1}}/{{orderURLCliente}}">></a>
