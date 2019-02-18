@@ -27,6 +27,31 @@ body {
     grid-row-end: 3;
 }
 
+
+/*ACCORDION ADMIN MENU*/
+
+.menulateral{
+    position: fixed; 
+    float: left; 
+    width: 250px; 
+    height: 100vh;
+    z-index: 1000;
+    background-color: #008040;
+}
+
+.card-header{
+    background-color: #008040 !important;
+    border-bottom: 1px solid white;
+}
+
+.accordion-toggle{
+    color:white;
+}
+
+.card{
+    border: none;
+}
+
 /*FOOTER*/
 
 .iconofooter{
