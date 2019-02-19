@@ -20,9 +20,9 @@
                             <div class="numFotos">{{producto.producto.numFotos}} foto/s</div>
                         </div>
                         <div class="col-md-8 px-0">
-                            <div class="card-body" ng-click="verAnuncio(producto.producto.id)">
+                            <div class="card-body">
                                 <div class="row no-gutters mx-3">
-                                    <div class="col-md-9 mx-0">
+                                    <div class="col-md-9 mx-0" ng-click="verAnuncio(producto.producto.id)">
                                         <h4 class="card-title mb-0" md-truncate>{{producto.producto.titulo}}</h4>
                                         <div class="mb-2 text-muted">
                                             <span>{{producto.producto.obj_Tipoinmueble.desc}} en el barrio {{producto.producto.obj_Barrio.desc}}</span><br>

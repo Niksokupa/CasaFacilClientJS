@@ -134,7 +134,7 @@
                         <md-content layout-padding class="newForm mb-5" md-whiteframe="{{heighty}}" ng-init="heighty = 6">
                             <div>
                                 <div class="checkbox filtroinput" ng-click="filtroExtras(extras.extras.id)" ng-repeat="extras in listaExtras">
-                                    <md-checkbox class="brown align-middle" style="display: table-cell; padding:5px;" ng-true-value="{{extras.extras.id}}">
+                                    <md-checkbox class="brown align-middle hasExtra{{$index + 1}}" style="display: table-cell; padding:5px;" ng-true-value="{{extras.extras.id}}">
                                         {{extras.extras.desc}}
                                     </md-checkbox>
                                     <!--<input type="checkbox" name="extras" id="chk-{{extras.extras.id}}">{{extras.extras.desc}}-->

@@ -40,10 +40,10 @@ moduleAnuncio.controller('editanunciosController', ['$scope', '$http', '$locatio
             var index = $scope.selectedExtras.indexOf(id);
             if (index > -1) {
                 $scope.selectedExtras.splice(index, 1);
-                $(".asd" + id).removeClass("md-checked");
+                $(".hasExtra" + id).removeClass("md-checked");
             } else {
                 $scope.selectedExtras.push(id);
-                $(".asd" + id).addClass("md-checked");
+                $(".hasExtra" + id).addClass("md-checked");
             }
         };
 
@@ -91,7 +91,7 @@ moduleAnuncio.controller('editanunciosController', ['$scope', '$http', '$locatio
                     //RECOJO LOS EXTRAS Y LAS ALMACENO EN ESTE ARRAY
                     $scope.selectedExtras.push(element.id_extras);
                     //PRE-CHECKEO LOS EXTRAS 
-                    $(".asd" + element.id_extras).addClass("md-checked");
+                    $(".hasExtra" + element.id_extras).addClass("md-checked");
                 });
             });
         });
@@ -191,7 +191,6 @@ moduleAnuncio.controller('editanunciosController', ['$scope', '$http', '$locatio
             };
 
         };
-
 
 
         $scope.rellenaBarrio = function () {
