@@ -157,7 +157,10 @@ moduleAnuncio.controller('newanunciosController', ['$scope', '$http', '$location
                         var reader = new FileReader();
 
                         reader.onload = function (event) {
-                            $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                            var lastFive = event.target.result.substr(event.target.result.length - 5);
+                            if(lastFive === ".png" || lastFive === ".jpeg" || lastFive === ".jpg") {
+                                $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                            }
                         }
 
                         reader.readAsDataURL(input.files[i]);
@@ -194,8 +197,10 @@ moduleAnuncio.controller('newanunciosController', ['$scope', '$http', '$location
 //                            // File Input Value 
 //                            _file: item
 //                        };
-                        values.push(item);
-
+                        var lastFive = item.name.substr(item.name.length - 5);
+                        if(lastFive === ".png" || lastFive === ".jpeg" || lastFive === ".jpg") {
+                            values.push(item);
+                        }
                     });
                     scope.$apply(function () {
                         if (isMultiple) {
