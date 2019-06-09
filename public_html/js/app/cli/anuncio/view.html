@@ -37,10 +37,10 @@
         <div class="imagenanuncioview ml-2 mt-4">
             <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
                 <div uib-slide ng-if="foto != 'sinfotodefault.jpg'" ng-repeat="foto in fotos track by $index" index="$index">
-                    <img class="imagenanuncioview" ng-src="http://localhost:8081/imagenes/{{userId}}/{{foto.ruta}}" style="margin:auto;">
+                    <img class="imagenanuncioview" alt="imagen_de_anuncio" ng-src="http://localhost:8081/imagenes/{{userId}}/{{foto.ruta}}" style="margin:auto;">
                 </div>
                 <div uib-slide ng-if="foto == 'sinfotodefault.jpg'" ng-repeat="foto in fotos track by $index" index="$index">
-                    <img class="imagenanuncioview" ng-src="http://localhost:8081/imagenes/sinfotodefault.jpg" style="margin:auto;">
+                    <img class="imagenanuncioview" alt="imagen_de_anuncio" ng-src="http://localhost:8081/imagenes/sinfotodefault.jpg" style="margin:auto;">
                 </div>
             </div>
         </div>

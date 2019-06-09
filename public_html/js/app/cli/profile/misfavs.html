@@ -8,10 +8,10 @@
                     <div class="row anuncio{{$index}}">
                         <div class="col-md-4" style="position: relative;">
                             <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
-                                <div uib-slide ng-if="foto != 'sinfotodefault.jpg'" ng-repeat="foto in producto.fotos track by $index" index="$index">
+                                <div uib-slide ng-if="foto != 'sinfotodefault.jpg'" alt="imagen_de_anuncio" ng-repeat="foto in producto.fotos track by $index" index="$index">
                                     <img class="thumbnails" ng-src="http://localhost:8081/imagenes/{{producto.producto.obj_Usuario.id}}/{{foto}}" style="margin:auto;">
                                 </div>
-                                <div uib-slide ng-if="foto == 'sinfotodefault.jpg'" ng-repeat="foto in producto.fotos track by $index" index="$index">
+                                <div uib-slide ng-if="foto == 'sinfotodefault.jpg'" alt="imagen_de_anuncio" ng-repeat="foto in producto.fotos track by $index" index="$index">
                                     <img class="thumbnails" ng-src="http://localhost:8081/imagenes/sinfotodefault.jpg" style="margin:auto;">
                                 </div>
                             </div>
